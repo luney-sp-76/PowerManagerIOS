@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
@@ -50,7 +50,7 @@
                                         <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="435.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6">
-                                                <rect key="frame" x="79.000000000000014" y="168.66666666666669" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79" y="168.66666666666669" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
@@ -102,8 +102,6 @@
                                 <constraints>
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="Js1-ez-p0C"/>
                                     <constraint firstItem="Qgq-bo-bld" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" constant="25" id="LLj-KO-Qew"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qgq-bo-bld" secondAttribute="trailing" constant="25" id="Tjv-ux-AD0"/>
-                                    <constraint firstAttribute="trailing" secondItem="IT5-iO-d56" secondAttribute="trailing" constant="20" id="WG7-IX-UEU"/>
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="rOx-HT-uI1"/>
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="yhA-e0-vBb"/>
                                 </constraints>
