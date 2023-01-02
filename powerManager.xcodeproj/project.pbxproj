@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		BD65FCF629620B3600C80565 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF529620B3600C80565 /* DeviceManager.swift */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
 		BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCFD2962F57900C80565 /* DeviceData.swift */; };
+		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FED295E1CDD00704D59 /* AppDelegate.swift */; };
 		DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FEF295E1CDD00704D59 /* SceneDelegate.swift */; };
 		DAE45FF2295E1CDD00704D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FF1295E1CDD00704D59 /* ViewController.swift */; };
@@ -39,9 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		BD65FCF529620B3600C80565 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DeviceManager.swift; path = "../../../../Swift/Clima/Clima-iOS13/Clima/Model/DeviceManager.swift"; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		BD65FCFD2962F57900C80565 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
+		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		DAE45FEA295E1CDD00704D59 /* powerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = powerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE45FED295E1CDD00704D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAE45FEF295E1CDD00704D59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -93,9 +93,9 @@
 		DAB806F6295E333D00C5136E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BD65FCF529620B3600C80565 /* DeviceManager.swift */,
 				BD65FCF92962EC5000C80565 /* DeviceModel.swift */,
 				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
+				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -291,8 +291,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */,
 				DAE45FF2295E1CDD00704D59 /* ViewController.swift in Sources */,
-				BD65FCF629620B3600C80565 /* DeviceManager.swift in Sources */,
 				BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */,
 				DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */,
 				DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */,

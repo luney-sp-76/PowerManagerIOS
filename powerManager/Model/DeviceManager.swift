@@ -59,7 +59,7 @@ struct DeviceManager {
             return device
             
         } catch {
-            self.delegate?.didFailWithError(error: error!)
+            self.delegate?.didFailWithError(error: error)
             return nil
         }
     }
