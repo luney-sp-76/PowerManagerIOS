@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -56,7 +56,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
                                                         <color key="tintColor" red="0.1185588613" green="0.20756468180000001" blue="0.22353252770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="80"/>
-                                                        <color key="textColor" name="Weather Color"/>
+                                                        <color key="textColor" red="0.32337966559999998" green="0.42150872950000001" blue="0.53726941350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zy2-1K-wa2" userLabel="Percent">
@@ -73,7 +73,7 @@
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="133" y="288" width="49.666666666666657" height="34.333333333333343"/>
+                                                <rect key="frame" x="132.66666666666666" y="288" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
                                                 <state key="normal" title="Button"/>
@@ -124,6 +124,7 @@
                     </view>
                     <connections>
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
+                        <outlet property="button" destination="dKC-zG-HFM" id="IR4-tC-zN5"/>
                         <outlet property="setBatteryLevel" destination="qbF-Vi-zdd" id="eOS-3P-evw"/>
                     </connections>
                 </viewController>
