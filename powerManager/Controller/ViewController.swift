@@ -12,7 +12,6 @@ class ViewController: UIViewController, DeviceManagerDelegate {
     var batteryPercentage = 21
 
     @IBOutlet weak var batteryPercentageLabel: UILabel!
-  
     
     @IBOutlet weak var setBatteryLevel: UILabel!
     
@@ -39,7 +38,11 @@ class ViewController: UIViewController, DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         let id = device.id
         let name = device.name
-        let state = device.state
+        setBatteryLevel.text = device.state
+    }
+    
+    func didFailWithError(error: Error) {
+      print(error)
     }
     
     
