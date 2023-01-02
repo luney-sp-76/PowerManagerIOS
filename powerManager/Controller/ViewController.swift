@@ -10,13 +10,17 @@ import UIKit
 class ViewController: UIViewController, DeviceManagerDelegate {
     
     var batteryPercentage = 21
+    
 
     @IBOutlet weak var batteryPercentageLabel: UILabel!
     
     @IBOutlet weak var setBatteryLevel: UILabel!
     
+    @IBOutlet weak var button: UIButton!
     @IBAction func sliderMoved(_ sender: UISlider) {
-        
+        setBatteryLevel.textColor = UIColor(named: "NumberColor")
+        button.isSelected = false
+        button.setTitle("Set", for: .normal)
         batteryPercentage = Int(sender.value)
         setBatteryLevel.text = String(format: "%d", batteryPercentage)
         
@@ -25,7 +29,11 @@ class ViewController: UIViewController, DeviceManagerDelegate {
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         // change button text to set level
-        sender.isSelected = true
+       sender.isSelected = true
+        setBatteryLevel.textColor = UIColor(named: "AffirmAction")
+        sender.setTitle("Done", for: .normal)
+       
+        
         //check battery level
         
         //check plug state

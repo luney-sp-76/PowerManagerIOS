@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
-    <device id="retina5_9" orientation="portrait" appearance="dark"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -50,13 +50,13 @@
                                         <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="435.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6">
-                                                <rect key="frame" x="79.000000000000014" y="168.66666666666669" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79" y="168.66666666666669" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
                                                         <color key="tintColor" red="0.1185588613" green="0.20756468180000001" blue="0.22353252770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <fontDescription key="fontDescription" type="system" weight="black" pointSize="80"/>
-                                                        <color key="textColor" name="Weather Color"/>
+                                                        <color key="textColor" red="0.32337966559999998" green="0.42150872950000001" blue="0.53726941350000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zy2-1K-wa2" userLabel="Percent">
@@ -73,8 +73,9 @@
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="133" y="288" width="49.666666666666657" height="34.333333333333343"/>
+                                                <rect key="frame" x="132.66666666666666" y="288" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Set" cornerStyle="dynamic">
@@ -101,8 +102,6 @@
                                 <constraints>
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="Js1-ez-p0C"/>
                                     <constraint firstItem="Qgq-bo-bld" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" constant="25" id="LLj-KO-Qew"/>
-                                    <constraint firstAttribute="trailing" secondItem="Qgq-bo-bld" secondAttribute="trailing" constant="25" id="Tjv-ux-AD0"/>
-                                    <constraint firstAttribute="trailing" secondItem="IT5-iO-d56" secondAttribute="trailing" constant="20" id="WG7-IX-UEU"/>
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="rOx-HT-uI1"/>
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="yhA-e0-vBb"/>
                                 </constraints>
@@ -124,6 +123,7 @@
                     </view>
                     <connections>
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
+                        <outlet property="button" destination="dKC-zG-HFM" id="IR4-tC-zN5"/>
                         <outlet property="setBatteryLevel" destination="qbF-Vi-zdd" id="eOS-3P-evw"/>
                     </connections>
                 </viewController>
@@ -135,7 +135,7 @@
     <resources>
         <image name="background" width="2725" height="1595"/>
         <namedColor name="Set Button Colour">
-            <color red="0.53899997472763062" green="0.66500002145767212" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42887699600000001" green="0.53593397139999999" blue="0.61569750310000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Weather Color">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
