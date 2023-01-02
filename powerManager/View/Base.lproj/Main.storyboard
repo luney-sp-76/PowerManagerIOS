@@ -75,6 +75,7 @@
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
                                                 <rect key="frame" x="132.66666666666666" y="288" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
                                                 <state key="normal" title="Button"/>
                                                 <buttonConfiguration key="configuration" style="tinted" title="Set" cornerStyle="dynamic">
@@ -136,7 +137,7 @@
     <resources>
         <image name="background" width="2725" height="1595"/>
         <namedColor name="Set Button Colour">
-            <color red="0.53899997472763062" green="0.66500002145767212" blue="0.74500000476837158" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color red="0.42887699600000001" green="0.53593397139999999" blue="0.61569750310000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <namedColor name="Weather Color">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
