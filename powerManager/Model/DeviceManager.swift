@@ -16,7 +16,7 @@ let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyMTUwNGRhYTI
 
 let endPoint = UrlEndpoint.init(batteryLevel: "_battery_level", batteryState: "_battery_state", plugEnergy: "_energy", plugTemperature: "_device_temperature", plugEnergyCost: "_energy_cost", deviceId: [DeviceName(plugName: "0x0015bc002f00edf3", phoneName: "_8_number_1")])
 
-var performFetchRequest = ApiCall()
+
 
 struct DeviceManager {
     let homeAssistantFetchUrl = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/"
@@ -25,7 +25,7 @@ struct DeviceManager {
     
     func fetchDeviceData(deviceName: UrlEndpoint, urlEndPoint: UrlEndpoint){
         let urlString = "\(homeAssistantFetchUrl)states/sensor.\(deviceName)\(endPoint)"
-        let device = performFetchRequest.callForData(urlString: urlString)
+        
         self.delegate?.didUpdateDevice(self, device: device)
     }
     func fetchPlugState(plugName: UrlEndpoint) {
