@@ -7,17 +7,21 @@
 
 import UIKit
 
-class ViewController: UIViewController, DeviceManagerDelegate {
-    
+class ViewController: UIViewController,DeviceManagerDelegate {
+    var deviceManager = DeviceManager()
     var batteryPercentage = 21
-    var currentBatteryLevel = 21
-    
+    var currentBatteryLevel = " "
+ 
 
     @IBOutlet weak var batteryPercentageLabel: UILabel!
-    
     @IBOutlet weak var setBatteryLevel: UILabel!
-    
     @IBOutlet weak var button: UIButton!
+    
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        deviceManager.delegate = self
+    }
     
     @IBAction func sliderMoved(_ sender: UISlider) {
         setBatteryLevel.textColor = UIColor(named: "NumberColor")
@@ -28,13 +32,7 @@ class ViewController: UIViewController, DeviceManagerDelegate {
         
     }
     
-    
-    override func viewDidLoad() {
-            super.viewDidLoad()
-        
-        batteryPercentageLabel.text = String(format: "%d", currentBatteryLevel)
-       
-        }
+
     
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -42,6 +40,7 @@ class ViewController: UIViewController, DeviceManagerDelegate {
        sender.isSelected = true
         setBatteryLevel.textColor = UIColor(named: "AffirmAction")
         sender.setTitle("Done", for: .normal)
+        batteryPercentageLabel.text = currentBatteryLevel
        
         
         //check battery level
@@ -53,10 +52,11 @@ class ViewController: UIViewController, DeviceManagerDelegate {
     }
     
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
-        //let id = device.id
-        //let name = device.name
         //change battery percentage to current battery percentage
-        currentBatteryLevel = Int(device.state) ?? 0
+        DispatchQueue.main.async {
+            self.batteryPercentageLabel.text = String(format: "%d", device.state)
+        }
+       
     }
     
     
