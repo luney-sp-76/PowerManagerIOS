@@ -6,35 +6,44 @@
 //
 
 import Foundation
-let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyMTUwNGRhYTI1NTQ0OGEzOTY2NThkODYyZWJiY2NkMCIsImlhdCI6MTY3MjE1MTY0MiwiZXhwIjoxOTg3NTExNjQyfQ.MNmgTZHOZO7eEO4wywzqrfdma1O-QsRyjd7nQVtUNew"
-var endPoint = UrlEndpoint.init(batteryLevel: "_battery_level", batteryState: "_battery_state", plugEnergy: "_energy", plugTemperature: "_device_temperature", plugEnergyCost: "_energy_cost", deviceId: [DeviceName(plugName: "0x0015bc002f00edf3", phoneName: "_8_number_1")])
 
 protocol DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel)
     func didFailWithError(error:Error)
 }
 
+let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyMTUwNGRhYTI1NTQ0OGEzOTY2NThkODYyZWJiY2NkMCIsImlhdCI6MTY3MjE1MTY0MiwiZXhwIjoxOTg3NTExNjQyfQ.MNmgTZHOZO7eEO4wywzqrfdma1O-QsRyjd7nQVtUNew"
+
+let endPoint = UrlEndpoint.init(batteryLevel: "_battery_level", batteryState: "_battery_state", plugEnergy: "_energy", plugTemperature: "_device_temperature", plugEnergyCost: "_energy_cost", deviceId: [DeviceName(plugName: "0x0015bc002f00edf3", phoneName: "_8_number_1")])
+
+let callApi = ApiCall
+
+
+
 struct DeviceManager {
     let homeAssistantFetchUrl = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/"
     let homeAssistantPlugState = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/states/"
     var delegate: DeviceManagerDelegate?
     
-    func fetchDeviceData(deviceName: UrlEndpoint, endPoint: UrlEndpoint){
+    func fetchDeviceData(deviceName: UrlEndpoint, urlEndPoint: UrlEndpoint){
         let urlString = "\(homeAssistantFetchUrl)states/sensor.\(deviceName)\(endPoint)"
-        performRequest(with: urlString)
+        performFetchRequest(with: urlString)
     }
-    func fetchPlugState(deviceName: UrlEndpoint) {
-        let urlString = "\(homeAssistantFetchUrl)states/switch.\(deviceName)"
+    func fetchPlugState(plugName: UrlEndpoint) {
+        let urlString = "\(homeAssistantFetchUrl)states/switch.\(plugName)"
         performRequest(with: urlString)
     }
    
    
-    func performRequest(with urlString: String) {
+    func performFetchRequest(with urlString: String) {
         //1: Create a URL
         if let url = URL(string: urlString){
+            var urlRequest = URLRequest(url:url)
+            urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
             
             //2: Create a URLSession
-            let session = URLSession(configuration: .default)
+            let config = URLSessionConfiguration.default
+            let session = URLSession(configuration: config)
             
             //3: Give Session a task
             let task = session.dataTask(with: url) { (data, response, error) in
