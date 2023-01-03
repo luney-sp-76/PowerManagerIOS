@@ -7,11 +7,13 @@
 
 import Foundation
 
+protocol MyAPIDelegate{
+    func didReceiveData(_ data: DeviceModel)
+}
+
 struct ApiCall {
-    
-    
-    
-    func callForData(urlString: String) -> DeviceModel? {
+
+    func callForData(urlString: String) -> DeviceModel {
         
         var device = DeviceModel(id:"none",state:"none",name:"none")
         
@@ -19,7 +21,8 @@ struct ApiCall {
         if let url = URL(string: urlString){
             var urlRequest = URLRequest(url:url)
             urlRequest.addValue(token, forHTTPHeaderField: "Authorization")
-            urlRequest.addValue("application/json", forHTTPHeaderField: "content-type")
+            urlRequest.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            urlRequest.httpMethod = "GET"
             
             //2: Create a URLSession
             let config = URLSessionConfiguration.default
@@ -37,8 +40,7 @@ struct ApiCall {
                     print("error: did not receive data")
                     return
                 }
-                do {
-                    let decoder = JSONDecoder()
+               
                     do {
                         //decode all the data requied for the app to read battery level charging state
                         let decodedData = try JSONDecoder().decode(DeviceData.self, from:safeData)
@@ -47,14 +49,14 @@ struct ApiCall {
                         let state = decodedData.state
                         let name = decodedData.attributes[0].friendly_name
                         device = DeviceModel(id: id, state: state, name: name)
-                        
+       
                         
                     } catch {
                         print(error)
                         return
                     }
                     
-                }
+                
                 
             }
             //4: Start the task
@@ -62,6 +64,7 @@ struct ApiCall {
         }
         return device
     }
+   
 }
     
  
