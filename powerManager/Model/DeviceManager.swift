@@ -6,6 +6,8 @@
 //
 
 import Foundation
+let token = "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiIyMTUwNGRhYTI1NTQ0OGEzOTY2NThkODYyZWJiY2NkMCIsImlhdCI6MTY3MjE1MTY0MiwiZXhwIjoxOTg3NTExNjQyfQ.MNmgTZHOZO7eEO4wywzqrfdma1O-QsRyjd7nQVtUNew"
+var endPoint = UrlEndpoint.init(batteryLevel: "_battery_level", batteryState: "_battery_state", plugEnergy: "_energy", plugTemperature: "_device_temperature", plugEnergyCost: "_energy_cost", deviceId: [DeviceName(plugName: "0x0015bc002f00edf3", phoneName: "_8_number_1")])
 
 protocol DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel)
@@ -13,13 +15,20 @@ protocol DeviceManagerDelegate {
 }
 
 struct DeviceManager {
-    let deviceUrl = ""
+    let homeAssistantFetchUrl = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/"
+    let homeAssistantPlugState = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/states/"
     var delegate: DeviceManagerDelegate?
     
-    func fetchDevice(iphoneName: String){
-        let urlString = ""
+    func fetchDeviceData(deviceName: UrlEndpoint, endPoint: UrlEndpoint){
+        let urlString = "\(homeAssistantFetchUrl)states/sensor.\(deviceName)\(endPoint)"
         performRequest(with: urlString)
     }
+    func fetchPlugState(deviceName: UrlEndpoint) {
+        let urlString = "\(homeAssistantFetchUrl)states/switch.\(deviceName)"
+        performRequest(with: urlString)
+    }
+   
+   
     func performRequest(with urlString: String) {
         //1: Create a URL
         if let url = URL(string: urlString){
