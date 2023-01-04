@@ -11,17 +11,17 @@ import Foundation
 struct DeviceData: Decodable {
     let entity_id: String
     let state: String
-    let attributes: [Attributes]
+    let attributes: Attributes
     let last_changed: String
     let last_updated: String
-    let context: [Context]
+    let context: Context
     
     }
 
 struct Attributes: Decodable {
     //alternates Level uses unit_of_measurement while State uses Low Power Mode (which needs changed to be underscored)***
-    let unit_of_measurement: String
-    let Low_Power_Mode: Bool
+    let unit_of_measurement: String?
+    let Low_Power_Mode: Bool?
     //***
     let device_class: String
     let icon: String
@@ -30,8 +30,8 @@ struct Attributes: Decodable {
 
 struct Context: Decodable {
         let id: String
-        let parent_id: String
-        let user_id: String
+        let parent_id: String?
+        let user_id: String?
 }
 
 //Battery Level

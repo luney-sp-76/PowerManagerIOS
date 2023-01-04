@@ -36,6 +36,7 @@ class ViewController: UIViewController {
         sender.isSelected = true
         setBatteryLevel.textColor = UIColor(named: "AffirmAction")
         sender.setTitle("Done", for: .normal)
+        deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level")
        
         
         
@@ -54,9 +55,8 @@ extension ViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         //change battery percentage to current battery percentage
         //call the api via DeviceManager
-        deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level")
         DispatchQueue.main.async {
-            self.batteryPercentageLabel.text = String(format: "%d", device.state)
+            self.batteryPercentageLabel.text = device.state
         }
         
     }
