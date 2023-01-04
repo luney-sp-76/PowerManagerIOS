@@ -7,12 +7,11 @@
 
 import UIKit
 
-class ViewController: UIViewController,DeviceManagerDelegate {
+class ViewController: UIViewController {
+    
     var deviceManager = DeviceManager()
     var batteryPercentage = 21
-    var currentBatteryLevel = " "
- 
-
+   
     @IBOutlet weak var batteryPercentageLabel: UILabel!
     @IBOutlet weak var setBatteryLevel: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -32,33 +31,39 @@ class ViewController: UIViewController,DeviceManagerDelegate {
         
     }
     
-
-    
-    
     @IBAction func buttonPressed(_ sender: UIButton) {
         // change button text to set level
-       sender.isSelected = true
+        sender.isSelected = true
         setBatteryLevel.textColor = UIColor(named: "AffirmAction")
         sender.setTitle("Done", for: .normal)
-        batteryPercentageLabel.text = currentBatteryLevel
        
+        
         
         //check battery level
         
         //check plug state
         //take action based on if the battery is 100% turn plug off. If battery is above the set Level batteryPercentage
         //turn plug off. Otherwise turn plug on and start checking the database for updates and or api for updates
-    
+        
     }
-    
+}
+
+//MARK: - DeviceManagerDelegate
+
+extension ViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         //change battery percentage to current battery percentage
+        //call the api via DeviceManager
+        deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level")
         DispatchQueue.main.async {
             self.batteryPercentageLabel.text = String(format: "%d", device.state)
         }
-       
+        
     }
     
+    func didFailWithError(error: Error) {
+        print(error)
+    }
     
 }
 
