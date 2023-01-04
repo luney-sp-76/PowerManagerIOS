@@ -97,11 +97,11 @@
 		DAB806F6295E333D00C5136E /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
+				BDA6B0682965D5DF000EE544 /* PlugControl.swift */,
 				BD65FCF92962EC5000C80565 /* DeviceModel.swift */,
 				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
-				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
 				BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */,
-				BDA6B0682965D5DF000EE544 /* PlugControl.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

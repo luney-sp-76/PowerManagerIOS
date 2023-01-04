@@ -10,6 +10,7 @@ import UIKit
 class ViewController: UIViewController {
     
     var deviceManager = DeviceManager()
+    var plugControl = PlugControl()
     var batteryPercentage = 21
    
     @IBOutlet weak var batteryPercentageLabel: UILabel!
@@ -20,13 +21,16 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceManager.delegate = self
-        deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level")
+        deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level")
     
     }
     
     @objc func battery(level: String){
         print("hi its the battery timer")
-        self.batteryPercentageLabel.text = level
+        if batteryPercentageLabel.text == "100" {
+         
+            //plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3", urlEndPoint: "turn_off")
+        }
     }
     
     @IBAction func sliderMoved(_ sender: UISlider) {
@@ -65,16 +69,28 @@ extension ViewController: DeviceManagerDelegate {
         DispatchQueue.main.async {
             self.batteryPercentageLabel.text = device.state
         }
-        let level = device.state
-        let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(battery), userInfo:deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
-        RunLoop.current.add(timer, forMode: .common)
+     
+            let timer = Timer.scheduledTimer(timeInterval: 600.0, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
+            RunLoop.current.add(timer, forMode: .common)
+        
     }
     
     func didFailWithError(error: Error) {
         print(error)
     }
+ 
+
+}
+
+//MARK: - PlugControlDelegate
+
+extension ViewController: PlugManagerDelegate {
+    func didUpdateDevice(_ PlugManager: PlugControl){
+        print("updated")
+    }
     
-    
-    
+    func didFailWithError(_ error: Error){
+        print(error)
+    }
 }
 

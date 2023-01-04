@@ -16,8 +16,8 @@ struct PlugControl {
     let homeAssistantPostUrl = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/services/switch/"
     var delegate: PlugManagerDelegate?
     
-    func fetchDeviceData(deviceName: String, urlEndPoint: String) {
-        let urlString = "\(homeAssistantPostUrl)\(urlEndPoint)"
+    func fetchPlugData(deviceName: String, urlEndPoint: String) {
+        let urlString = "\(homeAssistantPostUrl)\(deviceName)\(urlEndPoint)"
         print(urlString)
         sendRequest(urlString: urlString)
     }

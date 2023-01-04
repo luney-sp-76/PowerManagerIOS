@@ -3,7 +3,7 @@
 //  powerManager
 //
 //  Created by Paul Olphert on 01/01/2023.
-//
+// TODO / Refactor to allow the callForData function to be used for the plug and the phone
 
 import Foundation
 
@@ -21,10 +21,15 @@ struct DeviceManager  {
     // utility function, can be called for any endpoint "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/states/sensor.devicename-endpoint"
     // returns a DeviceModel from the ApiCall Model
     func fetchDeviceData(deviceName: String, urlEndPoint: String) {
-        let urlString = "\(homeAssistantFetchUrl)states/sensor.\(deviceName)\(urlEndPoint)"
+        let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)\(urlEndPoint)"
         print(urlString)
         callForData(urlString: urlString)
     }
+    //for testing use switch.0x0015bc002f00edf3 as the urlEndPoint
+//    func fetchPlugState(urlEndPoint: String){
+//        let urlString = "\(homeAssistantFetchUrl)states/\(urlEndPoint)"
+//        callForData(urlString: urlString)
+//    }
     
     func callForData(urlString: String) {
         let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmNzI5MGM3OTE0NjE0ODhmOGYzZjFjMDU4YjA2YmRhOSIsImlhdCI6MTY3Mjc1OTk4MCwiZXhwIjoxOTg4MTE5OTgwfQ.X9E2pp6XUxjORMAK_mJSsZK5GG6rv4b-3c8X88eX1yQ"
