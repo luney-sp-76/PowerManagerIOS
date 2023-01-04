@@ -34,12 +34,12 @@ struct DeviceManager  {
         //1: Create a URL
         if let url = URL(string: urlString) {
             var urlRequest = URLRequest(url:url)
-            urlRequest.httpMethod = "GET"
-            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
-            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
             print("task 2")
             //2: Create a URLSession
+            urlRequest.httpMethod = "GET"
+            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
             print("task 3")
             //3: Give Session a task
@@ -71,7 +71,6 @@ struct DeviceManager  {
             let id = decodedData.entity_id
             let state = decodedData.state
             let name = decodedData.attributes.friendly_name
-            print(id)
             print(state)
             print(name)
             let device = DeviceModel(id: id, state: state, name: name)

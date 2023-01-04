@@ -20,6 +20,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceManager.delegate = self
+        deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level")
+    
+    }
+    
+    @objc func battery(level: String){
+        print("hi its the battery timer")
+        self.batteryPercentageLabel.text = level
     }
     
     @IBAction func sliderMoved(_ sender: UISlider) {
@@ -36,7 +43,7 @@ class ViewController: UIViewController {
         sender.isSelected = true
         setBatteryLevel.textColor = UIColor(named: "AffirmAction")
         sender.setTitle("Done", for: .normal)
-        deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level")
+        
        
         
         
@@ -58,12 +65,16 @@ extension ViewController: DeviceManagerDelegate {
         DispatchQueue.main.async {
             self.batteryPercentageLabel.text = device.state
         }
-        
+        let level = device.state
+        let timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(battery), userInfo:deviceManager.fetchDeviceData(deviceName: "iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
+        RunLoop.current.add(timer, forMode: .common)
     }
     
     func didFailWithError(error: Error) {
         print(error)
     }
+    
+    
     
 }
 
