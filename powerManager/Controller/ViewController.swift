@@ -70,7 +70,7 @@ extension ViewController: DeviceManagerDelegate {
             self.batteryPercentageLabel.text = device.state
         }
      
-            let timer = Timer.scheduledTimer(timeInterval: 600.0, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
+            let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
             RunLoop.current.add(timer, forMode: .common)
         
     }
