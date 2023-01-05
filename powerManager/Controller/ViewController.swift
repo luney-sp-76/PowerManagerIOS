@@ -63,6 +63,7 @@ extension ViewController: DeviceManagerDelegate {
         //change battery percentage to current battery percentage
         
         DispatchQueue.main.async { [self] in
+            // if device is not identified here the batterypercentage will take on the plug state too ie on or off
            if device.name == "iPhone 8 Number 1 Battery Level"{
                 self.batteryPercentageLabel.text = device.state
             }
@@ -75,10 +76,12 @@ extension ViewController: DeviceManagerDelegate {
                 plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
             }
         }
+        //create a 30 second delay between calls to allow updates to plug state to register
         sleep(UInt32(30.00))
+        //recheck the battery percentage level
         let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
+        //common mode allows multithreading in order for other api calls to be made
         RunLoop.current.add(timer, forMode: .common)
-        
     }
     
     func didFailWithError(error: Error) {
