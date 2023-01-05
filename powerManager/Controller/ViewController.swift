@@ -23,13 +23,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         deviceManager.delegate = self
+        //initial call for battery percentage level on load
         deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level")
         
         
     }
     
     @objc func battery(level: String){
-        print("hi its the battery timer")
+        print("should not print")
         
     }
     
@@ -60,17 +61,17 @@ class ViewController: UIViewController {
 
 extension ViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
-        //change battery percentage to current battery percentage
-        
         DispatchQueue.main.async { [self] in
             // if device is not identified here the batterypercentage will take on the plug state too ie on or off
-           if device.name == "iPhone 8 Number 1 Battery Level"{
+            if device.name == "iPhone 8 Number 1 Battery Level"{
+                //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
             }
+            //call for the plugs state
             deviceManager.fetchPlugState(urlEndPoint: "switch.0x0015bc002f00edf3")
             if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
                 self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
-               
+                
                 
             } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
                 plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
