@@ -26,27 +26,27 @@ struct DeviceManager  {
         callForData(urlString: urlString)
     }
     //for testing use switch.0x0015bc002f00edf3 as the urlEndPoint
-//    func fetchPlugState(urlEndPoint: String){
-//        let urlString = "\(homeAssistantFetchUrl)states/\(urlEndPoint)"
-//        callForData(urlString: urlString)
-//    }
+    func fetchPlugState(urlEndPoint: String){
+        let urlString = "\(homeAssistantFetchUrl)states/\(urlEndPoint)"
+        callForData(urlString: urlString)
+    }
     
     func callForData(urlString: String) {
         let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmNzI5MGM3OTE0NjE0ODhmOGYzZjFjMDU4YjA2YmRhOSIsImlhdCI6MTY3Mjc1OTk4MCwiZXhwIjoxOTg4MTE5OTgwfQ.X9E2pp6XUxjORMAK_mJSsZK5GG6rv4b-3c8X88eX1yQ"
         
      
-        print("task 1")
+        print("\(urlString)task 1")
         //1: Create a URL
         if let url = URL(string: urlString) {
             var urlRequest = URLRequest(url:url)
             
-            print("task 2")
+            //print("task 2")
             //2: Create a URLSession
             urlRequest.httpMethod = "GET"
             urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            print("task 3")
+           // print("task 3")
             //3: Give Session a task
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
@@ -54,8 +54,8 @@ struct DeviceManager  {
                     return
                 }
                 guard let safeData = data else {return}
-                let dataString = String(data: safeData, encoding: .utf8)
-                     print("Response data string:\n \(dataString!)")
+                //let dataString = String(data: safeData, encoding: .utf8)
+                     //print("Response data string:\n \(dataString!)")
                  
                         if let device = self.parseJSON(safeData) {
                             self.delegate?.didUpdateDevice(self, device: device)

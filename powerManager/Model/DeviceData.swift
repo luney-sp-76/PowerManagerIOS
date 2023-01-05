@@ -23,8 +23,8 @@ struct Attributes: Decodable {
     let unit_of_measurement: String?
     let Low_Power_Mode: Bool?
     //***
-    let device_class: String
-    let icon: String
+    let device_class: String?
+    let icon: String?
     let friendly_name: String
     }
 
