@@ -71,8 +71,8 @@ extension ViewController: DeviceManagerDelegate {
             }
             //call for the plugs state
             deviceManager.fetchPlugState(urlEndPoint: "switch.0x0015bc002f00edf3")
-            let isLower = currentBatteryLevel < lowestBatteryChargeLevel
-            print("\(currentBatteryLevel) is less than \(lowestBatteryChargeLevel) is \(isLower)")
+            let isLower = currentBatteryLevel <= lowestBatteryChargeLevel
+            print("\(currentBatteryLevel) is less than or equal to \(lowestBatteryChargeLevel) is \(isLower)")
             let isDevelco = device.name == "develco"
             print("The device is named develco is \(isDevelco)")
             let plugIsOn = device.state == "on"
@@ -80,7 +80,7 @@ extension ViewController: DeviceManagerDelegate {
             if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
                 self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
             
-            } else if currentBatteryLevel < lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
+            } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
                 self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
             }
         }
