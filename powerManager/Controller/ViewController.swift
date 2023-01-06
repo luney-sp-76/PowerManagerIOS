@@ -66,15 +66,22 @@ extension ViewController: DeviceManagerDelegate {
             if device.name == "iPhone 8 Number 1 Battery Level"{
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
+                currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
+                print(device.name)
             }
             //call for the plugs state
             deviceManager.fetchPlugState(urlEndPoint: "switch.0x0015bc002f00edf3")
+            let isLower = currentBatteryLevel < lowestBatteryChargeLevel
+            print("\(currentBatteryLevel) is less than \(lowestBatteryChargeLevel) is \(isLower)")
+            let isDevelco = device.name == "develco"
+            print("The device is named develco is \(isDevelco)")
+            let plugIsOn = device.state == "on"
+            print("\(device.name) is on is \(plugIsOn)")
             if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
                 self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
-                
-                
-            } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
-                plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
+            
+            } else if currentBatteryLevel < lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
+                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
             }
         }
         //create a 30 second delay between calls to allow updates to plug state to register
