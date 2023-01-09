@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class BatteryMonitorViewController: UIViewController {
     
     var deviceManager = DeviceManager()
     var plugControl = PlugControl()
@@ -77,7 +77,7 @@ class ViewController: UIViewController {
 
 //MARK: - DeviceManagerDelegate
 
-extension ViewController: DeviceManagerDelegate {
+extension BatteryMonitorViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         DispatchQueue.main.async { [self] in
             // if device is not identified here the batterypercentage will take on the plug state too ie on or off
@@ -120,7 +120,7 @@ extension ViewController: DeviceManagerDelegate {
 
 //MARK: - PlugControlDelegate
 
-extension ViewController: PlugManagerDelegate {
+extension BatteryMonitorViewController: PlugManagerDelegate {
     func didUpdateDevice(_ PlugManager: PlugControl){
         print("updated")
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
 		BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCFD2962F57900C80565 /* DeviceData.swift */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
@@ -14,7 +15,7 @@
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
 		DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FED295E1CDD00704D59 /* AppDelegate.swift */; };
 		DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FEF295E1CDD00704D59 /* SceneDelegate.swift */; };
-		DAE45FF2295E1CDD00704D59 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FF1295E1CDD00704D59 /* ViewController.swift */; };
+		DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FF1295E1CDD00704D59 /* BatteryMonitorViewController.swift */; };
 		DAE45FF5295E1CDD00704D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE45FF3295E1CDD00704D59 /* Main.storyboard */; };
 		DAE45FF7295E1CDF00704D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAE45FF6295E1CDF00704D59 /* Assets.xcassets */; };
 		DAE45FFA295E1CDF00704D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE45FF8295E1CDF00704D59 /* LaunchScreen.storyboard */; };
@@ -42,6 +43,7 @@
 
 /* Begin PBXFileReference section */
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
+		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		BD65FCFD2962F57900C80565 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
@@ -50,7 +52,7 @@
 		DAE45FEA295E1CDD00704D59 /* powerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = powerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE45FED295E1CDD00704D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAE45FEF295E1CDD00704D59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		DAE45FF1295E1CDD00704D59 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		DAE45FF1295E1CDD00704D59 /* BatteryMonitorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BatteryMonitorViewController.swift; sourceTree = "<group>"; };
 		DAE45FF4295E1CDD00704D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		DAE45FF6295E1CDF00704D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAE45FF9295E1CDF00704D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -110,7 +112,8 @@
 		DAB806F7295E334900C5136E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				DAE45FF1295E1CDD00704D59 /* ViewController.swift */,
+				DAE45FF1295E1CDD00704D59 /* BatteryMonitorViewController.swift */,
+				BD579FB9296BFE98005C9780 /* LoginViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -299,9 +302,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */,
 				BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */,
 				BDA6B01C296439E6000EE544 /* UrlEndpoint.swift in Sources */,
-				DAE45FF2295E1CDD00704D59 /* ViewController.swift in Sources */,
+				DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */,
 				BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */,
 				DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */,
 				BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */,
