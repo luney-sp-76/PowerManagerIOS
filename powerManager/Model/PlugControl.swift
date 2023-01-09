@@ -34,7 +34,7 @@ struct PlugControl {
             //2: Prepare JSON data
             let json: [String: Any] = ["entity_id" : "switch.0x0015bc002f00edf3"]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
-            print("POST task 1 complete")
+            print("POST task 2 complete")
             print("POST task 3 started...")
             //3: Create POST request
             urlRequest.httpMethod = "POST"

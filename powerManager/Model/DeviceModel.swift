@@ -12,7 +12,8 @@ struct DeviceModel {
     let id: String
     let state: String
     let name: String
-
+    let lastUpdate: String
+    let uuid: String 
 }
 
 

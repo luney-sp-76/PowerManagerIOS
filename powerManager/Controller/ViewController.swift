@@ -12,10 +12,15 @@ class ViewController: UIViewController {
     var deviceManager = DeviceManager()
     var plugControl = PlugControl()
     var batteryPercentage = 21
+    var plugColour = "off"
+    
     
     @IBOutlet weak var batteryPercentageLabel: UILabel!
     @IBOutlet weak var setBatteryLevel: UILabel!
     @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var settingsButton: UIButton!
+    @IBOutlet weak var powerPlugIcon: UIImageView!
+    
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 21
     
@@ -25,8 +30,16 @@ class ViewController: UIViewController {
         deviceManager.delegate = self
         //initial call for battery percentage level on load
         deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level")
-        
-        
+        updatePlugColour(state: plugColour)
+    }
+    
+    func updatePlugColour(state: String) {
+        print(state)
+        if state == "off" {
+            powerPlugIcon.tintColor = UIColor(named: "PlugIconColourOff")
+        }else {
+            powerPlugIcon.tintColor = UIColor(named: "PlugIconColourOn")
+        }
     }
     
     @objc func battery(level: String){
@@ -55,6 +68,11 @@ class ViewController: UIViewController {
         //turn plug off. Otherwise turn plug on and start checking the database for updates and or api for updates
     }
     
+    func getSetBatteryLevel() -> Int {
+        return batteryPercentage
+    }
+    
+        
 }
 
 //MARK: - DeviceManagerDelegate
@@ -67,21 +85,22 @@ extension ViewController: DeviceManagerDelegate {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-                print(device.name)
+                //print(device.name)
             }
             //call for the plugs state
             deviceManager.fetchPlugState(urlEndPoint: "switch.0x0015bc002f00edf3")
-            let isLower = currentBatteryLevel <= lowestBatteryChargeLevel
-            print("\(currentBatteryLevel) is less than or equal to \(lowestBatteryChargeLevel) is \(isLower)")
-            let isDevelco = device.name == "develco"
-            print("The device is named develco is \(isDevelco)")
-            let plugIsOn = device.state == "on"
-            print("\(device.name) is on is \(plugIsOn)")
+            if device.name == "develco"{
+                updatePlugColour(state: device.state)
+            }
             if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
                 self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
-            
+                plugColour = "off"
+                updatePlugColour(state: device.state)
+
             } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
                 self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
+                plugColour = "on"
+                updatePlugColour(state: device.state)
             }
         }
         //create a 30 second delay between calls to allow updates to plug state to register

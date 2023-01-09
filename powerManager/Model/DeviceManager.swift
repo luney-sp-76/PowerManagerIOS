@@ -22,7 +22,7 @@ struct DeviceManager  {
     // returns a DeviceModel from the ApiCall Model
     func fetchDeviceData(deviceName: String, urlEndPoint: String) {
         let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)\(urlEndPoint)"
-        print(urlString)
+        //print(urlString)
         callForData(urlString: urlString)
     }
     //for testing use switch.0x0015bc002f00edf3 as the urlEndPoint
@@ -35,7 +35,7 @@ struct DeviceManager  {
         let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmNzI5MGM3OTE0NjE0ODhmOGYzZjFjMDU4YjA2YmRhOSIsImlhdCI6MTY3Mjc1OTk4MCwiZXhwIjoxOTg4MTE5OTgwfQ.X9E2pp6XUxjORMAK_mJSsZK5GG6rv4b-3c8X88eX1yQ"
         
      
-        print("\(urlString)task 1")
+        //print("\(urlString)task 1")
         //1: Create a URL
         if let url = URL(string: urlString) {
             var urlRequest = URLRequest(url:url)
@@ -76,9 +76,17 @@ struct DeviceManager  {
             let id = decodedData.entity_id
             let state = decodedData.state
             let name = decodedData.attributes.friendly_name
-            print(state)
-            print(name)
-            let device = DeviceModel(id: id, state: state, name: name)
+            let lastUpdate = decodedData.last_updated
+            let uuid = decodedData.context.id
+            print("device name: \(id)")
+            print("friendly name: \(name)")
+            print("Unique device ID: \(uuid)")
+            print("current state:\(state)")
+            print("last updated: \(lastUpdate)")
+            print("")
+       
+            
+            let device = DeviceModel(id: id, state: state, name: name, lastUpdate: lastUpdate, uuid: uuid)
             return device
             
         } catch {
