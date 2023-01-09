@@ -149,7 +149,31 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="47.200000000000003" y="-2.2167487684729066"/>
+            <point key="canvasLocation" x="-385" y="-267"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="dah-CV-hih">
+            <objects>
+                <hostingController id="ZjM-mm-gdu" customClass="LoginViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bUt-CC-Pu5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1255" y="355"/>
+        </scene>
+        <!--Statistics View Controller-->
+        <scene sceneID="bZH-3s-EqZ">
+            <objects>
+                <hostingController id="GE5-nL-MZN" customClass="StatisticsViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Xy1-2a-MG1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-356" y="805"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="PD1-gl-g4j">
+            <objects>
+                <hostingController id="SGa-WX-MCS" customClass="SettingsViewController" sceneMemberID="viewController"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NHW-tt-BbQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="594" y="355"/>
         </scene>
     </scenes>
     <resources>
