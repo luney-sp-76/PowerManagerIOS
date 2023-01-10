@@ -6,7 +6,9 @@
 //
 
 import UIKit
-import BackgroundTasks
+import FirebaseCore
+import FirebaseAuth
+
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -14,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //    private let server: Server =
     //
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         //        let feedVC =  (window.rootViewController as?
         //            UINavigationController)?.viewControllers.first as? ViewController
         //            feedVC?.server = server
