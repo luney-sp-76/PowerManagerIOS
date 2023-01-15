@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BD07C5B2297495B200F4DE29 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B1297495B200F4DE29 /* WelcomeViewController.swift */; };
+		BD07C5B42974963300F4DE29 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B32974963300F4DE29 /* RegisterViewController.swift */; };
+		BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B52974966400F4DE29 /* SettingsViewController.swift */; };
+		BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
 		BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCFD2962F57900C80565 /* DeviceData.swift */; };
@@ -47,6 +51,10 @@
 		3B50EE9563F622BE1EDB0E69 /* Pods-powerManager.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-powerManager.release.xcconfig"; path = "Target Support Files/Pods-powerManager/Pods-powerManager.release.xcconfig"; sourceTree = "<group>"; };
 		7930DD278211EB5472DFDCDE /* Pods-powerManager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-powerManager.debug.xcconfig"; path = "Target Support Files/Pods-powerManager/Pods-powerManager.debug.xcconfig"; sourceTree = "<group>"; };
 		B647118994F43D6D95784CE2 /* Pods_powerManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_powerManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BD07C5B1297495B200F4DE29 /* WelcomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
+		BD07C5B32974963300F4DE29 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		BD07C5B52974966400F4DE29 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
@@ -110,7 +118,6 @@
 				7930DD278211EB5472DFDCDE /* Pods-powerManager.debug.xcconfig */,
 				3B50EE9563F622BE1EDB0E69 /* Pods-powerManager.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -139,6 +146,10 @@
 			children = (
 				DAE45FF1295E1CDD00704D59 /* BatteryMonitorViewController.swift */,
 				BD579FB9296BFE98005C9780 /* LoginViewController.swift */,
+				BD07C5B1297495B200F4DE29 /* WelcomeViewController.swift */,
+				BD07C5B32974963300F4DE29 /* RegisterViewController.swift */,
+				BD07C5B52974966400F4DE29 /* SettingsViewController.swift */,
+				BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -376,6 +387,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */,
+				BD07C5B42974963300F4DE29 /* RegisterViewController.swift in Sources */,
+				BD07C5B2297495B200F4DE29 /* WelcomeViewController.swift in Sources */,
 				BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */,
 				BDA6B01C296439E6000EE544 /* UrlEndpoint.swift in Sources */,
 				DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */,
@@ -384,6 +397,8 @@
 				BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */,
 				DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */,
 				BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */,
+				BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */,
+				BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

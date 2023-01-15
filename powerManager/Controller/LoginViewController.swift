@@ -5,4 +5,16 @@
 //  Created by Paul Olphert on 09/01/2023.
 //
 
-import Foundation
+import UIKit
+
+class LoginMonitorViewController: UIViewController {
+
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+    }
+    
+    
+    
+}
