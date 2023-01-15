@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LoginMonitorViewController: UIViewController {
+class LoginViewController: UIViewController {
 
 
     override func viewDidLoad() {

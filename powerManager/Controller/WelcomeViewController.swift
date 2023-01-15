@@ -7,7 +7,7 @@
 
 import UIKit
 import CLTypingLabel
-class WelcomeMonitorViewController: UIViewController {
+class WelcomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
