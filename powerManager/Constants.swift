@@ -7,4 +7,6 @@
 
 struct K {
     static let appName = "⚡️PowerManager"
+    static let loginToBatteryMonitor = "LoginToBatteryMonitor"
+    static let registerToBatteryMonitor = "RegisterToBatteryMonitor"
 }

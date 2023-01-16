@@ -320,7 +320,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="klC-zy-RBe" id="LZy-28-ywB"/>
                         <outlet property="passwordTextField" destination="KjX-a5-O0i" id="n0t-8n-uwt"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="registerToBatteryMonitor" id="TJ0-bM-Sdq"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="RegisterToBatteryMonitor" id="TJ0-bM-Sdq"/>
                     </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VfY-5r-Ql9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -415,7 +415,7 @@
                     <connections>
                         <outlet property="emailTextField" destination="U9z-2O-Xo4" id="Yvq-tR-MQi"/>
                         <outlet property="passwordTextField" destination="A4D-ha-Aco" id="Yzo-Wi-J8G"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="loginToBatteryMonitor" id="mmS-BM-dSp"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="LoginToBatteryMonitor" id="mmS-BM-dSp"/>
                     </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bUt-CC-Pu5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
