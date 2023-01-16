@@ -14,6 +14,7 @@
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
 		BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCFD2962F57900C80565 /* DeviceData.swift */; };
+		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
 		BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B01C296439E6000EE544 /* UrlEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */; };
@@ -59,6 +60,7 @@
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		BD65FCFD2962F57900C80565 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
+		BD6D3ED829754082009C063A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEndpoint.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 				DAE45FF8295E1CDF00704D59 /* LaunchScreen.storyboard */,
 				DAE45FFB295E1CDF00704D59 /* Info.plist */,
 				BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */,
+				BD6D3ED829754082009C063A /* Constants.swift */,
 			);
 			path = powerManager;
 			sourceTree = "<group>";
@@ -397,6 +400,7 @@
 				BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */,
 				DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */,
 				BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */,
+				BD6D3ED929754082009C063A /* Constants.swift in Sources */,
 				BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */,
 				BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */,
 			);
