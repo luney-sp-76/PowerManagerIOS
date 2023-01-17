@@ -81,7 +81,7 @@ struct DeviceManager  {
             let decodedData = try decoder.decode(DeviceData.self, from: deviceData)
             let id = decodedData.entity_id
             let state = decodedData.state
-            let name = decodedData.attributes.friendly_name
+            let name = decodedData.attributes.friendlyName
             let lastUpdate = decodedData.last_updated
             let uuid = decodedData.context.id
             print("device name: \(id)")
