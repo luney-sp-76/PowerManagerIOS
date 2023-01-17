@@ -21,17 +21,50 @@ struct DeviceData: Decodable {
 struct Attributes: Decodable {
     //alternates Level uses unit_of_measurement while State uses Low Power Mode (which needs changed to be underscored)***
     let unit_of_measurement: String?
-    let Low_Power_Mode: Bool?
-    //***
-    let device_class: String?
-    let icon: String?
-    let friendly_name: String
-    }
+        let Low_Power_Mode: Bool?
+        let id: String?
+        let Confidence: String?
+        let auto_update: Bool?
+        let installed_version: String?
+        let latest_version: String?
+        let release_summary: String?
+        let in_progress: Bool?
+        let release_url: String?
+        let skipped_version: String?
+        let title: String?
+        let entity_picture: String?
+        let next_dawn: String?
+        let next_dusk: String?
+        let next_midnight: String?
+        let next_noon: String?
+        let next_rising: String?
+        let next_setting: String?
+        let elevation: Double?
+        let azimuth: Double?
+        let rising: Bool?
+        let radius:Int?
+        let passive: Bool?
+        let persons: Person?
+        let device_class: String?
+        let editable: Bool?
+        let icon: String?
+        let latitude: Double?
+        let longitude: Double?
+        let gps_accuracy: Double?
+        let source: String?
+        let friendly_name: String
+        let supported_features: String?
+        let user_id: String?
+        }
 
 struct Context: Decodable {
         let id: String
         let parent_id: String?
         let user_id: String?
+}
+
+struct Person: Decodable {
+    
 }
 
 //Battery Level

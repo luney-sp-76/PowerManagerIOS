@@ -34,7 +34,7 @@ class BatteryMonitorViewController: UIViewController {
     }
     
     func updatePlugColour(state: String) {
-        print(state)
+        //print(state)
         if state == "off" {
             powerPlugIcon.tintColor = UIColor(named: "PlugIconColourOff")
         }else {
@@ -62,10 +62,6 @@ class BatteryMonitorViewController: UIViewController {
         sender.isSelected = true
         setBatteryLevel.textColor = UIColor(named: "AffirmAction")
         sender.setTitle("Done", for: .normal)
-        //check battery level
-        //check plug state
-        //take action based on if the battery is 100% turn plug off. If battery is above the set Level batteryPercentage
-        //turn plug off. Otherwise turn plug on and start checking the database for updates and or api for updates
     }
     
     func getSetBatteryLevel() -> Int {
@@ -92,16 +88,17 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
             if device.name == "develco"{
                 updatePlugColour(state: device.state)
             }
-            if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
-                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
-                plugColour = "off"
+            plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
+//            if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
+//                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
+//                plugColour = "off"
                 updatePlugColour(state: device.state)
 
-            } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
-                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
-                plugColour = "on"
-                updatePlugColour(state: device.state)
-            }
+//            } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
+//                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
+//                plugColour = "on"
+//                updatePlugColour(state: device.state)
+//            }
         }
         //create a 30 second delay between calls to allow updates to plug state to register
         sleep(UInt32(30.00))

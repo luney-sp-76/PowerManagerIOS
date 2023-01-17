@@ -11,10 +11,13 @@ protocol DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel)
     func didFailWithError(error: Error)
 }
+var plugControl = PlugControl()
+var currentBatteryLevel = 21
 
 struct DeviceManager  {
+   
     
-    let homeAssistantFetchUrl = "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/"
+    let homeAssistantFetchUrl = K.baseURL
     var delegate: DeviceManagerDelegate?
     //call to return the iphone BatteryLevel state (should be an int) used UrlEndPoint Model to form the endpoints
     
@@ -32,7 +35,7 @@ struct DeviceManager  {
     }
     
     func callForData(urlString: String) {
-        let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmNzI5MGM3OTE0NjE0ODhmOGYzZjFjMDU4YjA2YmRhOSIsImlhdCI6MTY3Mjc1OTk4MCwiZXhwIjoxOTg4MTE5OTgwfQ.X9E2pp6XUxjORMAK_mJSsZK5GG6rv4b-3c8X88eX1yQ"
+        let token = K.token
         
      
         //print("\(urlString)task 1")
@@ -58,6 +61,9 @@ struct DeviceManager  {
                      //print("Response data string:\n \(dataString!)")
                  
                         if let device = self.parseJSON(safeData) {
+                            if device.name == K.iPhoneBatteryLevelDeviceName {
+                                currentBatteryLevel = Int(device.state) ?? 21
+                            }
                             self.delegate?.didUpdateDevice(self, device: device)
                         }
                     }
@@ -94,6 +100,23 @@ struct DeviceManager  {
             print(error)
             return nil
         }
+    }
+    
+   
+    
+    func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int)-> String {
+    var returnString = "on"
+        
+        if currentBatteryLevel >= 100 && device.name == K.plugFriendlyName && device.state == "on" {
+            plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
+            returnString = "off"
+
+        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == K.plugFriendlyName && device.state == "off"{
+            plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
+          returnString = "on"
+        }
+        return returnString
+        
     }
     
     
