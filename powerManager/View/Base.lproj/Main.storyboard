@@ -519,54 +519,20 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HsA-wf-Lb2">
-                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="le2-sA-UyH">
-                                        <rect key="frame" x="20" y="20" width="275" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="PAi-Fb-WhM"/>
-                                        </constraints>
-                                        <color key="textColor" name="BrandPurple"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jxg-fs-1fC">
-                                        <rect key="frame" x="315" y="20" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="oEd-Ok-Nj0"/>
-                                            <constraint firstAttribute="width" constant="40" id="tIh-7g-nEY"/>
-                                            <constraint firstAttribute="height" constant="40" id="vYY-6h-5Lt"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="wai-F5-dDX"/>
-                                        </constraints>
-                                        <color key="tintColor" name="BrandLightPurple"/>
-                                        <state key="normal" image="paperplane.fill" catalog="system"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="BrandPurple"/>
-                                <constraints>
-                                    <constraint firstItem="Jxg-fs-1fC" firstAttribute="leading" secondItem="le2-sA-UyH" secondAttribute="trailing" constant="20" id="21D-fv-xO7"/>
-                                    <constraint firstAttribute="trailing" secondItem="Jxg-fs-1fC" secondAttribute="trailing" constant="20" id="BfE-BB-Mcg"/>
-                                    <constraint firstAttribute="height" constant="60" id="K2G-2G-S3i"/>
-                                    <constraint firstItem="le2-sA-UyH" firstAttribute="top" secondItem="HsA-wf-Lb2" secondAttribute="top" constant="20" id="fus-nN-4zl"/>
-                                    <constraint firstItem="Jxg-fs-1fC" firstAttribute="top" secondItem="HsA-wf-Lb2" secondAttribute="top" constant="20" id="k4x-uA-5GA"/>
-                                    <constraint firstItem="le2-sA-UyH" firstAttribute="leading" secondItem="HsA-wf-Lb2" secondAttribute="leading" constant="20" id="ySS-bO-bjH"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fcE-ys-8uG"/>
                         <color key="backgroundColor" name="BrandPurple"/>
                         <constraints>
-                            <constraint firstItem="fcE-ys-8uG" firstAttribute="bottom" secondItem="HsA-wf-Lb2" secondAttribute="bottom" id="6QW-ix-hA2"/>
-                            <constraint firstItem="HsA-wf-Lb2" firstAttribute="trailing" secondItem="fcE-ys-8uG" secondAttribute="trailing" id="8am-kD-y0q"/>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="trailing" secondItem="fcE-ys-8uG" secondAttribute="trailing" id="DSV-4j-nLz"/>
-                            <constraint firstItem="HsA-wf-Lb2" firstAttribute="top" secondItem="Euk-oa-KaM" secondAttribute="bottom" id="JOp-D6-amA"/>
+                            <constraint firstItem="fcE-ys-8uG" firstAttribute="bottom" secondItem="Euk-oa-KaM" secondAttribute="bottom" constant="60" id="b6S-1C-4La"/>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="leading" secondItem="fcE-ys-8uG" secondAttribute="leading" id="cUk-Fy-Wsx"/>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="top" secondItem="fcE-ys-8uG" secondAttribute="top" id="gxY-5X-iBa"/>
-                            <constraint firstItem="HsA-wf-Lb2" firstAttribute="leading" secondItem="fcE-ys-8uG" secondAttribute="leading" id="mDm-mm-Ms9"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lnu-hI-sjr"/>
+                    <connections>
+                        <outlet property="tableView" destination="Euk-oa-KaM" id="bUv-Ll-tZP"/>
+                    </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHW-tt-BbQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -34,6 +34,8 @@ struct DeviceManager  {
         callForData(urlString: urlString)
     }
     
+    
+    
     func callForData(urlString: String) {
         let token = K.token
         

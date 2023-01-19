@@ -20,6 +20,7 @@
 		BDA6B01C296439E6000EE544 /* UrlEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
 		BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675629776359006495FC /* HomeAssistantData.swift */; };
+		BDFF675929788095006495FC /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675829788095006495FC /* HomeManager.swift */; };
 		DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FED295E1CDD00704D59 /* AppDelegate.swift */; };
 		DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FEF295E1CDD00704D59 /* SceneDelegate.swift */; };
 		DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FF1295E1CDD00704D59 /* BatteryMonitorViewController.swift */; };
@@ -67,6 +68,7 @@
 		BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEndpoint.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
 		BDFF675629776359006495FC /* HomeAssistantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssistantData.swift; sourceTree = "<group>"; };
+		BDFF675829788095006495FC /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
 		DAE45FEA295E1CDD00704D59 /* powerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = powerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAE45FED295E1CDD00704D59 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		DAE45FEF295E1CDD00704D59 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
 				BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */,
 				BDFF675629776359006495FC /* HomeAssistantData.swift */,
+				BDFF675829788095006495FC /* HomeManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -392,6 +395,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BDFF675929788095006495FC /* HomeManager.swift in Sources */,
 				BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */,
 				BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */,
 				BD07C5B42974963300F4DE29 /* RegisterViewController.swift in Sources */,

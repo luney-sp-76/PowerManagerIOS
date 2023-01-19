@@ -17,10 +17,7 @@ struct DeviceData: Decodable {
     var last_changed: String
     var last_updated: String
     var context: Context
-    
-    
-    
-    
+  
 }
 
 struct Attributes: Decodable {
