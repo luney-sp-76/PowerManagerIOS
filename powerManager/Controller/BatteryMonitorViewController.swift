@@ -27,7 +27,8 @@ class BatteryMonitorViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        
+        title = K.appName
+        navigationItem.hidesBackButton = true
         deviceManager.delegate = self
         //initial call for battery percentage level on load
         deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level")

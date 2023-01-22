@@ -143,18 +143,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="wfB-nJ-1Mm">
-                        <rightBarButtonItems>
-                            <barButtonItem title="Stat" id="WK8-ze-vSG">
-                                <connections>
-                                    <segue destination="GE5-nL-MZN" kind="show" identifier="batteryMonitorToStats" id="gTL-WO-8RJ"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Log Out" id="8eF-GX-IF3" userLabel="Log Out">
-                                <connections>
-                                    <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" id="qe7-4f-dTF"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="8eF-GX-IF3" userLabel="Log Out">
+                            <connections>
+                                <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" id="qe7-4f-dTF"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Stat" id="WK8-ze-vSG">
+                            <connections>
+                                <segue destination="GE5-nL-MZN" kind="show" identifier="batteryMonitorToStats" id="gTL-WO-8RJ"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
@@ -437,7 +435,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-du-Jyt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-du-Jyt">
                                 <rect key="frame" x="0.0" y="91" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -456,6 +454,7 @@
                         <color key="backgroundColor" name="statsandsettings"/>
                         <constraints>
                             <constraint firstItem="Fbc-du-Jyt" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" id="Ey0-ZS-5mm"/>
+                            <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="Fbc-du-Jyt" secondAttribute="bottom" constant="60" id="bwR-zH-PJe"/>
                             <constraint firstItem="Fbc-du-Jyt" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" id="cpl-L1-0qM"/>
                             <constraint firstItem="Fbc-du-Jyt" firstAttribute="trailing" secondItem="7a5-l9-CvK" secondAttribute="trailing" id="hhs-le-fnZ"/>
                         </constraints>
