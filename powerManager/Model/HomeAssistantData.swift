@@ -8,7 +8,7 @@
 import Foundation
 
 struct HomeAssistantData: Decodable {
-    var entity_id: String
+    //var entity_id: String
     var state: String
     var attributes: HomeAttributes
     var last_changed: String

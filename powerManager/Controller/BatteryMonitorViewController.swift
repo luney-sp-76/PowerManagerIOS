@@ -31,7 +31,7 @@ class BatteryMonitorViewController: UIViewController {
         navigationItem.hidesBackButton = true
         deviceManager.delegate = self
         //initial call for battery percentage level on load
-        deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level")
+        deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
         updatePlugColour(state: plugColour)
     }
     
@@ -90,33 +90,24 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         DispatchQueue.main.async { [self] in
             // if device is not identified here the batterypercentage will take on the plug state too ie on or off
-            if device.name == "iPhone 8 Number 1 Battery Level"{
+            if device.name == V.iPhoneBatteryLevelFriendlyName {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
                 //print(device.name)
             }
             //call for the plugs state
-            deviceManager.fetchPlugState(urlEndPoint: "switch.0x0015bc002f00edf3")
-            if device.name == "develco"{
+            deviceManager.fetchPlugState(urlEndPoint: V.plugStateEntityID)
+            if device.name == V.plugFriendlyName {
                 updatePlugColour(state: device.state)
             }
             plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
-//            if currentBatteryLevel >= 100 && device.name == "develco" && device.state == "on" {
-//                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_off")
-//                plugColour = "off"
                 updatePlugColour(state: device.state)
-
-//            } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == "develco" && device.state == "off"{
-//                self.plugControl.fetchPlugData(deviceName: "switch.0x0015bc002f00edf3/", urlEndPoint: "turn_on")
-//                plugColour = "on"
-//                updatePlugColour(state: device.state)
-//            }
         }
         //create a 30 second delay between calls to allow updates to plug state to register
         sleep(UInt32(30.00))
         //recheck the battery percentage level
-        let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: "sensor.iphone_8_number_1", urlEndPoint: "_battery_level") , repeats: true)
+        let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint) , repeats: true)
         //common mode allows multithreading in order for other api calls to be made
         RunLoop.current.add(timer, forMode: .common)
     }
