@@ -15,4 +15,5 @@ struct K {
     static let iPhoneBatteryLevelDeviceName = "iPhone 8 Number 1 Battery Level"
     static let plugFriendlyName = "develco"
     static let cellIdentifier = "ReusableCell"
+    static let celNibName = "DevicesCell"
 }

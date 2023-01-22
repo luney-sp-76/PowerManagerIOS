@@ -12,6 +12,8 @@
 		BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B52974966400F4DE29 /* SettingsViewController.swift */; };
 		BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
+		BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6327D6297D599100514BF6 /* DevicesCell.swift */; };
+		BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6327D7297D599100514BF6 /* DevicesCell.xib */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
 		BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCFD2962F57900C80565 /* DeviceData.swift */; };
 		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
@@ -60,6 +62,8 @@
 		BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BD6327D6297D599100514BF6 /* DevicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesCell.swift; sourceTree = "<group>"; };
+		BD6327D7297D599100514BF6 /* DevicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesCell.xib; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		BD65FCFD2962F57900C80565 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
 		BD6D3ED829754082009C063A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -131,6 +135,8 @@
 			isa = PBXGroup;
 			children = (
 				DAE45FF3295E1CDD00704D59 /* Main.storyboard */,
+				BD6327D6297D599100514BF6 /* DevicesCell.swift */,
+				BD6327D7297D599100514BF6 /* DevicesCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,6 +331,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */,
 				DAE45FFA295E1CDF00704D59 /* LaunchScreen.storyboard in Resources */,
 				BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */,
 				DAE45FF7295E1CDF00704D59 /* Assets.xcassets in Resources */,
@@ -410,6 +417,7 @@
 				BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */,
 				BD6D3ED929754082009C063A /* Constants.swift in Sources */,
 				BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */,
+				BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */,
 				BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -430,7 +430,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-du-Jyt">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-du-Jyt">
                                 <rect key="frame" x="0.0" y="91" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -444,51 +444,13 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wah-KC-aXL">
-                                <rect key="frame" x="0.0" y="718" width="375" height="60"/>
-                                <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Write a message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Y8-jo-l7R">
-                                        <rect key="frame" x="20" y="20" width="275" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="40" id="0h7-0M-y31"/>
-                                        </constraints>
-                                        <color key="textColor" name="BrandPurple"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
-                                    </textField>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lu9-xF-Ief">
-                                        <rect key="frame" x="315" y="20" width="40" height="40"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="Zda-jq-BTw"/>
-                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="arS-Ol-SpX"/>
-                                            <constraint firstAttribute="width" constant="40" id="gUE-Un-03u"/>
-                                            <constraint firstAttribute="height" constant="40" id="rC5-8R-D1n"/>
-                                        </constraints>
-                                        <color key="tintColor" name="BrandLightPurple"/>
-                                        <state key="normal" image="paperplane.fill" catalog="system"/>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" name="BrandPurple"/>
-                                <constraints>
-                                    <constraint firstItem="Lu9-xF-Ief" firstAttribute="top" secondItem="wah-KC-aXL" secondAttribute="top" constant="20" id="0ba-y8-Ugp"/>
-                                    <constraint firstAttribute="trailing" secondItem="Lu9-xF-Ief" secondAttribute="trailing" constant="20" id="IzE-9G-Q3D"/>
-                                    <constraint firstItem="Lu9-xF-Ief" firstAttribute="leading" secondItem="9Y8-jo-l7R" secondAttribute="trailing" constant="20" id="gjf-gT-bmV"/>
-                                    <constraint firstItem="9Y8-jo-l7R" firstAttribute="leading" secondItem="wah-KC-aXL" secondAttribute="leading" constant="20" id="h6x-pW-LFz"/>
-                                    <constraint firstItem="9Y8-jo-l7R" firstAttribute="top" secondItem="wah-KC-aXL" secondAttribute="top" constant="20" id="o8H-Go-LTY"/>
-                                    <constraint firstAttribute="height" constant="60" id="pwT-5L-cYY"/>
-                                </constraints>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7a5-l9-CvK"/>
-                        <color key="backgroundColor" name="BrandPurple"/>
+                        <color key="backgroundColor" name="statsandsettings"/>
                         <constraints>
-                            <constraint firstItem="wah-KC-aXL" firstAttribute="trailing" secondItem="7a5-l9-CvK" secondAttribute="trailing" id="BQH-xH-Q6L"/>
                             <constraint firstItem="Fbc-du-Jyt" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" id="Ey0-ZS-5mm"/>
-                            <constraint firstItem="wah-KC-aXL" firstAttribute="top" secondItem="Fbc-du-Jyt" secondAttribute="bottom" id="KpI-Wv-OZu"/>
                             <constraint firstItem="Fbc-du-Jyt" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" id="cpl-L1-0qM"/>
                             <constraint firstItem="Fbc-du-Jyt" firstAttribute="trailing" secondItem="7a5-l9-CvK" secondAttribute="trailing" id="hhs-le-fnZ"/>
-                            <constraint firstItem="wah-KC-aXL" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" id="q0l-zQ-wm4"/>
-                            <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="wah-KC-aXL" secondAttribute="bottom" id="ziM-OL-F2x"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fiK-yu-enY"/>
@@ -508,20 +470,12 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-oa-KaM">
                                 <rect key="frame" x="0.0" y="91" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" id="hwu-WZ-mSP">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="43.666667938232422"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="hwu-WZ-mSP" id="Jhg-VR-R93">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
+                                <color key="sectionIndexBackgroundColor" name="BrandBlue"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="fcE-ys-8uG"/>
-                        <color key="backgroundColor" name="BrandPurple"/>
+                        <color key="backgroundColor" name="statsandsettings"/>
+                        <color key="tintColor" name="BrandLightPurple"/>
                         <constraints>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="trailing" secondItem="fcE-ys-8uG" secondAttribute="trailing" id="DSV-4j-nLz"/>
                             <constraint firstItem="fcE-ys-8uG" firstAttribute="bottom" secondItem="Euk-oa-KaM" secondAttribute="bottom" constant="60" id="b6S-1C-4La"/>
@@ -568,7 +522,6 @@
     <resources>
         <image name="background" width="2725" height="1595"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
-        <image name="paperplane.fill" catalog="system" width="128" height="119"/>
         <image name="powerplug" catalog="system" width="128" height="84"/>
         <image name="textfield" width="298" height="93"/>
         <namedColor name="AffirmAction">
@@ -583,9 +536,6 @@
         <namedColor name="BrandLightPurple">
             <color red="0.98000001907348633" green="0.9649999737739563" blue="0.99599999189376831" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="BrandPurple">
-            <color red="0.67500001192092896" green="0.43500000238418579" blue="0.9179999828338623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="PlugIconColourOn">
             <color red="0.31700000166893005" green="0.67599999904632568" blue="0.29699999094009399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
@@ -594,6 +544,9 @@
         </namedColor>
         <namedColor name="Weather Color">
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="statsandsettings">
+            <color red="0.37047576900000001" green="0.51656895879999998" blue="0.60353392360000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
