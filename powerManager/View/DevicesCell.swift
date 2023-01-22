@@ -15,6 +15,8 @@ class DevicesCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        deviceBubble.layer.cornerRadius = deviceBubble.frame.size.height / 10
+        rightImageView.makeRounded()
         // Initialization code
     }
 
@@ -24,4 +26,16 @@ class DevicesCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+}
+
+//MARK: - UiImageView makeRounded Extension
+extension UIImageView {
+    
+    func makeRounded() {
+        layer.borderWidth = 1
+        layer.masksToBounds = false
+        layer.borderColor = UIColor.black.cgColor
+        layer.cornerRadius = self.frame.size.height / 15
+        clipsToBounds = true
+    }
 }

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class BatteryMonitorViewController: UIViewController {
     
@@ -66,6 +67,17 @@ class BatteryMonitorViewController: UIViewController {
     
     func getSetBatteryLevel() -> Int {
         return batteryPercentage
+    }
+    
+    
+    @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
+        do {
+          try Auth.auth().signOut()
+            //jumps back to the root page
+            navigationController?.popToRootViewController(animated: true)
+        } catch let signOutError as NSError {
+          print("Error signing out: %@", signOutError)
+        }
     }
     
         

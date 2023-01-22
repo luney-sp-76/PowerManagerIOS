@@ -143,11 +143,18 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="wfB-nJ-1Mm">
-                        <barButtonItem key="rightBarButtonItem" title="Stat" id="WK8-ze-vSG">
-                            <connections>
-                                <segue destination="GE5-nL-MZN" kind="show" identifier="batteryMonitorToStats" id="gTL-WO-8RJ"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Stat" id="WK8-ze-vSG">
+                                <connections>
+                                    <segue destination="GE5-nL-MZN" kind="show" identifier="batteryMonitorToStats" id="gTL-WO-8RJ"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Log Out" id="8eF-GX-IF3" userLabel="Log Out">
+                                <connections>
+                                    <action selector="logoutButtonPressed:" destination="BYZ-38-t0r" id="qe7-4f-dTF"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
@@ -546,7 +553,7 @@
             <color red="0.32899999618530273" green="0.32400000095367432" blue="0.4779999852180481" alpha="0.33000001311302185" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="statsandsettings">
-            <color red="0.37047576900000001" green="0.51656895879999998" blue="0.60353392360000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.37000000476837158" green="0.51700001955032349" blue="0.60399997234344482" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
