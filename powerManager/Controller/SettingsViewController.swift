@@ -17,10 +17,12 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    var deviceInfo: [DeviceModel] = []
+    var deviceInfo: [DeviceModel] = [DeviceModel(id: "iphone", state: "full", name: "iphone_8_no_1", lastUpdate: "yesterday", uuid: "1234")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.dataSource = self
+        tableView.delegate = self
         homeManager.delegate = self
         title = K.appName
         //navigationItem.hidesBackButton = true
@@ -56,11 +58,21 @@ extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath)
-        cell.textLabel?.text = "this is a cell"
+        cell.textLabel?.text = deviceInfo[indexPath.row].name
         return cell
     }
     
     
+}
+
+
+//MARK: - TableViewDelegate
+
+extension SettingsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print(indexPath.row)
+    }
+
 }
 
 
