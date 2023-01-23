@@ -10,4 +10,5 @@ struct V {
     public static var iPhoneBatteryLevelFriendlyName = "iPhone 8 Number 1 Battery Level"
     public static var plugFriendlyName = "develco"
     public static var plugStateEntityID = "switch.0x0015bc002f00edf3"
+    public static var usersSetBatteryLevel = 21
 }

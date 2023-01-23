@@ -14,7 +14,7 @@ class Device {
     let lastUpdate: String = ""
     let uuid: String = ""
     
-    func setProperties(entity_id: String, state: String, name: String, lastUpdate: String, uuid: String) -> DeviceModel {
-        return DeviceModel(id: entity_id, state: state, name: name, lastUpdate: lastUpdate, uuid: uuid)
+    func setProperties(id: String, state: String, name: String, lastUpdate: String, uuid: String) -> DeviceModel {
+        return DeviceModel(id: id, state: state, name: name, lastUpdate: lastUpdate, uuid: uuid)
     }
 }

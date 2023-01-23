@@ -18,8 +18,8 @@ class SettingsViewController: UIViewController {
     
     
     var deviceInfo: [DeviceModel] = [
-        DeviceModel(id: "iphone", state: "full", name: "iphone_8_no_1", lastUpdate: "yesterday", uuid: "1234"),
-        DeviceModel(id: "plug", state: "on", name: "develco", lastUpdate: "yesterday", uuid: "5678")]
+        DeviceModel(id: "sensor.iphone_8_number_1", state: "80", name: "iPhone 8 Number 1 Battery Level", lastUpdate: "yesterday", uuid: "1234"),
+        DeviceModel(id: "switch.0x0015bc002f00edf3", state: "on", name: "develco", lastUpdate: "yesterday", uuid: "5678")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +73,12 @@ extension SettingsViewController: UITableViewDataSource {
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath.row)
+        var device_id = deviceInfo[indexPath.row].id
+        if device_id.contains("sensor"){
+            print("its a phone")
+        }else if device_id.contains("switch"){
+            print("its a plug")
+        }
     }
 
 }

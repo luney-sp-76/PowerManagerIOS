@@ -60,22 +60,22 @@ struct DeviceManager  {
                     return
                 }
                 guard let safeData = data else {return}
+            
             // use the Device classes switch and sensor to determine the type of device being handled
                         if var device = self.parseJSON(safeData) {
                             if device.id.contains("sensor"){
-                               let phone = newSensor.setProperties(entity_id: device.id, state: device.state, name: device.name, lastUpdate: device.lastUpdate, uuid: device.uuid)
+                               let phone = newSensor.setProperties(id: device.id, state: device.state, name: device.name, lastUpdate: device.lastUpdate, uuid: device.uuid)
                                 device = phone
                                 // this may change later if variables are named by the settingsViewController
-                                V.iPhoneBatteryLevelEntityID = device.id
-                                V.iPhoneBatteryLevelFriendlyName = device.name
-                                
+                                //V.iPhoneBatteryLevelEntityID = device.id
+                                //V.iPhoneBatteryLevelFriendlyName = device.name
                                 currentBatteryLevel = Int(device.state) ?? 21
                             } else if device.id.contains("switch"){
-                                let plug = newSwitch.setProperties(entity_id: device.id, state: device.state, name: device.name, lastUpdate: device.lastUpdate, uuid: device.uuid)
+                                let plug = newSwitch.setProperties(id: device.id, state: device.state, name: device.name, lastUpdate: device.lastUpdate, uuid: device.uuid)
                                 device = plug
                                 // this may change later if variables are named by the settingsViewController
-                                V.plugStateEntityID = device.id
-                                V.plugFriendlyName = device.name
+                                //V.plugStateEntityID = device.id
+                               // V.plugFriendlyName = device.name
                             }
                             self.delegate?.didUpdateDevice(self, device: device)
                         }

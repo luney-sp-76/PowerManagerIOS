@@ -53,10 +53,12 @@ class BatteryMonitorViewController: UIViewController {
         setBatteryLevel.textColor = UIColor(named: "NumberColor")
         button.isSelected = false
         button.setTitle("Set", for: .normal)
-        batteryPercentage = Int(sender.value)
-        setBatteryLevel.text = String(format: "%d", batteryPercentage)
+        lowestBatteryChargeLevel = Int(sender.value)
+        //set a public variable of the users choice of batterylevel to access outside of the viewcontroller
+        V.usersSetBatteryLevel =  lowestBatteryChargeLevel
+        // make the set level into text
+        setBatteryLevel.text = String(format: "%d",  lowestBatteryChargeLevel)
         currentBatteryLevel = Int(batteryPercentageLabel.text ?? "0")!
-        lowestBatteryChargeLevel = Int(setBatteryLevel.text!)!
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -66,9 +68,9 @@ class BatteryMonitorViewController: UIViewController {
         sender.setTitle("Done", for: .normal)
     }
     
-    func getSetBatteryLevel() -> Int {
-        return batteryPercentage
-    }
+//    func getSetBatteryLevel() -> Int {
+//        return batteryPercentage
+//    }
     
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
