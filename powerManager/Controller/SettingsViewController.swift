@@ -73,11 +73,13 @@ extension SettingsViewController: UITableViewDataSource {
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var device_id = deviceInfo[indexPath.row].id
+        let device_id = deviceInfo[indexPath.row].id
         if device_id.contains("sensor"){
-            print("its a phone")
+            V.iPhoneBatteryLevelEntityID = device_id
+            print("You set \(V.iPhoneBatteryLevelEntityID) as the battery device")
         }else if device_id.contains("switch"){
-            print("its a plug")
+            V.plugFriendlyName = device_id
+            print("You set \( V.plugFriendlyName) as the smart plug device")
         }
     }
 

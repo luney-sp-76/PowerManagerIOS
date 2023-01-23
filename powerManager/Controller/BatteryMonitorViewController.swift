@@ -30,6 +30,7 @@ class BatteryMonitorViewController: UIViewController {
         title = K.appName
         navigationItem.hidesBackButton = true
         deviceManager.delegate = self
+        //if the iPhoneBatteryLevelEntityID is "" make an alert to go to settings else call fetchDevice data
         //initial call for battery percentage level on load
         deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
         updatePlugColour(state: plugColour)
