@@ -28,8 +28,8 @@ class HomeManager  {
         if let cachedData = cache.object(forKey: "devices") {
                     self.deviceArray = cachedData as! [String]
                     delegate?.didReceiveDevices(self.deviceArray)
-            cache.countLimit = 60
-            cache.evictsObjectsWithDiscardedContent = true
+            //cache.countLimit = 60
+            //cache.evictsObjectsWithDiscardedContent = true
                     return
                 }
         callForData(urlString: urlString)

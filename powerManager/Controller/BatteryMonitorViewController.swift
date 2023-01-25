@@ -110,19 +110,45 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 updatePlugColour(state: device.state)
         }
         //create a 30 second delay between calls to allow updates to plug state to register
-        sleep(UInt32(60.00))
-        //recheck the battery percentage level
-        let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint) , repeats: true)
-        //common mode allows multithreading in order for other api calls to be made
-        RunLoop.current.add(timer, forMode: .common)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 6000.0) {
+            //recheck the battery percentage level
+            deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
+        }
     }
-    
-    func didFailWithError(error: Error) {
-        print(error)
-    }
-    
-    
 }
+
+//extension BatteryMonitorViewController: DeviceManagerDelegate {
+//    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel){
+//        DispatchQueue.main.async { [self] in
+//            // if device is not identified here the batterypercentage will take on the plug state too ie on or off
+//            if device.name == V.iPhoneBatteryLevelFriendlyName {
+//                //change battery percentage to current battery percentage state
+//                self.batteryPercentageLabel.text = device.state
+//                currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
+//                //print(device.name)
+//            }
+//            //call for the plugs state
+//            deviceManager.fetchPlugState(urlEndPoint: V.plugStateEntityID)
+//            if device.name == V.plugFriendlyName {
+//                updatePlugColour(state: device.state)
+//            }
+//            plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
+//                updatePlugColour(state: device.state)
+//        }
+//        //create a 30 second delay between calls to allow updates to plug state to register
+//        sleep(UInt32(60.00))
+//        //recheck the battery percentage level
+//        let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint) , repeats: true)
+//        //common mode allows multithreading in order for other api calls to be made
+//        RunLoop.current.add(timer, forMode: .common)
+//    }
+//
+//    func didFailWithError(error: Error) {
+//        print(error)
+//    }
+//
+//
+//}
 
 //MARK: - PlugControlDelegate
 
@@ -131,7 +157,7 @@ extension BatteryMonitorViewController: PlugManagerDelegate {
         print("updated")
     }
     
-    func didFailWithError(_ error: Error){
+    func didFailWithError(error: Error){
         print(error)
     }
 }
