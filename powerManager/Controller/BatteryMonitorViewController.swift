@@ -12,6 +12,7 @@ class BatteryMonitorViewController: UIViewController {
     
     var deviceManager = DeviceManager()
     var plugControl = PlugControl()
+    var homeManager = HomeManager()
     var batteryPercentage = 21
     var plugColour = "off"
     
@@ -91,7 +92,7 @@ class BatteryMonitorViewController: UIViewController {
 //MARK: - DeviceManagerDelegate
 
 extension BatteryMonitorViewController: DeviceManagerDelegate {
-    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
+    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel){
         DispatchQueue.main.async { [self] in
             // if device is not identified here the batterypercentage will take on the plug state too ie on or off
             if device.name == V.iPhoneBatteryLevelFriendlyName {
@@ -109,7 +110,7 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 updatePlugColour(state: device.state)
         }
         //create a 30 second delay between calls to allow updates to plug state to register
-        sleep(UInt32(30.00))
+        sleep(UInt32(60.00))
         //recheck the battery percentage level
         let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint) , repeats: true)
         //common mode allows multithreading in order for other api calls to be made

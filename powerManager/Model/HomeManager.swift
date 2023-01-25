@@ -6,22 +6,22 @@
 
 import Foundation
 import FirebaseFirestore
-var deviceArray = [HomeAssistantData]()
+
 
 protocol HomeManagerDelegate: AnyObject {
-    func didReceiveDevices(_ devices: [HomeAssistantData])
+    func didReceiveDevices(_ devices: [String])
 }
 
 var delegate: HomeManagerDelegate?
 
-struct HomeManager  {
-    
+class HomeManager  {
+    var deviceArray = [String]()
     let homeAssistantFetchUrl = K.baseURL
     weak var delegate: HomeManagerDelegate?
-    // returns a DeviceModel from the ApiCall Model
+    
+    
     func fetchDeviceData() {
         let urlString = "\(homeAssistantFetchUrl)states"
-        print(urlString)
         callForData(urlString: urlString)
     }
     
@@ -45,12 +45,10 @@ struct HomeManager  {
                 guard let safeData = data else {return}
                 do {
                     let device = try JSONDecoder().decode([HomeAssistantData].self, from: safeData)
-                    delegate?.didReceiveDevices(device)
                     for item in device {
-                        updatedeviceArray(data: item)
-                        print(item.entity_id)
-                        print(deviceArray.count)
+                        self.deviceArray.append(item.entity_id)
                     }
+                    self.delegate?.didReceiveDevices(self.deviceArray)
                 } catch {
                     print("JSONDecoder error:", error)
                 }
@@ -61,6 +59,5 @@ struct HomeManager  {
     }
 }
 
-func updatedeviceArray(data: HomeAssistantData){
-    deviceArray.append(data)
-}
+
+

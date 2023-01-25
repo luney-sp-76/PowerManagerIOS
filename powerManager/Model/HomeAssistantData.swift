@@ -68,6 +68,7 @@ struct HomeAssistantData: Decodable {
             let userId = try container.decodeIfPresent(String.self, forKey: .userId)
             //MARK: - trimming white space to return data
             self.unitOfMeasurement = unitOfMeasurement
+            self.lowPowerMode = lowPowerMode
             self.attributesId = attributesId
             self.deviceClass = deviceClass
             self.icon = icon

@@ -8,16 +8,10 @@
 import UIKit
 
 class SettingsViewController: UIViewController {
-  
-
-    
-   var homeManager = HomeManager()
-    
-    
     @IBOutlet weak var tableView: UITableView!
-    
-    
-    var deviceInfo: [HomeAssistantData] = []
+
+    var homeManager = HomeManager()
+    var deviceInfo: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,37 +23,42 @@ class SettingsViewController: UIViewController {
         //navigationItem.hidesBackButton = true
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        homeManager.fetchDeviceData()
+    }
 }
 
 //MARK: - HomeManagerDelegate
 
 extension SettingsViewController: HomeManagerDelegate {
-    func didReceiveDevices(_ devices: [HomeAssistantData]) {
-        DispatchQueue.main.async { [self] in
-            print(devices[0].entity_id)
-            self.deviceInfo.append(contentsOf: devices)
+    func didReceiveDevices(_ devices: [String]) {
+        DispatchQueue.main.async {
+            for entity in devices {
+                self.deviceInfo.append(entity)
             }
-       
+            self.tableView.reloadData()
+        }
     }
+}
     
     func didFailWithError(error: Error) {
-       print(error)
+        print(error)
     }
-    
-}
 
 //MARK: - UITABLEVIEWDATASOURCE
 
 extension SettingsViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        deviceInfo.count
+        print("tableview \(self.deviceInfo.count)")
+        return self.deviceInfo.count
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! DevicesCell
-        cell.label.text = deviceInfo[indexPath.row].attributes.friendlyName
+        cell.label.text = deviceInfo[indexPath.row]
         return cell
     }
     
@@ -71,7 +70,7 @@ extension SettingsViewController: UITableViewDataSource {
 
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let device_id = deviceInfo[indexPath.row].attributes.friendlyName
+        let device_id = deviceInfo[indexPath.row]
         if device_id.contains("iphone"){
             V.iPhoneBatteryLevelEntityID = device_id
             print("You set \(V.iPhoneBatteryLevelEntityID) as the battery device")
@@ -80,7 +79,7 @@ extension SettingsViewController: UITableViewDelegate {
             print("You set \( V.plugFriendlyName) as the smart plug device")
         }
     }
-
+    
 }
 
 

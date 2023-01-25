@@ -491,7 +491,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="lnu-hI-sjr"/>
                     <connections>
-                        <outlet property="tableView" destination="Euk-oa-KaM" id="bUv-Ll-tZP"/>
+                        <outlet property="tableView" destination="Euk-oa-KaM" id="GJF-cD-ovB"/>
                     </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NHW-tt-BbQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
