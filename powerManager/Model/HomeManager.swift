@@ -5,6 +5,7 @@
 //  Created by Paul Olphert on 18/01/2023.
 
 import Foundation
+
 import FirebaseFirestore
 
 
@@ -18,10 +19,19 @@ class HomeManager  {
     var deviceArray = [String]()
     let homeAssistantFetchUrl = K.baseURL
     weak var delegate: HomeManagerDelegate?
+    let cache = NSCache<NSString, NSArray>()
+   
     
     
     func fetchDeviceData() {
         let urlString = "\(homeAssistantFetchUrl)states"
+        if let cachedData = cache.object(forKey: "devices") {
+                    self.deviceArray = cachedData as! [String]
+                    delegate?.didReceiveDevices(self.deviceArray)
+            cache.countLimit = 60
+            cache.evictsObjectsWithDiscardedContent = true
+                    return
+                }
         callForData(urlString: urlString)
     }
     
@@ -48,7 +58,10 @@ class HomeManager  {
                     for item in device {
                         self.deviceArray.append(item.entity_id)
                     }
-                    self.delegate?.didReceiveDevices(self.deviceArray)
+                    self.cache.setObject(self.deviceArray as NSArray, forKey: "devices")
+                    DispatchQueue.main.async { [self] in
+                                       self.delegate?.didReceiveDevices(self.deviceArray)
+                                   }
                 } catch {
                     print("JSONDecoder error:", error)
                 }

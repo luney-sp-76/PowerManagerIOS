@@ -15,9 +15,10 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        homeManager.delegate = self
+        homeManager.fetchDeviceData()
         tableView.dataSource = self
         tableView.delegate = self
-        homeManager.delegate = self
         title = K.appName
         tableView.register(UINib(nibName: K.celNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         //navigationItem.hidesBackButton = true
@@ -25,7 +26,7 @@ class SettingsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        homeManager.fetchDeviceData()
+        //homeManager.fetchDeviceData()
     }
 }
 
@@ -33,14 +34,15 @@ class SettingsViewController: UIViewController {
 
 extension SettingsViewController: HomeManagerDelegate {
     func didReceiveDevices(_ devices: [String]) {
-        DispatchQueue.main.async {
-            for entity in devices {
-                self.deviceInfo.append(entity)
+        DispatchQueue.main.async {[self] in
+            if !devices.isEmpty {
+                self.deviceInfo = devices
+                self.tableView.reloadData()
             }
-            self.tableView.reloadData()
+            }
         }
     }
-}
+
     
     func didFailWithError(error: Error) {
         print(error)
