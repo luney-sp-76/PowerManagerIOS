@@ -6,28 +6,24 @@
 
 import Foundation
 import FirebaseFirestore
+var deviceArray = [HomeAssistantData]()
 
-
-protocol HomeManagerDelegate {
-    func didUpdateDevice(_ homeManager: HomeManager, device: DeviceModel)
-    func didFailWithError(error: Error)
+protocol HomeManagerDelegate: AnyObject {
+    func didReceiveDevices(_ devices: [HomeAssistantData])
 }
+
+var delegate: HomeManagerDelegate?
 
 struct HomeManager  {
     
-    
     let homeAssistantFetchUrl = K.baseURL
-    var delegate: HomeManagerDelegate?
-   
-    
-   
+    weak var delegate: HomeManagerDelegate?
     // returns a DeviceModel from the ApiCall Model
     func fetchDeviceData() {
         let urlString = "\(homeAssistantFetchUrl)states"
         print(urlString)
         callForData(urlString: urlString)
     }
-    
     
     func callForData(urlString: String) {
         let token = K.token
@@ -47,71 +43,24 @@ struct HomeManager  {
                     return
                 }
                 guard let safeData = data else {return}
-                //let dataString = String(data: safeData, encoding: .utf8)
-                //print("Response data string:\n \(dataString!)")
                 do {
-                    let json = try JSONSerialization.jsonObject(with: safeData, options: []) as? [[String: Any]]
-                    if let json = json {
-                        for item in json {
-                            let device = DeviceModel(dictionary: item)
-                            print(device.name)
-                            print(item)
-                            // }
-                        }
+                    let device = try JSONDecoder().decode([HomeAssistantData].self, from: safeData)
+                    delegate?.didReceiveDevices(device)
+                    for item in device {
+                        updatedeviceArray(data: item)
+                        print(item.entity_id)
+                        print(deviceArray.count)
                     }
-        
-                    
                 } catch {
-                    print("JSONSerialization error:", error)
+                    print("JSONDecoder error:", error)
                 }
             }
-                
-                //4: Start the task
-                task.resume()
-            }
-            
-        }
-    
-
-    
-    func parseJSON(_ deviceData: Data) -> DeviceModel? {
-        
-        let decoder = JSONDecoder()
-        do {
-            let decodedData = try decoder.decode(DeviceData.self, from: deviceData)
-            let id = decodedData.entity_id
-            let state = decodedData.state
-            let name = decodedData.attributes.friendlyName
-            let lastUpdate = decodedData.last_updated
-            let uuid = decodedData.context.id
-            print("device name: \(id)")
-            print("friendly name: \(name)")
-            print("Unique device ID: \(uuid)")
-            print("current state:\(state)")
-            print("last updated: \(lastUpdate)")
-            print("")
-            let device = DeviceModel(id: id, state: state, name: name, lastUpdate: lastUpdate, uuid: uuid)
-            return device
-            
-        } catch {
-            self.delegate?.didFailWithError(error: error)
-            print(error)
-            return nil
+            //4: Start the task
+            task.resume()
         }
     }
-    
-    
 }
 
-//MARK: - Dictionary Device Model if needed
-
-extension DeviceModel  {
-    init(dictionary: [String : Any]) {
-        
-        self.id = dictionary["entity_id"] as? String ?? ""
-        self.state = dictionary["state"] as? String ?? ""
-        self.name = dictionary["attributes[0]friendly_name"] as? String ?? "nah"
-        self.lastUpdate = ((dictionary["context.last_updated"] as? String??)! ?? "") ?? ""
-        self.uuid = dictionary["context.user_id"] as? String ?? ""
-    }
+func updatedeviceArray(data: HomeAssistantData){
+    deviceArray.append(data)
 }
