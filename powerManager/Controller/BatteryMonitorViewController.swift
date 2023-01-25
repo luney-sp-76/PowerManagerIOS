@@ -31,13 +31,18 @@ class BatteryMonitorViewController: UIViewController {
         title = K.appName
         navigationItem.hidesBackButton = true
         deviceManager.delegate = self
-        //if the iPhoneBatteryLevelEntityID is "" make an alert to go to settings else call fetchDevice data
-        //varaible for iPhoneBatteryLevelEntityID should be initiated as ""
-        //initial call for battery percentage level on load
         deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
         updatePlugColour(state: plugColour)
+        scheduleFetchData()
     }
     
+    
+    func scheduleFetchData() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
+            self.deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
+            self.scheduleFetchData()
+        }
+    }
     func updatePlugColour(state: String) {
         //print(state)
         if state == "off" {
@@ -94,12 +99,15 @@ class BatteryMonitorViewController: UIViewController {
 extension BatteryMonitorViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel){
         DispatchQueue.main.async { [self] in
-            // if device is not identified here the batterypercentage will take on the plug state too ie on or off
+         
             if device.name == V.iPhoneBatteryLevelFriendlyName {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-                //print(device.name)
+                if currentBatteryLevel <= V.usersSetBatteryLevel {
+                    plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
+                        updatePlugColour(state: device.state)
+                }
             }
             //call for the plugs state
             deviceManager.fetchPlugState(urlEndPoint: V.plugStateEntityID)
