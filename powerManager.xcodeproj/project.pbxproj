@@ -25,6 +25,7 @@
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B01C296439E6000EE544 /* UrlEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
+		BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC52F02982AB6D00EEA034 /* AppUtility.swift */; };
 		BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675629776359006495FC /* HomeAssistantData.swift */; };
 		BDFF675929788095006495FC /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675829788095006495FC /* HomeManager.swift */; };
 		DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FED295E1CDD00704D59 /* AppDelegate.swift */; };
@@ -79,6 +80,7 @@
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B01B296439E6000EE544 /* UrlEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlEndpoint.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
+		BDCC52F02982AB6D00EEA034 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		BDFF675629776359006495FC /* HomeAssistantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssistantData.swift; sourceTree = "<group>"; };
 		BDFF675829788095006495FC /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
 		DAE45FEA295E1CDD00704D59 /* powerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = powerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +218,7 @@
 				BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */,
 				BD3C2F95297D814F00F4B914 /* DeviceVariables.swift */,
 				BD6D3ED829754082009C063A /* Constants.swift */,
+				BDCC52F02982AB6D00EEA034 /* AppUtility.swift */,
 			);
 			path = powerManager;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 				BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */,
 				DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */,
 				BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */,
+				BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */,
 				DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */,
 				BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */,
 				BD6D3ED929754082009C063A /* Constants.swift in Sources */,
