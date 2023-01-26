@@ -13,8 +13,8 @@ protocol DeviceManagerDelegate {
 }
 var plugControl = PlugControl()
 var currentBatteryLevel = 21
-private (set) var newSwitch = Switch()
-private (set) var newSensor = Sensor()
+//private (set) var newSwitch = Switch()
+//private (set) var newSensor = Sensor()
 struct DeviceManager  {
    
     
@@ -24,8 +24,8 @@ struct DeviceManager  {
     
     // utility function, can be called for any endpoint "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/states/sensor.devicename-endpoint"
     // returns a DeviceModel from the ApiCall Model
-    func fetchDeviceData(deviceName: String, urlEndPoint: String) {
-        let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)\(urlEndPoint)"
+    func fetchDeviceData(deviceName: String) {
+        let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)"
         //print(urlString)
         callForData(urlString: urlString)
     }
@@ -63,20 +63,10 @@ struct DeviceManager  {
             
             // use the Device classes switch and sensor to determine the type of device being handled
                         if var device = self.parseJSON(safeData) {
-                            if device.id.contains("sensor"){
-                               let phone = newSensor.setProperties(id: device.id, state: device.state, name: device.name, lastUpdate: device.lastUpdate, uuid: device.uuid)
-                                device = phone
-                                // this may change later if variables are named by the settingsViewController
-                                //V.iPhoneBatteryLevelEntityID = device.id
-                                //V.iPhoneBatteryLevelFriendlyName = device.name
+                            if device.id.contains("battery_level"){
                                 currentBatteryLevel = Int(device.state) ?? 21
-                            } else if device.id.contains("switch"){
-                                let plug = newSwitch.setProperties(id: device.id, state: device.state, name: device.name, lastUpdate: device.lastUpdate, uuid: device.uuid)
-                                device = plug
-                                // this may change later if variables are named by the settingsViewController
-                                //V.plugStateEntityID = device.id
-                               // V.plugFriendlyName = device.name
                             }
+                            print(device.name)
                             self.delegate?.didUpdateDevice(self, device: device)
                         }
                     }
@@ -117,15 +107,15 @@ struct DeviceManager  {
     
    
     
-    func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int)-> String {
+    func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int)-> String {
     var returnString = "on"
         
         if currentBatteryLevel >= 100 && device.name == V.plugFriendlyName && device.state == "on" {
-            plugControl.fetchPlugData(deviceName: "\(V.plugStateEntityID)/", urlEndPoint: "turn_off")
+            plugControl.fetchPlugData(urlEndPoint: "turn_off")
             returnString = "off"
 
         } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == V.plugFriendlyName && device.state == "off"{
-            plugControl.fetchPlugData(deviceName: "\(V.plugStateEntityID)/", urlEndPoint: "turn_on")
+            plugControl.fetchPlugData(urlEndPoint: "turn_on")
           returnString = "on"
         }
         return returnString

@@ -55,7 +55,7 @@ struct DeviceData: Decodable {
             case deviceClass = "device_class"
             case icon
             case friendlyName = "friendly_name"
-            case userId = "user_id"
+            case userId = "user-id"
         }
         //MARK: - decoder
         init(from decoder: Decoder) throws {

@@ -10,13 +10,13 @@ import FirebaseFirestore
 
 
 protocol HomeManagerDelegate: AnyObject {
-    func didReceiveDevices(_ devices: [String])
+    func didReceiveDevices(_ devices: [HomeAssistantData])
 }
 
 var delegate: HomeManagerDelegate?
 
 class HomeManager  {
-    var deviceArray = [String]()
+    var deviceArray = [HomeAssistantData]()
     let homeAssistantFetchUrl = K.baseURL
     weak var delegate: HomeManagerDelegate?
     let cache = NSCache<NSString, NSArray>()
@@ -26,7 +26,7 @@ class HomeManager  {
     func fetchDeviceData() {
         let urlString = "\(homeAssistantFetchUrl)states"
         if let cachedData = cache.object(forKey: "devices") {
-                    self.deviceArray = cachedData as! [String]
+                    self.deviceArray = cachedData as! [HomeAssistantData]
                     delegate?.didReceiveDevices(self.deviceArray)
             //cache.countLimit = 60
             //cache.evictsObjectsWithDiscardedContent = true
@@ -56,7 +56,9 @@ class HomeManager  {
                 do {
                     let device = try JSONDecoder().decode([HomeAssistantData].self, from: safeData)
                     for item in device {
-                        self.deviceArray.append(item.entity_id)
+                        if item.entity_id.contains("battery_level") || item.entity_id.contains("switch"){
+                            self.deviceArray.append(item)
+                        }
                     }
                     self.cache.setObject(self.deviceArray as NSArray, forKey: "devices")
                     DispatchQueue.main.async { [self] in

@@ -16,7 +16,7 @@ struct PlugControl {
     let homeAssistantPostUrl = K.plugStateUrl
     var delegate: PlugManagerDelegate?
     
-    func fetchPlugData(deviceName: String, urlEndPoint: String) {
+    func fetchPlugData(urlEndPoint: String) {
         let urlString = "\(homeAssistantPostUrl)\(urlEndPoint)"
         print(urlString)
         sendRequest(urlString: urlString)
@@ -24,7 +24,7 @@ struct PlugControl {
     
     func sendRequest(urlString: String) {
         let token = K.token
-        
+        let plug = V.plugStateEntityID
         print("POST task 1 started...")
         //1: Create a URL
         if let url = URL(string: urlString) {
@@ -32,7 +32,7 @@ struct PlugControl {
             print("POST task 1 complete")
             print("POST task 2 started...")
             //2: Prepare JSON data
-            let json: [String: Any] = ["entity_id" : "\(V.plugStateEntityID)"]
+            let json: [String: Any] = ["entity_id" : "\(plug)"]
             let jsonData = try? JSONSerialization.data(withJSONObject: json)
             print("POST task 2 complete")
             print("POST task 3 started...")

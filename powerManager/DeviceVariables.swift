@@ -6,7 +6,7 @@
 //
 
 struct V {
-    public static var iPhoneBatteryLevelEntityID = "sensor.iphone_8_number_1"
+    public static var iPhoneBatteryLevelEntityID = "sensor.iphone_8_number_1_battery_level"
     public static var iPhoneBatteryLevelFriendlyName = "iPhone 8 Number 1 Battery Level"
     public static var plugFriendlyName = "develco"
     public static var plugStateEntityID = "switch.0x0015bc002f00edf3"

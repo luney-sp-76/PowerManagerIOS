@@ -16,7 +16,6 @@ class BatteryMonitorViewController: UIViewController {
     var batteryPercentage = 21
     var plugColour = "off"
     
-    
     @IBOutlet weak var batteryPercentageLabel: UILabel!
     @IBOutlet weak var setBatteryLevel: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -25,24 +24,42 @@ class BatteryMonitorViewController: UIViewController {
     
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 21
+    var lastPlugStateCheckTime: Date = Date()
+    var delegate: SettingsViewControllerDelegate?
+    
     
     
     override func viewDidLoad() {
         title = K.appName
         navigationItem.hidesBackButton = true
         deviceManager.delegate = self
-        deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
+        let settingsController = SettingsViewController()
+        settingsController.delegate = self
+        deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID)
         updatePlugColour(state: plugColour)
         scheduleFetchData()
     }
     
+    @objc func checkPlugState(plugDevice: String) {
+        deviceManager.fetchPlugState(urlEndPoint: plugDevice)
+        
+    }
+    
+    @objc func checkBatteryLevel(batteryDevice: String) {
+        deviceManager.fetchDeviceData(deviceName: batteryDevice)
+        print(V.iPhoneBatteryLevelEntityID)
+      
+    }
     
     func scheduleFetchData() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-            self.deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
+            self.checkBatteryLevel(batteryDevice: V.iPhoneBatteryLevelEntityID)
+            self.checkPlugState(plugDevice: V.plugStateEntityID)
             self.scheduleFetchData()
         }
     }
+    
+    
     func updatePlugColour(state: String) {
         //print(state)
         if state == "off" {
@@ -76,87 +93,50 @@ class BatteryMonitorViewController: UIViewController {
         sender.setTitle("Done", for: .normal)
     }
     
-//    func getSetBatteryLevel() -> Int {
-//        return batteryPercentage
-//    }
+    
     
     
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
         do {
-          try Auth.auth().signOut()
+            try Auth.auth().signOut()
             //jumps back to the root page
             navigationController?.popToRootViewController(animated: true)
         } catch let signOutError as NSError {
-          print("Error signing out: %@", signOutError)
+            print("Error signing out: %@", signOutError)
         }
     }
     
-        
+    
 }
 
 //MARK: - DeviceManagerDelegate
 
 extension BatteryMonitorViewController: DeviceManagerDelegate {
-    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel){
+    
+    
+    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         DispatchQueue.main.async { [self] in
-         
             if device.name == V.iPhoneBatteryLevelFriendlyName {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-                if currentBatteryLevel <= V.usersSetBatteryLevel {
-                    plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
-                        updatePlugColour(state: device.state)
+                if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
+                    plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel)
+                    updatePlugColour(state: plugColour)
                 }
             }
-            //call for the plugs state
-            deviceManager.fetchPlugState(urlEndPoint: V.plugStateEntityID)
+            let timeSinceLastCheck = Date().timeIntervalSince(lastPlugStateCheckTime)
+            if timeSinceLastCheck > 30 {
+                lastPlugStateCheckTime = Date()
+            }
             if device.name == V.plugFriendlyName {
                 updatePlugColour(state: device.state)
             }
-            plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
-                updatePlugColour(state: device.state)
-        }
-        //create a 30 second delay between calls to allow updates to plug state to register
-        DispatchQueue.main.asyncAfter(deadline: .now() + 6000.0) {
-            //recheck the battery percentage level
-            deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint)
         }
     }
 }
 
-//extension BatteryMonitorViewController: DeviceManagerDelegate {
-//    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel){
-//        DispatchQueue.main.async { [self] in
-//            // if device is not identified here the batterypercentage will take on the plug state too ie on or off
-//            if device.name == V.iPhoneBatteryLevelFriendlyName {
-//                //change battery percentage to current battery percentage state
-//                self.batteryPercentageLabel.text = device.state
-//                currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-//                //print(device.name)
-//            }
-//            //call for the plugs state
-//            deviceManager.fetchPlugState(urlEndPoint: V.plugStateEntityID)
-//            if device.name == V.plugFriendlyName {
-//                updatePlugColour(state: device.state)
-//            }
-//            plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel)
-//                updatePlugColour(state: device.state)
-//        }
-//        //create a 30 second delay between calls to allow updates to plug state to register
-//        sleep(UInt32(60.00))
-//        //recheck the battery percentage level
-//        let timer = Timer.scheduledTimer(timeInterval: 6000.00, target: self, selector: #selector(self.battery), userInfo:deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID, urlEndPoint: K.batteryLevelEndPoint) , repeats: true)
-//        //common mode allows multithreading in order for other api calls to be made
-//        RunLoop.current.add(timer, forMode: .common)
-//    }
-//
-//    func didFailWithError(error: Error) {
-//        print(error)
-//    }
-//
-//
-//}
+
 
 //MARK: - PlugControlDelegate
 
@@ -169,12 +149,21 @@ extension BatteryMonitorViewController: PlugManagerDelegate {
         print(error)
     }
 }
-//MARK: - Task extension sleep(seconds)
 
-extension Task where Success == Never, Failure == Never {
-    static func sleep(seconds: Double) async throws {
-        let duration = UInt64(seconds * 1_000_000_000)
-        try await Task.sleep(nanoseconds: duration)
-    }
+//MARK: - SettingsViewControllerDelegate
+
+extension BatteryMonitorViewController: SettingsViewControllerDelegate {
+        func didSelectDevice(_ deviceName: String) {
+          
+            if deviceName.contains("battery_level"){
+                print("\(deviceName) is now the batterydevice")
+                V.iPhoneBatteryLevelEntityID = deviceName
+                print(V.iPhoneBatteryLevelEntityID)
+            }else{
+                print("\(deviceName) is now the plugdevice")
+                V.plugStateEntityID = deviceName
+                print(V.plugStateEntityID)
+            }
+        }
+    
 }
-
