@@ -139,10 +139,6 @@ extension SettingsViewController: UITableViewDelegate {
                 selectedDevices.append(device_id)
                 batteryDevice = device_id
                 batteryDeviceSelected = true
-                //print("You set \(device_id) as the battery device")
-                //print("\(selectedDevices) second check of the array")
-                //count += 1
-                //print(count)
             } else {
                 // remove the existing battery device from the array
                 if let index = selectedDevices.firstIndex(of: device_id) {
@@ -153,7 +149,10 @@ extension SettingsViewController: UITableViewDelegate {
                 }
                 batteryDeviceSelected = false
                 //print("You deselected the battery device")
-                tableView.reloadData()
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
+               
             }
         } else if device_id.contains("switch") {
             if !switchDeviceSelected {
@@ -176,11 +175,15 @@ extension SettingsViewController: UITableViewDelegate {
                 switchDeviceSelected = false
                // print("You deselected the smart plug device")
                 //print("\(selectedDevices) if you changed your mind then maybe second or greater check of the array")
-                tableView.reloadData()
+                DispatchQueue.main.async {
+                    tableView.reloadData()
+                }
             }
         }
         
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            tableView.reloadData()
+        }
     }
 }
 

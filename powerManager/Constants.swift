@@ -16,5 +16,16 @@ struct K {
     static let token = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJmNzI5MGM3OTE0NjE0ODhmOGYzZjFjMDU4YjA2YmRhOSIsImlhdCI6MTY3Mjc1OTk4MCwiZXhwIjoxOTg4MTE5OTgwfQ.X9E2pp6XUxjORMAK_mJSsZK5GG6rv4b-3c8X88eX1yQ"
     static let cellIdentifier = "ReusableCell"
     static let celNibName = "DevicesCell"
+    
+    
+    struct FStore {
+        
+        static let homeAssistantCollection = "homeAssistantCollection"
+        static let user = "user"
+        static let entity_id = "entity_id"
+        static let state = "state"
+        static let lastUpdated = "lastUpDated"
+        static let friendlyName = "friendly_name"
+    }
   
 }
