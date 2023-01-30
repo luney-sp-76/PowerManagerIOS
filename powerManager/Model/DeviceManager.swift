@@ -13,16 +13,13 @@ protocol DeviceManagerDelegate {
 }
 var plugControl = PlugControl()
 var currentBatteryLevel = 21
-//private (set) var newSwitch = Switch()
-//private (set) var newSensor = Sensor()
 struct DeviceManager  {
    
     
     let homeAssistantFetchUrl = K.baseURL
     var delegate: DeviceManagerDelegate?
     //call to return the iphone BatteryLevel state (should be an int) used UrlEndPoint Model to form the endpoints
-    
-    // utility function, can be called for any endpoint "https://wfebyv7u1xhb8wl7g44evjkl1o7t5554.ui.nabu.casa/api/states/sensor.devicename-endpoint"
+
     // returns a DeviceModel from the ApiCall Model
     func fetchDeviceData(deviceName: String) {
         let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)"
@@ -41,18 +38,18 @@ struct DeviceManager  {
         let token = K.token
         
      
-        //print("\(urlString)task 1")
+        print("\(urlString)task 1")
         //1: Create a URL
         if let url = URL(string: urlString) {
             var urlRequest = URLRequest(url:url)
             
-            //print("task 2")
+            print("task 2")
             //2: Create a URLSession
             urlRequest.httpMethod = "GET"
             urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-           // print("task 3")
+           print("task 3")
             //3: Give Session a task
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
@@ -63,11 +60,11 @@ struct DeviceManager  {
             
             // use the Device classes switch and sensor to determine the type of device being handled
                         if let device = self.parseJSON(safeData) {
-                            if device.id.contains("battery_level"){
-                                print(device.name)
-                                currentBatteryLevel = Int(device.state) ?? 21
-                            }
-                            print(device.name)
+//                            if device.id.contains("battery_level"){
+//                                //print(device.name)
+//                                //currentBatteryLevel = Int(device.state) ?? 21
+//                            }
+                            //print(device.name)
                             self.delegate?.didUpdateDevice(self, device: device)
                         }
                     }
@@ -108,14 +105,14 @@ struct DeviceManager  {
     
    
     
-    func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int)-> String {
+    func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int, plugName: String)-> String {
     var returnString = "on"
         
-        if currentBatteryLevel >= 100 && device.name == V.plugFriendlyName && device.state == "on" {
+        if currentBatteryLevel == 100 && device.id == plugName && device.state == "on" {
             plugControl.fetchPlugData(urlEndPoint: "turn_off")
             returnString = "off"
 
-        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.name == V.plugFriendlyName && device.state == "off"{
+        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == "off"{
             plugControl.fetchPlugData(urlEndPoint: "turn_on")
           returnString = "on"
         }

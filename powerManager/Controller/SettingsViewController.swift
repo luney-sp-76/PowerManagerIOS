@@ -38,7 +38,7 @@ class SettingsViewController: UIViewController {
     var switchDeviceSelected = false
     
     //testing count
-    var count = 0
+    //var count = 0
     
     
     override func viewDidLoad() {
@@ -59,8 +59,8 @@ class SettingsViewController: UIViewController {
     }
     
     @IBAction func setButtonPressed(_ sender: UIButton) {
-        print("when the set button was pressed count = \(count)")
-        print("and the array looks like this \(selectedDevices)")
+        //print("when the set button was pressed count = \(count)")
+        //print("and the array looks like this \(selectedDevices)")
             sender.isSelected = true
         performSegue(withIdentifier: K.settingsToBatteryMonitor, sender: self)
             }
@@ -121,9 +121,7 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     
-    func callBatteryMonitor(){
-        delegate?.updateDevices(battery: batteryDevice, plug: plugDevice)
-    }
+   
    
     
 }
@@ -135,26 +133,26 @@ extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! DevicesCell
         let device_id = deviceInfo[indexPath.row].entity_id
-        print("\(selectedDevices) first check of the array")
+        //print("\(selectedDevices) first check of the array")
         if device_id.contains("battery_level") {
             if !batteryDeviceSelected {
                 selectedDevices.append(device_id)
                 batteryDevice = device_id
                 batteryDeviceSelected = true
-                print("You set \(device_id) as the battery device")
-                print("\(selectedDevices) second check of the array")
-                count += 1
-                print(count)
+                //print("You set \(device_id) as the battery device")
+                //print("\(selectedDevices) second check of the array")
+                //count += 1
+                //print(count)
             } else {
                 // remove the existing battery device from the array
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
                     cell.isSelected = false
-                 count -= 1
-                    print(count)
+                 //count -= 1
+                   // print(count)
                 }
                 batteryDeviceSelected = false
-                print("You deselected the battery device")
+                //print("You deselected the battery device")
                 tableView.reloadData()
             }
         } else if device_id.contains("switch") {
@@ -163,21 +161,21 @@ extension SettingsViewController: UITableViewDelegate {
                 plugDevice = device_id
                
                 switchDeviceSelected = true
-                print("You set \(device_id) as the smart plug device")
-                print("\(selectedDevices) potential second check of the array")
-                count += 1
-                print(count)
+                //print("You set \(device_id) as the smart plug device")
+                //print("\(selectedDevices) potential second check of the array")
+                //count += 1
+                //print(count)
             } else {
                 // remove the existing switch device from the array
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
-                    count -= 1
-                    print(count)
+                    //count -= 1
+                    //print(count)
                     cell.isSelected = false
                 }
                 switchDeviceSelected = false
-                print("You deselected the smart plug device")
-                print("\(selectedDevices) if you changed your mind then maybe second or greater check of the array")
+               // print("You deselected the smart plug device")
+                //print("\(selectedDevices) if you changed your mind then maybe second or greater check of the array")
                 tableView.reloadData()
             }
         }

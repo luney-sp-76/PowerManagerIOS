@@ -11,9 +11,9 @@ import FirebaseAuth
 
 
 class BatteryMonitorViewController: UIViewController {
-
+    
     // initiate DeviceManager
-    var deviceManager = DeviceManager()
+    var deviceStateManager = DeviceManager()
     //initiate PlugControl
     var plugControl = PlugControl()
     //initial HomeManager
@@ -38,9 +38,9 @@ class BatteryMonitorViewController: UIViewController {
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 21
     var lastPlugStateCheckTime: Date = Date()
-
-
-
+    
+    
+    
     
     
     
@@ -49,7 +49,7 @@ class BatteryMonitorViewController: UIViewController {
         print("devicesArray has \(devicesArray.count) devices")
         title = K.appName
         navigationItem.hidesBackButton = true
-        deviceManager.delegate = self
+        deviceStateManager.delegate = self
         for device in devicesArray {
             print(device)
             if device.contains("battery_level"){
@@ -72,7 +72,7 @@ class BatteryMonitorViewController: UIViewController {
         }
     }
     
-
+    
     //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -82,7 +82,7 @@ class BatteryMonitorViewController: UIViewController {
         // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
         
     }
-
+    
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
@@ -91,18 +91,18 @@ class BatteryMonitorViewController: UIViewController {
     }
     
     @objc func checkPlugState(plugDevice: String) {
-        deviceManager.fetchPlugState(urlEndPoint: plugDevice)
+        deviceStateManager.fetchPlugState(urlEndPoint: plugDevice)
         
     }
     
     @objc func checkBatteryLevel(batteryDevice: String) {
-        deviceManager.fetchDeviceData(deviceName: batteryDevice)
+        deviceStateManager.fetchDeviceData(deviceName: batteryDevice)
         print(iPhoneBatteryLevelEntityID)
-      
+        
     }
     
     func scheduleFetchData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
             print(self.iPhoneBatteryLevelEntityID)
             self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
             self.checkPlugState(plugDevice: self.plugStateEntityID)
@@ -156,7 +156,7 @@ class BatteryMonitorViewController: UIViewController {
         }
     }
     
-  
+    
     
     
 }
@@ -172,22 +172,28 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-                //update the plug state
+            }
+            if device.id == plugStateEntityID {
+                print(device.id)
+                V.plugStateEntityID = plugStateEntityID
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
-                    plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel)
-                    updatePlugColour(state: plugColour)
+                    print("THIS SHOULD CALL TO TURN THE PLUG ON OR OFF!!!")
+                    
+                    plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
                 }
-            }
-            let timeSinceLastCheck = Date().timeIntervalSince(lastPlugStateCheckTime)
-            if timeSinceLastCheck > 30 {
-                lastPlugStateCheckTime = Date()
-            }
-            if device.name == V.plugFriendlyName {
+                //print("global variable is set as \(V.plugStateEntityID)")
                 updatePlugColour(state: device.state)
             }
         }
+        
+        let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
+        if timeSinceLastCheck > 30 {
+            lastPlugStateCheckTime = Date()
+        }
     }
 }
+
+
 
 
 
