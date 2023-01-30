@@ -49,7 +49,7 @@ struct DeviceManager  {
             urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-           print("task 3")
+           print("task 3 in Device Manager")
             //3: Give Session a task
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
@@ -60,11 +60,6 @@ struct DeviceManager  {
             
             // use the Device classes switch and sensor to determine the type of device being handled
                         if let device = self.parseJSON(safeData) {
-//                            if device.id.contains("battery_level"){
-//                                //print(device.name)
-//                                //currentBatteryLevel = Int(device.state) ?? 21
-//                            }
-                            //print(device.name)
                             self.delegate?.didUpdateDevice(self, device: device)
                         }
                     }

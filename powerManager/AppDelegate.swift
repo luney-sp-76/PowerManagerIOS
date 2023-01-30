@@ -7,6 +7,7 @@
 
 import UIKit
 import FirebaseCore
+import FirebaseFirestore
 import FirebaseAuth
 
 @main
@@ -22,6 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        let db = Firestore.firestore()
+        print(db)
+        
+        return true
         //        let feedVC =  (window.rootViewController as?
         //            UINavigationController)?.viewControllers.first as? ViewController
         //            feedVC?.server = server
@@ -29,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        BGTaskScheduler.shared.register(forTaskWithIdentifier: "com.powerManger.refresh", using: nil) { task in
 //            self.handleAppRefresh(task: task as! BGAppRefreshTask)
 //        }
-        
-        return true
     }
     
     
