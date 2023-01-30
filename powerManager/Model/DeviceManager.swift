@@ -62,8 +62,9 @@ struct DeviceManager  {
                 guard let safeData = data else {return}
             
             // use the Device classes switch and sensor to determine the type of device being handled
-                        if var device = self.parseJSON(safeData) {
+                        if let device = self.parseJSON(safeData) {
                             if device.id.contains("battery_level"){
+                                print(device.name)
                                 currentBatteryLevel = Int(device.state) ?? 21
                             }
                             print(device.name)

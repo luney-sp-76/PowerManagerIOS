@@ -8,13 +8,26 @@
 import UIKit
 import FirebaseAuth
 
+
+
 class BatteryMonitorViewController: UIViewController {
-    
+
+    // initiate DeviceManager
     var deviceManager = DeviceManager()
+    //initiate PlugControl
     var plugControl = PlugControl()
+    //initial HomeManager
     var homeManager = HomeManager()
+    // to hold the devies selected in settings
+    var devicesArray: [String] = []
+    
     var batteryPercentage = 21
+    // Declare the delegate property in BatteryMonitorViewController
     var plugColour = "off"
+    var iPhoneBatteryLevelEntityID = " "
+    var plugStateEntityID = " "
+    
+    
     
     @IBOutlet weak var batteryPercentageLabel: UILabel!
     @IBOutlet weak var setBatteryLevel: UILabel!
@@ -25,21 +38,42 @@ class BatteryMonitorViewController: UIViewController {
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 21
     var lastPlugStateCheckTime: Date = Date()
-    var delegate: SettingsViewControllerDelegate?
+
+
+
     
     
     
     override func viewDidLoad() {
+        print("view is loaded")
+        print("devicesArray has \(devicesArray.count) devices")
         title = K.appName
         navigationItem.hidesBackButton = true
         deviceManager.delegate = self
-        let settingsController = SettingsViewController()
-        settingsController.delegate = self
-        deviceManager.fetchDeviceData(deviceName: V.iPhoneBatteryLevelEntityID)
-        updatePlugColour(state: plugColour)
-        scheduleFetchData()
+        for device in devicesArray {
+            print(device)
+            if device.contains("battery_level"){
+                iPhoneBatteryLevelEntityID = device
+            }
+            if device.contains("switch"){
+                plugStateEntityID = device
+            }
+        }
+        if iPhoneBatteryLevelEntityID == " " {
+            let alert = UIAlertController(title: "Please set your device preferences in settings!", message:"Please set your device preferences in settings!" , preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                self.performSegue(withIdentifier: "batteryMonitorToSettings", sender: self)
+            })
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        } else {
+            //batteryManager.delegate = self
+            scheduleFetchData()
+        }
     }
     
+
+    //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -63,18 +97,18 @@ class BatteryMonitorViewController: UIViewController {
     
     @objc func checkBatteryLevel(batteryDevice: String) {
         deviceManager.fetchDeviceData(deviceName: batteryDevice)
-        print(V.iPhoneBatteryLevelEntityID)
+        print(iPhoneBatteryLevelEntityID)
       
     }
     
     func scheduleFetchData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 60) {
-            self.checkBatteryLevel(batteryDevice: V.iPhoneBatteryLevelEntityID)
-            self.checkPlugState(plugDevice: V.plugStateEntityID)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 10) {
+            print(self.iPhoneBatteryLevelEntityID)
+            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
+            self.checkPlugState(plugDevice: self.plugStateEntityID)
             self.scheduleFetchData()
         }
     }
-    
     
     func updatePlugColour(state: String) {
         //print(state)
@@ -122,6 +156,8 @@ class BatteryMonitorViewController: UIViewController {
         }
     }
     
+  
+    
     
 }
 
@@ -132,10 +168,11 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
     
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         DispatchQueue.main.async { [self] in
-            if device.name == V.iPhoneBatteryLevelFriendlyName {
+            if device.id == iPhoneBatteryLevelEntityID {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
+                //update the plug state
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
                     plugColour = deviceManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel)
                     updatePlugColour(state: plugColour)
@@ -166,20 +203,11 @@ extension BatteryMonitorViewController: PlugManagerDelegate {
     }
 }
 
-//MARK: - SettingsViewControllerDelegate
 
-extension BatteryMonitorViewController: SettingsViewControllerDelegate {
-        func didSelectDevice(_ deviceName: String) {
-          
-            if deviceName.contains("battery_level"){
-                print("\(deviceName) is now the batterydevice")
-                V.iPhoneBatteryLevelEntityID = deviceName
-                print(V.iPhoneBatteryLevelEntityID)
-            }else{
-                print("\(deviceName) is now the plugdevice")
-                V.plugStateEntityID = deviceName
-                print(V.plugStateEntityID)
-            }
-        }
-    
-}
+
+
+//        print("data recieved from SettingsViewController")
+//        iPhoneBatteryLevelEntityID = battery
+//        plugStateEntityID = plug
+ 
+
