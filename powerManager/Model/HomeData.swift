@@ -9,7 +9,6 @@ import Foundation
 
 
 struct HomeData {
-    
     let user: String
     let entity_id: String
     let state: String
