@@ -17,7 +17,7 @@ class StatisticsViewController: UIViewController {
     //the data for the database goes in here
     var deviceData: [HomeData] = []
     var entity: String =  ""
-    var state: String = ""
+    var state: String? = ""
     var lastUpdated: String = ""
     var friendlyName: String = ""
     let db = Firestore.firestore()
@@ -70,7 +70,6 @@ class StatisticsViewController: UIViewController {
     
     func uploadData(userData: String) {
         for devices in deviceInfo {
-            //if devices.entity_id.contains("battery_level") || devices.entity_id.contains("switch"){
             
             //}
             DispatchQueue.main.async {
