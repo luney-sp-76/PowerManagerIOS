@@ -19,6 +19,14 @@ struct K {
     static let turnOn = "turn_on"
     static let on = "on"
     static let off = "off"
+    static let batteryLevel = "battery_level"
+    static let switchs = "switch"
+    
+    struct ColourAssets {
+        static let plugIconColourOff = "PlugIconColourOff"
+        static let plugIconColourOn = "PlugIconColourOn"
+        static let numberColour = "NumberColor"
+    }
     
     
     struct FStore {

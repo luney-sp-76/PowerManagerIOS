@@ -126,10 +126,10 @@ class BatteryMonitorViewController: UIViewController {
             self.devicesArraySemaphore.signal()
             
             for device in localDevicesArray {
-                if device.contains("battery_level"){
+                if device.contains(K.batteryLevel){
                     self.iPhoneBatteryLevelEntityID = device
                 }
-                if device.contains("switch"){
+                if device.contains(K.switchs){
                     self.plugStateEntityID = device
                 }
             }
@@ -144,17 +144,17 @@ class BatteryMonitorViewController: UIViewController {
     // change the plug icon color on the viewcontroller UI to match its state
     func updatePlugColour(state: String) {
         //print(state)
-        if state == "off" {
-            powerPlugIcon.tintColor = UIColor(named: "PlugIconColourOff")
+        if state == K.off {
+            powerPlugIcon.tintColor = UIColor(named: K.ColourAssets.plugIconColourOff)
         }else {
-            powerPlugIcon.tintColor = UIColor(named: "PlugIconColourOn")
+            powerPlugIcon.tintColor = UIColor(named: K.ColourAssets.plugIconColourOn)
         }
     }
     
     
     //func checks if the slider is moved and updates the lowestBatteryCharge Level to the users desired level
     @IBAction func sliderMoved(_ sender: UISlider) {
-        setBatteryLevel.textColor = UIColor(named: "NumberColor")
+        setBatteryLevel.textColor = UIColor(named: K.ColourAssets.numberColour)
         button.isSelected = false
         button.setTitle("Set", for: .normal)
         lowestBatteryChargeLevel = Int(sender.value)
