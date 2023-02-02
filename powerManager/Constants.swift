@@ -26,6 +26,7 @@ struct K {
         static let plugIconColourOff = "PlugIconColourOff"
         static let plugIconColourOn = "PlugIconColourOn"
         static let numberColour = "NumberColor"
+        static let  affirmAction = "AffirmAction"
     }
     
     

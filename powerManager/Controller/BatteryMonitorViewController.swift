@@ -168,7 +168,7 @@ class BatteryMonitorViewController: UIViewController {
     @IBAction func buttonPressed(_ sender: UIButton) {
         // change button text to set level
         sender.isSelected = true
-        setBatteryLevel.textColor = UIColor(named: "AffirmAction")
+        setBatteryLevel.textColor = UIColor(named: K.ColourAssets.affirmAction)
         sender.setTitle("Done", for: .normal)
         scheduleFetchData()
     }
