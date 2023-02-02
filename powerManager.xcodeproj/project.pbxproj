@@ -13,6 +13,7 @@
 		BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */; };
 		BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C2F93297D7B5B00F4B914 /* Device.swift */; };
 		BD3C2F96297D814F00F4B914 /* DeviceVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C2F95297D814F00F4B914 /* DeviceVariables.swift */; };
+		BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
 		BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6327D6297D599100514BF6 /* DevicesCell.swift */; };
 		BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6327D7297D599100514BF6 /* DevicesCell.xib */; };
@@ -65,6 +66,7 @@
 		BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
 		BD3C2F93297D7B5B00F4B914 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		BD3C2F95297D814F00F4B914 /* DeviceVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceVariables.swift; sourceTree = "<group>"; };
+		BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; path = "../../../../Downloads/client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD6327D6297D599100514BF6 /* DevicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesCell.swift; sourceTree = "<group>"; };
@@ -210,6 +212,7 @@
 				DAE45FF8295E1CDF00704D59 /* LaunchScreen.storyboard */,
 				DAE45FFB295E1CDF00704D59 /* Info.plist */,
 				BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */,
+				BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */,
 				BD3C2F95297D814F00F4B914 /* DeviceVariables.swift */,
 				BD6D3ED829754082009C063A /* Constants.swift */,
 				BDCC52F02982AB6D00EEA034 /* AppUtility.swift */,
@@ -341,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */,
+				BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */,
 				DAE45FFA295E1CDF00704D59 /* LaunchScreen.storyboard in Resources */,
 				BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */,
 				DAE45FF7295E1CDF00704D59 /* Assets.xcassets in Resources */,

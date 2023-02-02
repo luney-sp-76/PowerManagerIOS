@@ -29,7 +29,6 @@ struct K {
         static let  affirmAction = "AffirmAction"
     }
     
-    
     struct FStore {
         
         static let homeAssistantCollection = "homeAssistantCollection"
