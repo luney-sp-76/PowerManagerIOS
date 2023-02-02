@@ -12,7 +12,7 @@ protocol DeviceManagerDelegate {
     func didFailWithError(error: Error)
 }
 var plugControl = PlugControl()
-var currentBatteryLevel = 21
+//var currentBatteryLevel = 21
 struct DeviceManager  {
    
     
@@ -23,7 +23,7 @@ struct DeviceManager  {
     // returns a DeviceModel from the ApiCall Model
     func fetchDeviceData(deviceName: String) {
         let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)"
-        //print(urlString)
+        print(urlString)
         callForData(urlString: urlString)
     }
     //for testing use switch.0x0015bc002f00edf3 as the urlEndPoint
@@ -38,18 +38,18 @@ struct DeviceManager  {
         let token = K.token
         
      
-        print("\(urlString)task 1")
+        //print("\(urlString)task 1")
         //1: Create a URL
         if let url = URL(string: urlString) {
             var urlRequest = URLRequest(url:url)
             
-            print("task 2")
+            //print("task 2")
             //2: Create a URLSession
             urlRequest.httpMethod = "GET"
             urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
-           print("task 3 in Device Manager")
+           //print("task 3 in Device Manager")
             //3: Give Session a task
             let task = URLSession.shared.dataTask(with: urlRequest) { (data, response, error) in
                 if let error = error {
@@ -101,15 +101,18 @@ struct DeviceManager  {
    
     
     func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int, plugName: String)-> String {
-    var returnString = "on"
-        
-        if currentBatteryLevel == 100 && device.id == plugName && device.state == "on" {
-            plugControl.fetchPlugData(urlEndPoint: "turn_off")
-            returnString = "off"
+        var returnString = K.on
+//        print("the current Battery level \(currentBatteryLevel) is 100 is \(currentBatteryLevel == 100)")
+//        print("..and the plugName \(plugName) is the same as \(device.id) is \(device.id == plugName)")
+//        print("..and the current device state for \(plugName) is on is \(device.state == "on")")
+//        print("or the current battery level \(currentBatteryLevel) is lower or the same as the lowest battery level \(lowestBatteryChargeLevel) is \(currentBatteryLevel <= lowestBatteryChargeLevel)")
+        if currentBatteryLevel == 100 && device.id == plugName && device.state == K.on {
+            plugControl.fetchPlugData(urlEndPoint: K.turnOff, device: plugName)
+            returnString = K.off
 
-        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == "off"{
-            plugControl.fetchPlugData(urlEndPoint: "turn_on")
-          returnString = "on"
+        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == K.off {
+            plugControl.fetchPlugData(urlEndPoint: K.turnOn, device: plugName)
+            returnString = K.on
         }
         return returnString
         

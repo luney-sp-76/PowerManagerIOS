@@ -16,15 +16,15 @@ struct PlugControl {
     let homeAssistantPostUrl = K.plugStateUrl
     var delegate: PlugManagerDelegate?
     
-    func fetchPlugData(urlEndPoint: String) {
+    func fetchPlugData(urlEndPoint: String, device: String) {
         let urlString = "\(homeAssistantPostUrl)\(urlEndPoint)"
         print(urlString)
-        sendRequest(urlString: urlString)
+        sendRequest(urlString: urlString, device: device)
     }
     
-    func sendRequest(urlString: String) {
+    func sendRequest(urlString: String, device: String) {
         let token = K.token
-        let plug = V.plugStateEntityID
+        let plug = device
         print("POST task 1 started...")
         //1: Create a URL
         if let url = URL(string: urlString) {

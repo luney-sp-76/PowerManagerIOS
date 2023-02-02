@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
         
     }
     
-    
+    // login action, checks the users data is valid and if so proceeds to log in and segues to the BatteryMonitorViewController
     @IBAction func loginPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().signIn(withEmail: email, password: password) { [weak self] authResult, error in

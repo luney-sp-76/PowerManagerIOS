@@ -67,7 +67,7 @@ class StatisticsViewController: UIViewController {
         }
        
     }
-    
+    // takes the device data in the deviceinfo array and uploads it to the firestore db
     func uploadData(userData: String) {
         for devices in deviceInfo {
             

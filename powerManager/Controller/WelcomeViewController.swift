@@ -10,7 +10,7 @@ import CLTypingLabel
 class WelcomeViewController: UIViewController {
     
     @IBOutlet weak var titleLabel: CLTypingLabel?
-    
+    // presents thte app name to the UI
     override func viewDidLoad() {
         super.viewDidLoad()
         titleLabel!.text = K.appName

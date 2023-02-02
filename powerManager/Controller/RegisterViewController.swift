@@ -19,6 +19,9 @@ class RegisterViewController: UIViewController {
         
     }
     
+    
+    //uses the input from the email and password fields to check if the user is new or registered and if the password and email are valid
+    //If all passes then the user segues to the BatteryMonitorViewCOntroller or else is given appropriate prompts
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
