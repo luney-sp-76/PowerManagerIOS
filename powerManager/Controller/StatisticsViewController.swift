@@ -20,6 +20,7 @@ class StatisticsViewController: UIViewController {
     var state: String? = ""
     var lastUpdated: String = ""
     var friendlyName: String = ""
+    var uuid: String = ""
     let db = Firestore.firestore()
     
     override func viewDidLoad() {
@@ -54,8 +55,8 @@ class StatisticsViewController: UIViewController {
                         for doc in snapShotDocuments {
                             let data = doc.data()
                             if let userData = data[K.FStore.user]
-                                as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName] {
-                                let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String)
+                                as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName], let uuid = data[K.FStore.uuid]{
+                                let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
                                 self.deviceData.append(newDevice)
                             }
                         }
@@ -73,7 +74,7 @@ class StatisticsViewController: UIViewController {
             
             //}
             DispatchQueue.main.async {
-                self.db.collection(K.FStore.homeAssistantCollection).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: devices.entity_id, K.FStore.state: devices.state, K.FStore.lastUpdated: devices.last_updated, K.FStore.friendlyName: devices.attributes.friendlyName]) {
+                self.db.collection(K.FStore.homeAssistantCollection).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: devices.entity_id, K.FStore.state: devices.state, K.FStore.lastUpdated: devices.last_updated, K.FStore.friendlyName: devices.attributes.friendlyName, K.FStore.uuid: devices.context.id]) {
                     error in
                     if let e = error {
                         print("there was an issue sending data to FireStore \(e)")
@@ -88,6 +89,7 @@ class StatisticsViewController: UIViewController {
   func  printData() {
       for devices in deviceData {
           print("in the array pulled from the firebase db is \(devices.friendlyName)")
+   
       }
     }
     

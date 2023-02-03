@@ -15,42 +15,42 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BatteryMonitorViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="36R-Xm-h2A">
-                                <rect key="frame" x="0.0" y="-289" width="375" height="1044"/>
+                                <rect key="frame" x="0.0" y="-289" width="375" height="1101"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HN1-Rh-8OX">
-                                <rect key="frame" x="30" y="40" width="315" height="566.33333333333337"/>
+                                <rect key="frame" x="30" y="84" width="315" height="545.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F39-dr-Ctn">
-                                        <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="98"/>
+                                        <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="95.666666666666671"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LQI-oe-TA5" userLabel="Percentage">
-                                                <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="95.666666666666671"/>
                                                 <color key="tintColor" red="0.1185588613" green="0.20756468180000001" blue="0.22353252770000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="80"/>
                                                 <color key="textColor" name="Weather Color"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="%" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6vc-OQ-Iav" userLabel="Percent">
-                                                <rect key="frame" x="92.666666666666657" y="0.0" width="64.666666666666657" height="98"/>
+                                                <rect key="frame" x="92.666666666666657" y="0.0" width="64.666666666666657" height="95.666666666666671"/>
                                                 <fontDescription key="fontDescription" name="HelveticaNeue-Thin" family="Helvetica Neue" pointSize="83"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone Battery Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgq-bo-bld">
-                                        <rect key="frame" x="25" y="108" width="290" height="36"/>
+                                        <rect key="frame" x="25" y="105.66666666666666" width="290" height="36"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT5-iO-d56">
-                                        <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="412.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="151.66666666666666" width="315" height="393.66666666666674"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6" userLabel="SliderStack View">
-                                                <rect key="frame" x="79.000000000000014" y="157.33333333333331" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79.000000000000014" y="148.00000000000003" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
@@ -67,13 +67,13 @@
                                                 </subviews>
                                             </stackView>
                                             <slider opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="21" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Fe9-yB-oRC">
-                                                <rect key="frame" x="18" y="60" width="295" height="31"/>
+                                                <rect key="frame" x="18" y="60.000000000000028" width="295" height="31"/>
                                                 <connections>
                                                     <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="dzg-Wa-MPb"/>
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="132.66666666666666" y="276.66666666666669" width="49.666666666666657" height="34.333333333333314"/>
+                                                <rect key="frame" x="132.66666666666666" y="267.33333333333337" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
@@ -107,7 +107,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="204" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-Y7-r3b" userLabel="SettingsStack View">
-                                <rect key="frame" x="30" y="683" width="315" height="22"/>
+                                <rect key="frame" x="30" y="706" width="315" height="22"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powerplug" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lEP-TD-aV6">
                                         <rect key="frame" x="0.0" y="1.3333333333333321" width="55.666666666666664" height="19.666666666666668"/>
@@ -277,7 +277,7 @@
                                         <rect key="frame" x="0.0" y="126" width="375" height="51"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="Register">
-                                            <color key="titleColor" name="BrandBlue"/>
+                                            <color key="titleColor" name="AccentColor"/>
                                         </state>
                                         <connections>
                                             <action selector="registerButtonPressed:" destination="DzG-Jq-48I" eventType="touchUpInside" id="ONN-FT-NgT"/>
@@ -311,7 +311,7 @@
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="41w-1Y-fJS"/>
-                        <color key="backgroundColor" name="BrandLightBlue"/>
+                        <color key="backgroundColor" name="BrandBlue"/>
                         <constraints>
                             <constraint firstItem="f3U-XI-MiM" firstAttribute="trailing" secondItem="41w-1Y-fJS" secondAttribute="trailing" id="7Ix-88-0Yx"/>
                             <constraint firstItem="o5P-Ui-0cz" firstAttribute="trailing" secondItem="41w-1Y-fJS" secondAttribute="trailing" id="FS5-vL-6Yj"/>
@@ -432,11 +432,11 @@
             <objects>
                 <hostingController id="GE5-nL-MZN" customClass="StatisticsViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U14-w0-x4Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-du-Jyt">
-                                <rect key="frame" x="0.0" y="47" width="375" height="648"/>
+                                <rect key="frame" x="0.0" y="91" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" id="nej-aB-tm0">
@@ -470,11 +470,11 @@
             <objects>
                 <hostingController id="SGa-WX-MCS" customClass="SettingsViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tmt-p7-6MM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-oa-KaM">
-                                <rect key="frame" x="0.0" y="47" width="375" height="648"/>
+                                <rect key="frame" x="0.0" y="91" width="375" height="627"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" name="BrandBlue"/>
                             </tableView>
@@ -533,13 +533,16 @@
         </designable>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="Dad-9D-DNK"/>
+        <segue reference="TJ0-bM-Sdq"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2725" height="1595"/>
         <image name="gearshape" catalog="system" width="128" height="123"/>
         <image name="powerplug" catalog="system" width="128" height="84"/>
         <image name="textfield" width="298" height="93"/>
+        <namedColor name="AccentColor">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="AffirmAction">
             <color red="0.80099999904632568" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>

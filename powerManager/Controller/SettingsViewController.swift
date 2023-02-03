@@ -80,7 +80,11 @@ extension SettingsViewController: HomeManagerDelegate {
     func didReceiveDevices(_ devices: [HomeAssistantData]) {
         DispatchQueue.main.async {[self] in
             if !devices.isEmpty {
-                self.deviceInfo = devices
+                for device in devices {
+                    if device.entity_id.contains(K.batteryLevel) || device.entity_id.contains(K.switchs){
+                        self.deviceInfo.append(device)
+                    }
+                }
                 self.tableView.reloadData()
             }
             }

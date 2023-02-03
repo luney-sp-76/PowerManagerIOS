@@ -14,4 +14,5 @@ struct HomeData {
     let state: String
     let lastUpdated: String
     let friendlyName: String
+    let uuid: String
 }

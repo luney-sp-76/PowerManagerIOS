@@ -56,7 +56,7 @@ class HomeManager  {
                 do {
                     let device = try JSONDecoder().decode([HomeAssistantData].self, from: safeData)
                     for item in device {
-                        if item.entity_id.contains("battery_level") || item.entity_id.contains("switch"){
+                        if item.entity_id.contains("battery_level") || item.entity_id.contains("switch") || item.entity_id.contains("battery_state") || item.entity_id.contains("person") {
                             self.deviceArray.append(item)
                         }
                     }
