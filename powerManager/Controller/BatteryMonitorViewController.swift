@@ -27,6 +27,7 @@ class BatteryMonitorViewController: UIViewController {
     // Declare the delegate property in BatteryMonitorViewController
     var plugColour = "off"
     var iPhoneBatteryLevelEntityID = " "
+    var iPhoneBatteryStateEntityID = " "
     var plugStateEntityID = " "
     var devicesArraySemaphore = DispatchSemaphore(value: 1)
 
@@ -105,7 +106,7 @@ class BatteryMonitorViewController: UIViewController {
     
     @objc func checkBatteryLevel(batteryDevice: String) {
         deviceStateManager.fetchDeviceData(deviceName: batteryDevice)
-        print(iPhoneBatteryLevelEntityID)
+        print(iPhoneBatteryStateEntityID)
         
     }
     
@@ -137,6 +138,7 @@ class BatteryMonitorViewController: UIViewController {
             print("The current plug is \(self.plugStateEntityID)")
             self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
             self.checkPlugState(plugDevice: self.plugStateEntityID)
+            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
             self.scheduleFetchData()
         }
     }
@@ -206,16 +208,22 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
             }
             if device.id == plugStateEntityID {
-           
+                
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
-                   // print("THIS SHOULD CALL TO TURN THE PLUG ON OR OFF!!! for \(plugStateEntityID)")
-                    
+                  
                     plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
-                } else {
-                    //print("I'm charging up or draining down")
                 }
-                //print("global variable is set as \(V.plugStateEntityID)")
+                
                 updatePlugColour(state: device.state)
+            }
+            if device.id == iPhoneBatteryStateEntityID {
+                //states not charging
+                //charging
+                print(device.name)
+                //set an alert to charge if the device is showing as not charging
+                if device.state == "Not Charging"{
+                    print(device.state)
+                }
             }
         }
         
@@ -234,6 +242,7 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
 
 extension BatteryMonitorViewController: PlugManagerDelegate {
     func didUpdateDevice(_ PlugManager: PlugControl){
+        
         print("updated")
     }
     

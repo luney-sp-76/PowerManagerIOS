@@ -61,6 +61,7 @@ struct PlugControl {
                     
                 }
                 //print("POST task 6 complete")
+                self.delegate?.didUpdateDevice(self)
             }
             
             task.resume()

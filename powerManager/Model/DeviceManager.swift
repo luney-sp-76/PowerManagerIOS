@@ -80,12 +80,12 @@ struct DeviceManager  {
             let name = decodedData.attributes.friendlyName
             let lastUpdate = decodedData.last_updated
             let uuid = decodedData.context.id
-            print("device name: \(id)")
-            print("friendly name: \(name)")
-            print("Unique device ID: \(uuid)")
-            print("current state:\(state)")
-            print("last updated: \(lastUpdate)")
-            print("")
+//            print("device name: \(id)")
+//            print("friendly name: \(name)")
+//            print("Unique device ID: \(uuid)")
+//            print("current state:\(state)")
+//            print("last updated: \(lastUpdate)")
+//            print("")
        
             
             let device = DeviceModel(id: id, state: state, name: name, lastUpdate: lastUpdate, uuid: uuid)

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol BatteryMonitorViewControllerDelegate {
-func updateDevices(battery: String, plug: String)
+    func updateDevices(battery: String, plug: String)
 }
 var batteryDelegate: BatteryMonitorViewControllerDelegate?
 
@@ -20,13 +20,15 @@ class SettingsViewController: UIViewController {
     var homeManager = HomeManager()
     var delegate: BatteryMonitorViewControllerDelegate?
     
-    //all the data from homeassistant
+    //all the battery level and plug devicesfrom homeassistant
     var deviceInfo: [HomeAssistantData] = []
-    //should hold 2 devices from homeassisatnt
+    //should hold 2 device entity ids from homeassisatnt
     var selectedDevices: [String] = []
+    //an array of battery_state devices
+    var allBatteryStateDevices: [HomeAssistantData] = []
+    // the variable returned to Battery Monitor to call for the correct charging state of the phone
+    var selectedDeviceBatteryStateId: String = ""
     //the homeassisant device entity_id for a battery powered device
-    
- 
     var batteryDevice: String = ""
     //the homeassisant device entity_id for a smart plug device
     var plugDevice: String = ""
@@ -61,14 +63,15 @@ class SettingsViewController: UIViewController {
     @IBAction func setButtonPressed(_ sender: UIButton) {
         //print("when the set button was pressed count = \(count)")
         //print("and the array looks like this \(selectedDevices)")
-            sender.isSelected = true
+        sender.isSelected = true
         performSegue(withIdentifier: K.settingsToBatteryMonitor, sender: self)
-            }
-            
-        override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-            if let destination = segue.destination as? BatteryMonitorViewController {
-                destination.devicesArray = selectedDevices
-            }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let destination = segue.destination as? BatteryMonitorViewController {
+            destination.devicesArray = selectedDevices
+            destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId
+        }
         
     }
 }
@@ -76,7 +79,7 @@ class SettingsViewController: UIViewController {
 //MARK: - HomeManagerDelegate
 // manage the data from the HomeManager and create the data for deviceInfo from the array of Devices
 extension SettingsViewController: HomeManagerDelegate {
-
+    
     func didReceiveDevices(_ devices: [HomeAssistantData]) {
         DispatchQueue.main.async {[self] in
             if !devices.isEmpty {
@@ -84,17 +87,22 @@ extension SettingsViewController: HomeManagerDelegate {
                     if device.entity_id.contains(K.batteryLevel) || device.entity_id.contains(K.switchs){
                         self.deviceInfo.append(device)
                     }
+                    if device.entity_id.contains("battery_state"){
+                        self.allBatteryStateDevices.append(device)
+                    }
                 }
-                self.tableView.reloadData()
             }
-            }
+            //print(self.allBatteryStateDevices)
+            self.tableView.reloadData()
         }
     }
+}
 
-    
-    func didFailWithError(error: Error) {
-        print(error)
-    }
+
+
+func didFailWithError(error: Error) {
+    print(error)
+}
 
 //MARK: - UITABLEVIEWDATASOURCE
 
@@ -110,23 +118,42 @@ extension SettingsViewController: UITableViewDataSource {
         let device_id = deviceInfo[indexPath.row].entity_id
         cell.label.text = deviceInfo[indexPath.row].attributes.friendlyName
         //change the image to the right of the cell
-        if deviceInfo[indexPath.row].entity_id.contains("battery_level") {
+        if deviceInfo[indexPath.row].entity_id.contains(K.batteryLevel) {
             cell.rightImageView.image = UIImage(named: "smartphone-charger")
         } else if deviceInfo[indexPath.row].entity_id.contains("switch") {
             cell.rightImageView.image = UIImage(named: "power-plug")
         }
         //checkmark the selected devices
         if selectedDevices.contains(device_id) {
-                cell.accessoryType = .checkmark
-            } else {
-                cell.accessoryType = .none
-            }
+            cell.accessoryType = .checkmark
+        } else {
+            cell.accessoryType = .none
+        }
         return cell
     }
     
+    // this func uses known knowledge that the string cannot be empty as it should not be called
+    // but will return an empty string if its called with an empty string
+    // the function expects a string that starts with sensor. so offsets at character 7
+    //it expects a named device followed by battery_level so a minimum of 1 letter and _ beforehand
+    // I have set it to end at character 17 which would encompass the word battery but no futher
+    //this will return the substring between these two points
+    func setBatteryStateDevice(entity: String) -> String {
+        if !entity.isEmpty{
+            let str = entity
+            let startIndex = str.index(str.startIndex, offsetBy: 7)
+            let endIndex = str.index(str.startIndex, offsetBy: 17)
+            let substringEndIndex = min(endIndex, str.endIndex)
+            let substring = str[startIndex..<substringEndIndex]
+            let substringAsString = String(substring)
+            print(substringAsString)
+            return String(substring)
+            
+        }
+        return " "
+       
+    }
     
-   
-   
     
 }
 
@@ -138,9 +165,20 @@ extension SettingsViewController: UITableViewDelegate {
         let cell = tableView.cellForRow(at: indexPath) as! DevicesCell
         let device_id = deviceInfo[indexPath.row].entity_id
         //print("\(selectedDevices) first check of the array")
-        if device_id.contains("battery_level") {
+        if device_id.contains(K.batteryLevel) {
             if !batteryDeviceSelected {
+                // add the new battery device to the array of selected devices
                 selectedDevices.append(device_id)
+                //from the entity id of the battery device check the entity id from after sensor.
+                var subString = setBatteryStateDevice(entity: device_id)
+                for device in allBatteryStateDevices {
+                    //if the allBatteryStateDevices contains that substring
+                    if device.entity_id.contains(subString) {
+                        //make the baterystate id this device
+                        selectedDeviceBatteryStateId = device.entity_id
+                        print(selectedDeviceBatteryStateId)
+                    }
+                }
                 batteryDevice = device_id
                 batteryDeviceSelected = true
             } else {
@@ -148,21 +186,21 @@ extension SettingsViewController: UITableViewDelegate {
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
                     cell.isSelected = false
-                 //count -= 1
-                   // print(count)
+                    //count -= 1
+                    // print(count)
                 }
                 batteryDeviceSelected = false
                 //print("You deselected the battery device")
                 DispatchQueue.main.async {
                     tableView.reloadData()
                 }
-               
+                
             }
-        } else if device_id.contains("switch") {
+        } else if device_id.contains(K.switchs) {
             if !switchDeviceSelected {
                 selectedDevices.append(device_id)
                 plugDevice = device_id
-               
+                
                 switchDeviceSelected = true
                 //print("You set \(device_id) as the smart plug device")
                 //print("\(selectedDevices) potential second check of the array")
@@ -177,7 +215,7 @@ extension SettingsViewController: UITableViewDelegate {
                     cell.isSelected = false
                 }
                 switchDeviceSelected = false
-               // print("You deselected the smart plug device")
+                // print("You deselected the smart plug device")
                 //print("\(selectedDevices) if you changed your mind then maybe second or greater check of the array")
                 DispatchQueue.main.async {
                     tableView.reloadData()
@@ -195,9 +233,9 @@ extension SettingsViewController: UITableViewDelegate {
 
 
 
-    
 
-    
+
+
 
 //Attributted Icons
 //<a href="https://www.flaticon.com/free-icons/full-battery" title="full battery icons">Full battery icons created by Pixel perfect - Flaticon</a>
