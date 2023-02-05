@@ -22,6 +22,8 @@ class StatisticsViewController: UIViewController {
     var friendlyName: String = ""
     var uuid: String = ""
     let db = Firestore.firestore()
+    let dataProvider = DataProvider()
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,20 +72,7 @@ class StatisticsViewController: UIViewController {
     }
     // takes the device data in the deviceinfo array and uploads it to the firestore db
     func uploadData(userData: String) {
-        for devices in deviceInfo {
-            
-            //}
-            DispatchQueue.main.async {
-                self.db.collection(K.FStore.homeAssistantCollection).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: devices.entity_id, K.FStore.state: devices.state, K.FStore.lastUpdated: devices.last_updated, K.FStore.friendlyName: devices.attributes.friendlyName, K.FStore.uuid: devices.context.id]) {
-                    error in
-                    if let e = error {
-                        print("there was an issue sending data to FireStore \(e)")
-                    } else {
-                        print("Successfully saved data")
-                    }
-                }
-            }
-        }
+        self.dataProvider.transferData()
     }
     
   func  printData() {

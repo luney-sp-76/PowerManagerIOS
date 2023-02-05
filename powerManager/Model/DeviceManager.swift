@@ -15,7 +15,7 @@ var plugControl = PlugControl()
 //var currentBatteryLevel = 21
 struct DeviceManager  {
    
-    
+    let dataProvider = DataProvider()
     let homeAssistantFetchUrl = K.baseURL
     var delegate: DeviceManagerDelegate?
     //call to return the iphone BatteryLevel state (should be an int) used UrlEndPoint Model to form the endpoints
@@ -108,10 +108,13 @@ struct DeviceManager  {
 //        print("or the current battery level \(currentBatteryLevel) is lower or the same as the lowest battery level \(lowestBatteryChargeLevel) is \(currentBatteryLevel <= lowestBatteryChargeLevel)")
         if currentBatteryLevel == 100 && device.id == plugName && device.state == K.on {
             plugControl.fetchPlugData(urlEndPoint: K.turnOff, device: plugName)
+            //update firebase
+            dataProvider.transferData()
             returnString = K.off
 
         } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == K.off {
             plugControl.fetchPlugData(urlEndPoint: K.turnOn, device: plugName)
+            dataProvider.transferData()
             returnString = K.on
         }
         return returnString

@@ -20,6 +20,7 @@ class BatteryMonitorViewController: UIViewController {
     var plugControl = PlugControl()
     //initial HomeManager
     var homeManager = HomeManager()
+    var dataProvider = DataProvider()
     // to hold the devies selected in settings
     var devicesArray: [String] = []
     
@@ -201,6 +202,8 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
     
     
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
+        //update firebase
+        //dataProvider.transferData()
         DispatchQueue.main.async { [self] in
             if device.id == iPhoneBatteryLevelEntityID {
                 //change battery percentage to current battery percentage state

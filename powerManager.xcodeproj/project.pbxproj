@@ -23,6 +23,8 @@
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
 		BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB332BE29885E1D0067B721 /* HomeData.swift */; };
+		BDC629C4299010780063CA6F /* FirebaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C3299010770063CA6F /* FirebaseUpdater.swift */; };
+		BDC629C6299010E50063CA6F /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C5299010E50063CA6F /* DataProvider.swift */; };
 		BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC52F02982AB6D00EEA034 /* AppUtility.swift */; };
 		BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675629776359006495FC /* HomeAssistantData.swift */; };
 		BDFF675929788095006495FC /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675829788095006495FC /* HomeManager.swift */; };
@@ -76,6 +78,8 @@
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
 		BDB332BE29885E1D0067B721 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		BDC629C3299010770063CA6F /* FirebaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUpdater.swift; sourceTree = "<group>"; };
+		BDC629C5299010E50063CA6F /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		BDCC52F02982AB6D00EEA034 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		BDFF675629776359006495FC /* HomeAssistantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssistantData.swift; sourceTree = "<group>"; };
 		BDFF675829788095006495FC /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
@@ -159,6 +163,8 @@
 				BDFF675829788095006495FC /* HomeManager.swift */,
 				BD3C2F93297D7B5B00F4B914 /* Device.swift */,
 				BDB332BE29885E1D0067B721 /* HomeData.swift */,
+				BDC629C3299010770063CA6F /* FirebaseUpdater.swift */,
+				BDC629C5299010E50063CA6F /* DataProvider.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -415,6 +421,7 @@
 				BDFF675929788095006495FC /* HomeManager.swift in Sources */,
 				BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */,
 				BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */,
+				BDC629C6299010E50063CA6F /* DataProvider.swift in Sources */,
 				BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */,
 				BD07C5B42974963300F4DE29 /* RegisterViewController.swift in Sources */,
 				BD07C5B2297495B200F4DE29 /* WelcomeViewController.swift in Sources */,
@@ -426,6 +433,7 @@
 				BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */,
 				DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */,
 				BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */,
+				BDC629C4299010780063CA6F /* FirebaseUpdater.swift in Sources */,
 				BD6D3ED929754082009C063A /* Constants.swift in Sources */,
 				BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */,
 				BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */,
