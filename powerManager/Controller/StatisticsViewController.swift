@@ -23,6 +23,8 @@ class StatisticsViewController: UIViewController {
     var uuid: String = ""
     let db = Firestore.firestore()
     let dataProvider = DataProvider()
+    let dateFormat = DateFormat()
+    
     
     
     override func viewDidLoad() {
@@ -40,46 +42,47 @@ class StatisticsViewController: UIViewController {
         }
         //pull data back from the database
         loadData()
-      
+        
         print("of \(deviceInfo.count) devices")
     }
     
     
     func loadData() {
-        // reset the device data to none
-        deviceData = []
-        DispatchQueue.main.async{
-            self.db.collection(K.FStore.homeAssistantCollection).getDocuments { querySnapshot, error in
-                if let e = error {
-                    print("There was an issue retrieving data from the firestore \(e)")
-                } else {
-                    if let snapShotDocuments = querySnapshot?.documents {
-                        for doc in snapShotDocuments {
-                            let data = doc.data()
-                            if let userData = data[K.FStore.user]
-                                as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName], let uuid = data[K.FStore.uuid]{
-                                let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
-                                self.deviceData.append(newDevice)
+            // reset the device data to none
+            deviceData = []
+            DispatchQueue.main.async{
+                self.db.collection(K.FStore.homeAssistantCollection).getDocuments { querySnapshot, error in
+                    if let e = error {
+                        print("There was an issue retrieving data from the firestore \(e)")
+                    } else {
+                        if let snapShotDocuments = querySnapshot?.documents {
+                            for doc in snapShotDocuments {
+                                let data = doc.data()
+                                if let userData = data[K.FStore.user]
+                                    as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName], let uuid = data[K.FStore.uuid]{
+                                    let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
+                                    self.deviceData.append(newDevice)
+                                }
                             }
+                            print("The database should have \(self.deviceData.count)")
+                            self.printData()
                         }
-                        print("The database should have \(self.deviceData.count)")
-                        self.printData()
                     }
                 }
             }
+           
         }
-       
-    }
     // takes the device data in the deviceinfo array and uploads it to the firestore db
     func uploadData(userData: String) {
         self.dataProvider.transferData()
     }
     
-  func  printData() {
-      for devices in deviceData {
-          print("in the array pulled from the firebase db is \(devices.friendlyName)")
-   
-      }
+    func  printData() {
+        for devices in deviceData {
+            let date = DateFormat.dateFormatted(date: devices.lastUpdated)
+            print("in the array pulled from the firebase db is \(devices.friendlyName) with date \(devices.lastUpdated) which dateFormatter calls \(date)")
+            
+        }
     }
     
     
@@ -94,7 +97,7 @@ extension StatisticsViewController: HomeManagerDelegate {
                 self.deviceInfo = devices
                 //upload the data to firebase
                 sendData()
-              
+                
             }
         }
     }

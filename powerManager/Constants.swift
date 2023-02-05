@@ -38,6 +38,7 @@ struct K {
         static let lastUpdated = "lastUpDated"
         static let friendlyName = "friendly_name"
         static let uuid = "uuid"
+        static let date = "date"
     }
   
 }

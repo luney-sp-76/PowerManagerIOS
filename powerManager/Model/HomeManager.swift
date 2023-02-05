@@ -25,9 +25,9 @@ class HomeManager  {
     func fetchDeviceData() {
         let urlString = "\(homeAssistantFetchUrl)states"
         if let cachedData = cache.object(forKey: "devices") {
-                    self.deviceArray = cachedData as! [HomeAssistantData]
-                    delegate?.didReceiveDevices(self.deviceArray)
-            //cache.countLimit = 60
+                   self.deviceArray = cachedData as! [HomeAssistantData]
+                   delegate?.didReceiveDevices(self.deviceArray)
+           //cache.countLimit = 13
             //cache.evictsObjectsWithDiscardedContent = true
                     return
                 }
