@@ -16,4 +16,10 @@ struct HomeData {
     let friendlyName: String
     let uuid: String
 
+    // Computed property to create a Date object from the lastUpdated string
+       var date: Date {
+           let dateFormatter = DateFormatter()
+           dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+           return dateFormatter.date(from: lastUpdated)!
+       }
 }

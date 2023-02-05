@@ -51,10 +51,11 @@ class StatisticsViewController: UIViewController {
             // reset the device data to none
             deviceData = []
             DispatchQueue.main.async{
-                self.db.collection(K.FStore.homeAssistantCollection).getDocuments { querySnapshot, error in
+                self.db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments { querySnapshot, error in
                     if let e = error {
                         print("There was an issue retrieving data from the firestore \(e)")
                     } else {
+                        
                         if let snapShotDocuments = querySnapshot?.documents {
                             for doc in snapShotDocuments {
                                 let data = doc.data()
@@ -79,19 +80,8 @@ class StatisticsViewController: UIViewController {
     
     func  printData() {
         for devices in deviceData {
-           // print(type(of:devices.lastUpdated))
-            //print(devices.lastUpdated)
-            let timestampString = devices.lastUpdated
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-            if let timestamp = formatter.date(from: timestampString){
-                let interval = timestamp.timeIntervalSince1970
-                let reverseTimestamp = Date(timeIntervalSince1970: interval)
-                print(type(of: reverseTimestamp))
-                print("in the array pulled from the firebase db is \(devices.friendlyName) with date \(devices.lastUpdated) which dateFormatter calls \(reverseTimestamp)")
-            }else{
-                print("The timestamp cannot be parsed")
-            }
+            let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
+                print("in the array pulled from the firebase db is \(devices.friendlyName) with date and time:  \(reverseTimestamp)")
         }
     }
     

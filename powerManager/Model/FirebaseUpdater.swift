@@ -12,7 +12,7 @@ import FirebaseFirestore
 // the FirebaseUpdater class implements the HomeManagerDelegate protocol and implements the didReceiveDevices(_:) method.
 class FirebaseUpdater: HomeManagerDelegate {
     let db = Firestore.firestore()
-    let date = String(Date().timeIntervalSince1970)
+   
     
     func didReceiveDevices(_ devices: [HomeAssistantData]) {
         if let userData = Auth.auth().currentUser?.email {
