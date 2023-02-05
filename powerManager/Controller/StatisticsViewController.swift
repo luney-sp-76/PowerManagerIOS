@@ -79,9 +79,19 @@ class StatisticsViewController: UIViewController {
     
     func  printData() {
         for devices in deviceData {
-            let date = DateFormat.dateFormatted(date: devices.lastUpdated)
-            print("in the array pulled from the firebase db is \(devices.friendlyName) with date \(devices.lastUpdated) which dateFormatter calls \(date)")
-            
+           // print(type(of:devices.lastUpdated))
+            //print(devices.lastUpdated)
+            let timestampString = devices.lastUpdated
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+            if let timestamp = formatter.date(from: timestampString){
+                let interval = timestamp.timeIntervalSince1970
+                let reverseTimestamp = Date(timeIntervalSince1970: interval)
+                print(type(of: reverseTimestamp))
+                print("in the array pulled from the firebase db is \(devices.friendlyName) with date \(devices.lastUpdated) which dateFormatter calls \(reverseTimestamp)")
+            }else{
+                print("The timestamp cannot be parsed")
+            }
         }
     }
     
