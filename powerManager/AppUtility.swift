@@ -23,5 +23,22 @@ struct AppUtility {
         UIDevice.current.setValue(rotateOrientation.rawValue, forKey: "orientation")
         UINavigationController.attemptRotationToDeviceOrientation()
     }
+    
+    ///returns a string that can be checked by string.contains(string)
+    static func selectDeviceFromEntityString(entity: String) -> String {
+        if !entity.isEmpty{
+            let str = entity
+            let startIndex = str.index(str.startIndex, offsetBy: 7)
+            let endIndex = str.index(str.startIndex, offsetBy: 17)
+            let substringEndIndex = min(endIndex, str.endIndex)
+            let substring = str[startIndex..<substringEndIndex]
+            let substringAsString = String(substring)
+            //print(substringAsString)
+            return String(substring)
+            
+        }
+        return " "
+       
+    }
 
 }
