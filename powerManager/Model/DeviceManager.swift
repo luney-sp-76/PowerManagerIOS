@@ -14,7 +14,7 @@ protocol DeviceManagerDelegate {
 var plugControl = PlugControl()
 //var currentBatteryLevel = 21
 struct DeviceManager  {
-   
+    var isOff = true
     let dataProvider = DataProvider()
     let homeAssistantFetchUrl = K.baseURL
     var delegate: DeviceManagerDelegate?
@@ -100,21 +100,20 @@ struct DeviceManager  {
     
    
     
-    func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int, plugName: String)-> String {
+    mutating func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int, plugName: String)-> String {
         var returnString = K.on
-//        print("the current Battery level \(currentBatteryLevel) is 100 is \(currentBatteryLevel == 100)")
-//        print("..and the plugName \(plugName) is the same as \(device.id) is \(device.id == plugName)")
-//        print("..and the current device state for \(plugName) is on is \(device.state == "on")")
-//        print("or the current battery level \(currentBatteryLevel) is lower or the same as the lowest battery level \(lowestBatteryChargeLevel) is \(currentBatteryLevel <= lowestBatteryChargeLevel)")
-        if currentBatteryLevel == 100 && device.id == plugName && device.state == K.on {
+
+        if currentBatteryLevel == 100 && device.id == plugName && device.state == K.on && !isOff {
             plugControl.fetchPlugData(urlEndPoint: K.turnOff, device: plugName)
             //update firebase
             dataProvider.transferData()
+            isOff = true
             returnString = K.off
 
-        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == K.off {
+        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == K.off && isOff {
             plugControl.fetchPlugData(urlEndPoint: K.turnOn, device: plugName)
             dataProvider.transferData()
+            isOff = false
             returnString = K.on
         }
         return returnString

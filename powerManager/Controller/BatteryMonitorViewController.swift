@@ -7,7 +7,7 @@
 
 import UIKit
 import FirebaseAuth
-
+import CLTypingLabel
 
 
 class BatteryMonitorViewController: UIViewController {
@@ -38,6 +38,7 @@ class BatteryMonitorViewController: UIViewController {
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var powerPlugIcon: UIImageView!
+    @IBOutlet weak var iPhoneBatteryDeviceName: CLTypingLabel?
     
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 0
@@ -209,12 +210,17 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
+                ///changes the battery level label to the friendly name of the device
+                self.iPhoneBatteryDeviceName?.text = device.name
             }
             if device.id == plugStateEntityID {
                 
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
-                  
-                    plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
+                    let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
+                    if timeSinceLastCheck > 30 {
+                        lastPlugStateCheckTime = Date()
+                        plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
+                    }
                 }
                 
                 updatePlugColour(state: device.state)
@@ -230,10 +236,7 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
             }
         }
         
-        let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
-        if timeSinceLastCheck > 30 {
-            lastPlugStateCheckTime = Date()
-        }
+       
     }
 }
 

@@ -145,7 +145,7 @@ extension SettingsViewController: UITableViewDataSource {
             let endIndex = str.index(str.startIndex, offsetBy: 17)
             let substringEndIndex = min(endIndex, str.endIndex)
             let substring = str[startIndex..<substringEndIndex]
-            let substringAsString = String(substring)
+            //let substringAsString = String(substring)
             //print(substringAsString)
             return String(substring)
             

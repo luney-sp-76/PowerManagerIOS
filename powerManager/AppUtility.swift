@@ -28,8 +28,9 @@ struct AppUtility {
     static func selectDeviceFromEntityString(entity: String) -> String {
         if !entity.isEmpty{
             let str = entity
+            print(str)
             let startIndex = str.index(str.startIndex, offsetBy: 7)
-            let endIndex = str.index(str.startIndex, offsetBy: 17)
+            let endIndex = str.index(str.startIndex, offsetBy: 15)
             let substringEndIndex = min(endIndex, str.endIndex)
             let substring = str[startIndex..<substringEndIndex]
             let substringAsString = String(substring)

@@ -157,6 +157,7 @@
                     <connections>
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
                         <outlet property="button" destination="dKC-zG-HFM" id="IR4-tC-zN5"/>
+                        <outlet property="iPhoneBatteryDeviceName" destination="Qgq-bo-bld" id="7rV-pV-RNf"/>
                         <outlet property="powerPlugIcon" destination="lEP-TD-aV6" id="PRw-VC-H28"/>
                         <outlet property="setBatteryLevel" destination="qbF-Vi-zdd" id="eOS-3P-evw"/>
                         <outlet property="settingsButton" destination="lkn-ci-W0h" id="84c-Cq-SfX"/>
