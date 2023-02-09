@@ -159,14 +159,14 @@
 		DAB806F6295E333D00C5136E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
-				BDA6B0682965D5DF000EE544 /* PlugControl.swift */,
 				BD65FCF92962EC5000C80565 /* DeviceModel.swift */,
-				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
-				BDFF675629776359006495FC /* HomeAssistantData.swift */,
-				BDFF675829788095006495FC /* HomeManager.swift */,
 				BD3C2F93297D7B5B00F4B914 /* Device.swift */,
+				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
+				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
+				BDFF675629776359006495FC /* HomeAssistantData.swift */,
 				BDB332BE29885E1D0067B721 /* HomeData.swift */,
+				BDFF675829788095006495FC /* HomeManager.swift */,
+				BDA6B0682965D5DF000EE544 /* PlugControl.swift */,
 				BDC629C3299010770063CA6F /* FirebaseUpdater.swift */,
 				BDC629C5299010E50063CA6F /* DataProvider.swift */,
 				BDC629C729901F060063CA6F /* DateFormatter.swift */,

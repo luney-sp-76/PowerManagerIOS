@@ -41,6 +41,7 @@ class BatteryMonitorViewController: UIViewController {
     @IBOutlet weak var powerPlugIcon: UIImageView!
     @IBOutlet weak var iPhoneBatteryDeviceName: CLTypingLabel!
     
+  
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 0
     var lastPlugStateCheckTime: Date = Date()
