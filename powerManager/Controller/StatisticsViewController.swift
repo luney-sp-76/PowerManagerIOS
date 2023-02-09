@@ -10,10 +10,10 @@ import FirebaseFirestore
 import Charts
 
 class DateValueFormatter: NSObject, AxisValueFormatter {
-
+    
     private let dateFormatter = DateFormatter()
     
-
+    
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
         let date = Date(timeIntervalSince1970: value)
         dateFormatter.dateFormat = "MM-dd"
@@ -22,25 +22,22 @@ class DateValueFormatter: NSObject, AxisValueFormatter {
 }
 
 class StatisticsViewController: UIViewController {
-    let lineChartView = LineChartView()
     
+    let lineChartView = LineChartView()
     var homeManager = HomeManager()
     // the devices from HomeAssistant go here
     var deviceInfo: [HomeAssistantData] = []
+    
     //the data for the database goes in here
     var deviceData: [HomeData] = []
-    var entity: String =  ""
-    var state: String? = ""
-    var lastUpdated: String = ""
-    var friendlyName: String = ""
-    var uuid: String = ""
     let db = Firestore.firestore()
     let dataProvider = DataProvider()
-    let dateFormat = DateFormat()
+    
+    //set of date management variables
     let dateValueFormat = DateValueFormatter()
     let calendar = Calendar.current
     let currentDate = Date()
-
+    
     
     @IBOutlet weak var batteryLevelChartView: LineChartView!
     
@@ -61,50 +58,51 @@ class StatisticsViewController: UIViewController {
             uploadData(userData: userData)
         }
         //pull data back from the database
-        loadData()
-      
+        downloadData()
+        
     }
     
-   
-    
-    
-    func loadData() {
-            // reset the device data to none
-            deviceData = []
-            DispatchQueue.main.async{
-             self.db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments { querySnapshot, error in
-                    if let e = error {
-                        print("There was an issue retrieving data from the firestore \(e)")
-                    } else {
-                        
-                        if let snapShotDocuments = querySnapshot?.documents {
-                            for doc in snapShotDocuments {
-                                let data = doc.data()
-                                if let userData = data[K.FStore.user]
-                                    as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName], let uuid = data[K.FStore.uuid]{
-                                    let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
-                                    self.deviceData.append(newDevice)
-                                }
-                            }
-                            print("The database should have \(self.deviceData.count)")
-                            self.chartBatteryData()
-                        }
-                    }
-                }
-            }
-           
-        }
     // takes the device data in the deviceinfo array and uploads it to the firestore db
     func uploadData(userData: String) {
         self.dataProvider.transferData()
     }
     
+    // draw data from the database ordered by lastupdated
+    func downloadData() {
+        // reset the device data to none
+        deviceData = []
+        DispatchQueue.main.async{
+            self.db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments { querySnapshot, error in
+                if let e = error {
+                    print("There was an issue retrieving data from the firestore \(e)")
+                } else {
+                    
+                    if let snapShotDocuments = querySnapshot?.documents {
+                        for doc in snapShotDocuments {
+                            let data = doc.data()
+                            if let userData = data[K.FStore.user]
+                                as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName], let uuid = data[K.FStore.uuid]{
+                                let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
+                                self.deviceData.append(newDevice)
+                            }
+                        }
+                        print("The database should have \(self.deviceData.count)")
+                        self.chartBatteryData()
+                    }
+                }
+            }
+        }
+        
+    }
+   
+    
     //MARK: - ChartBatteryData()
+    // function creates a LineChart of the batteryLevel over the past 7 days
     func  chartBatteryData() {
         var chartDataEntries = [ChartDataEntry]()
         var aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         let dateToCompare = DateFormat.dateConvert(inputDate: aWeekAgo)
-       // print(dateToCompare)
+        // print(dateToCompare)
         for devices in deviceData {
             if devices.entity_id.contains(K.batteryLevel){
                 //print(devices.lastUpdated)
@@ -113,7 +111,7 @@ class StatisticsViewController: UIViewController {
                     let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
                     // convert Date to TimeInterval (typealias for Double)
                     let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    print("This is what is sent to the chart \(timeInterval)")
+                    //print("This is what is sent to the chart \(timeInterval)")
                     let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel ?? 0.0)
                     chartDataEntries.append(dataEntry)
                 }
@@ -137,12 +135,12 @@ class StatisticsViewController: UIViewController {
         batteryLevelChartView.data = chartData
         print(type(of: chartData))
     }
-
-
-
+    
+    
+    
 }
-    
-    
+
+
 
 //MARK: - HomeManagerDelegate
 // manage the data from the HomeManager and create the data for deviceInfo from the array of Devices
