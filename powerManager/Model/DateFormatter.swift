@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+// foramts the timestamp from homeassistant into a Date
 struct DateFormat {
     static func dateFormatted(date: String) -> Date {
            
@@ -22,4 +22,21 @@ struct DateFormat {
            }
         return Date()
        }
+    
+    ///convert a standard date format to compare to Homeassistants
+    static func dateConvert(inputDate: Date) -> String {
+        let outputDateFormatter = DateFormatter()
+        outputDateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+
+        let outputDateString = outputDateFormatter.string(from: inputDate)
+        return outputDateString
+    }
+
 }
+
+
+
+
+
+
+

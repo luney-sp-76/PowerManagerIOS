@@ -67,7 +67,7 @@
                                                 </subviews>
                                             </stackView>
                                             <slider opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="21" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Fe9-yB-oRC">
-                                                <rect key="frame" x="18" y="60.000000000000028" width="295" height="31"/>
+                                                <rect key="frame" x="18" y="60.000000000000028" width="279" height="31"/>
                                                 <connections>
                                                     <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="dzg-Wa-MPb"/>
                                                 </connections>
@@ -92,9 +92,9 @@
                                             <constraint firstItem="dKC-zG-HFM" firstAttribute="top" secondItem="dNA-vP-Tu6" secondAttribute="bottom" constant="21.333333333333314" id="65i-m2-GRd"/>
                                             <constraint firstItem="Fe9-yB-oRC" firstAttribute="top" secondItem="IT5-iO-d56" secondAttribute="top" constant="60" id="BKn-lm-PJg"/>
                                             <constraint firstItem="Fe9-yB-oRC" firstAttribute="leading" secondItem="IT5-iO-d56" secondAttribute="leading" constant="20" id="BVO-C0-a2O"/>
+                                            <constraint firstAttribute="trailing" secondItem="Fe9-yB-oRC" secondAttribute="trailing" constant="20" id="IHj-iY-aqi"/>
                                             <constraint firstItem="dKC-zG-HFM" firstAttribute="centerX" secondItem="dNA-vP-Tu6" secondAttribute="centerX" id="NIn-ST-3Z3"/>
                                             <constraint firstItem="dNA-vP-Tu6" firstAttribute="centerX" secondItem="IT5-iO-d56" secondAttribute="centerX" id="TNq-iS-irA"/>
-                                            <constraint firstAttribute="trailing" secondItem="Fe9-yB-oRC" secondAttribute="trailing" constant="4" id="XsC-gv-WJs"/>
                                             <constraint firstItem="dNA-vP-Tu6" firstAttribute="centerY" secondItem="IT5-iO-d56" secondAttribute="centerY" id="fXM-bg-GTs"/>
                                         </constraints>
                                     </view>
@@ -157,7 +157,6 @@
                     <connections>
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
                         <outlet property="button" destination="dKC-zG-HFM" id="IR4-tC-zN5"/>
-                        <outlet property="iPhoneBatteryDeviceName" destination="Qgq-bo-bld" id="7rV-pV-RNf"/>
                         <outlet property="powerPlugIcon" destination="lEP-TD-aV6" id="PRw-VC-H28"/>
                         <outlet property="setBatteryLevel" destination="qbF-Vi-zdd" id="eOS-3P-evw"/>
                         <outlet property="settingsButton" destination="lkn-ci-W0h" id="84c-Cq-SfX"/>
@@ -189,7 +188,7 @@
                                     <segue destination="ZjM-mm-gdu" kind="show" id="evF-mg-dwB"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚡️PowerManager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2V3-2u-1eT" customClass="CLTypingLabel" customModule="powerManager" customModuleProvider="target">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="⚡️PowerManager" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2V3-2u-1eT" customClass="CLTypingLabel" customModule="CLTypingLabel">
                                 <rect key="frame" x="52" y="376" width="271" height="60"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="60" id="xmA-78-1m0"/>
@@ -436,31 +435,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Fbc-du-Jyt">
-                                <rect key="frame" x="0.0" y="91" width="375" height="627"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ReusableCell" id="nej-aB-tm0">
-                                        <rect key="frame" x="0.0" y="50" width="375" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nej-aB-tm0" id="r8j-h2-wlB">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="117" width="343" height="281"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7a5-l9-CvK"/>
                         <color key="backgroundColor" name="statsandsettings"/>
-                        <constraints>
-                            <constraint firstItem="Fbc-du-Jyt" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" id="Ey0-ZS-5mm"/>
-                            <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="Fbc-du-Jyt" secondAttribute="bottom" constant="60" id="bwR-zH-PJe"/>
-                            <constraint firstItem="Fbc-du-Jyt" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" id="cpl-L1-0qM"/>
-                            <constraint firstItem="Fbc-du-Jyt" firstAttribute="trailing" secondItem="7a5-l9-CvK" secondAttribute="trailing" id="hhs-le-fnZ"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fiK-yu-enY"/>
+                    <connections>
+                        <outlet property="batteryLevelChartView" destination="EzU-lW-jbb" id="wAV-N3-IL5"/>
+                    </connections>
                 </hostingController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xy1-2a-MG1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -529,9 +516,7 @@
         </scene>
     </scenes>
     <designables>
-        <designable name="2V3-2u-1eT">
-            <size key="intrinsicContentSize" width="254.33333333333334" height="34.666666666666664"/>
-        </designable>
+        <designable name="2V3-2u-1eT"/>
     </designables>
     <inferredMetricsTieBreakers>
         <segue reference="TJ0-bM-Sdq"/>

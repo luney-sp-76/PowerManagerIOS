@@ -33,7 +33,7 @@ struct AppUtility {
             let endIndex = str.index(str.startIndex, offsetBy: 15)
             let substringEndIndex = min(endIndex, str.endIndex)
             let substring = str[startIndex..<substringEndIndex]
-            let substringAsString = String(substring)
+            //let substringAsString = String(substring)
             //print(substringAsString)
             return String(substring)
             
@@ -41,5 +41,48 @@ struct AppUtility {
         return " "
        
     }
+    
+    ///func checks the length of a string is between the maximum and minimum lengths requested if it is too short the function adds spaces at the start and end to bring it up to the maximum length
+    static func shortenString(string: String, maxLength: Int, minLength: Int) -> String {
+        if string.count <= maxLength && string.count >= minLength {
+            return string
+        }
+            
+        let index = string.index(string.startIndex, offsetBy: maxLength)
+        let substring = string[..<index]
+        let nextSpaceIndex = substring.lastIndex(of: " ")
+        let finalString = string[..<nextSpaceIndex!]
+            
+        let numberOfSpaces = maxLength - finalString.count
+        let leftSpaces = Array(repeating: " ", count: numberOfSpaces / 2).joined()
+        let rightSpaces = Array(repeating: " ", count: (numberOfSpaces + 1) / 2).joined()
+            
+        return leftSpaces + finalString + rightSpaces
+    }
+    ///update when the target is iOS 16 or above for [Orientation] BUG IN CLIENT OF UIKIT: Setting UIDevice.orientation is not supported. Please use UIWindowScene.requestGeometryUpdate(_:)
+//    static func changeOrientation(to orientation: UIInterfaceOrientation) {
+//        guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
+//
+//        var transform = CGAffineTransform.identity
+//
+//        switch orientation {
+//            case .portrait:
+//                transform = CGAffineTransform(rotationAngle: .pi / 2)
+//            case .landscapeLeft:
+//                transform = CGAffineTransform(rotationAngle: .pi)
+//            case .landscapeRight:
+//                transform = CGAffineTransform(rotationAngle: 0)
+//            default:
+//                break
+//        }
+//
+//        let geometryPreferences = UIWindowScene.GeometryPreferences(
+//            bounds: windowScene.screen.bounds,
+//            transform: transform
+//        )
+//
+//        windowScene.requestGeometryUpdate(geometryPreferences)
+//    }
+
 
 }

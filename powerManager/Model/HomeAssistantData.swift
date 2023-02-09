@@ -14,6 +14,7 @@ struct HomeAssistantData: Decodable {
     let last_changed: String
     let last_updated: String
     let context: Context
+    let user: String?
     
     // Add this initializer
     init(from decoder: Decoder) throws {
@@ -24,6 +25,7 @@ struct HomeAssistantData: Decodable {
         last_updated = try container.decode(String.self, forKey: .last_updated)
         last_changed = try container.decode(String.self, forKey: .last_changed)
         context = try container.decode(Context.self, forKey: .context)
+        user = try container.decodeIfPresent(String.self, forKey: .user)
     }
     // Add this enum
     private enum CodingKeys: String, CodingKey {
@@ -33,8 +35,10 @@ struct HomeAssistantData: Decodable {
         case last_changed = "last_changed"
         case last_updated = "last_updated"
         case context = "context"
+        case user = "user"
     }
     struct Attributes: Decodable {
+        var user: String?
         var unitOfMeasurement: String?
         var name: String?
         var lowPowerMode: Bool?
@@ -55,6 +59,7 @@ struct HomeAssistantData: Decodable {
             case icon
             case friendlyName = "friendly_name"
             case userId = "user_id"
+            case user = "user"
         }
         //MARK: - decoder
         init(from decoder: Decoder) throws {
@@ -66,7 +71,10 @@ struct HomeAssistantData: Decodable {
             let icon = try container.decodeIfPresent(String.self, forKey: .icon)
             let friendlyName = try container.decode(String.self, forKey: .friendlyName)
             let userId = try container.decodeIfPresent(String.self, forKey: .userId)
+            let user = try container.decodeIfPresent(String.self, forKey: .user)
+                 
             //MARK: - trimming white space to return data
+            self.user = user
             self.unitOfMeasurement = unitOfMeasurement
             self.lowPowerMode = lowPowerMode
             self.attributesId = attributesId
