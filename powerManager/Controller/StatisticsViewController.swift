@@ -100,7 +100,7 @@ class StatisticsViewController: UIViewController {
     // function creates a LineChart of the batteryLevel over the past 7 days
     func  chartBatteryData() {
         var chartDataEntries = [ChartDataEntry]()
-        var aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        let aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         let dateToCompare = DateFormat.dateConvert(inputDate: aWeekAgo)
         // print(dateToCompare)
         for devices in deviceData {

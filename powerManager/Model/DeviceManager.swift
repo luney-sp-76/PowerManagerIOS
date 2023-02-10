@@ -102,18 +102,32 @@ struct DeviceManager  {
     
     mutating func manageBattery(device: DeviceModel, lowestBatteryChargeLevel: Int, currentBatteryLevel: Int, plugName: String)-> String {
         var returnString = K.on
-
-        if currentBatteryLevel == 100 && device.id == plugName && device.state == K.on && !isOff {
+        print("The request from batteryMonitor is recieved..")
+        print("Current Battery Level \(currentBatteryLevel) which is of type...")
+        print(type(of: currentBatteryLevel))
+        print("device is the plug \(device.id == plugName)")
+        print("lowest Charge level \(lowestBatteryChargeLevel)")
+        print("The plug is On:  \(device.state == K.on)")
+        print("The plug state is: \(device.state)")
+        print("The plug Boolean is Off:  \(isOff == false)")
+        
+        
+        if currentBatteryLevel == 100 && device.id == plugName && device.state == K.on {
+            //attempting post request
+            print("attempting to send a post request....")
             plugControl.fetchPlugData(urlEndPoint: K.turnOff, device: plugName)
             //update firebase
             dataProvider.transferData()
             isOff = true
+            print("is OFF Now? \(isOff)")
             returnString = K.off
 
-        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == K.off && isOff {
+        } else if currentBatteryLevel <= lowestBatteryChargeLevel && device.id == plugName && device.state == K.off {
+            print("attempting to send a post request....")
             plugControl.fetchPlugData(urlEndPoint: K.turnOn, device: plugName)
             dataProvider.transferData()
             isOff = false
+            print("is OFF Now? \(isOff)")
             returnString = K.on
         }
         return returnString

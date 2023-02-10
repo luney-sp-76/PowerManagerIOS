@@ -24,6 +24,8 @@ class BatteryMonitorViewController: UIViewController {
     var dataProvider = DataProvider()
     // to hold the devies selected in settings
     var devicesArray: [String] = []
+    // a boolean to manage the async schedule in the scheduleFetchData function
+    var shouldStop = false
     
     var batteryPercentage = 21
     // Declare the delegate property in BatteryMonitorViewController
@@ -43,7 +45,7 @@ class BatteryMonitorViewController: UIViewController {
     
   
     var currentBatteryLevel = 100
-    var lowestBatteryChargeLevel = 0
+    var lowestBatteryChargeLevel = 21
     var lastPlugStateCheckTime: Date = Date()
     
     
@@ -119,6 +121,8 @@ class BatteryMonitorViewController: UIViewController {
     }
     
     
+    
+    
     func updateDevicesArray(newDevicesArray: [String]) {
         devicesArraySemaphore.wait()
         self.devicesArray = newDevicesArray
@@ -149,6 +153,12 @@ class BatteryMonitorViewController: UIViewController {
             self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
             self.scheduleFetchData()
         }
+       
+    }
+    
+    func restartFetchData() {
+      shouldStop = false
+      scheduleFetchData()
     }
     
     // change the plug icon color on the viewcontroller UI to match its state
@@ -156,8 +166,10 @@ class BatteryMonitorViewController: UIViewController {
         //print(state)
         if state == K.off {
             powerPlugIcon.tintColor = UIColor(named: K.ColourAssets.plugIconColourOff)
+            plugColour = K.off
         }else {
             powerPlugIcon.tintColor = UIColor(named: K.ColourAssets.plugIconColourOn)
+            plugColour = K.on
         }
     }
     
@@ -168,6 +180,7 @@ class BatteryMonitorViewController: UIViewController {
         button.isSelected = false
         button.setTitle("Set", for: .normal)
         lowestBatteryChargeLevel = Int(sender.value)
+        print("The LowestBatteryLevel is set at \(lowestBatteryChargeLevel)")
         //set a public variable of the users choice of batterylevel to access outside of the viewcontroller
        // V.usersSetBatteryLevel =  lowestBatteryChargeLevel
         // make the set level into text
@@ -221,26 +234,40 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 self.iPhoneBatteryDeviceName?.text = phoneName
                
             }
-            if device.id == plugStateEntityID {
-                
+            print("handling plug data is : \(device.id == plugStateEntityID) for \(plugStateEntityID) as the device is now \(device.id)")
+          if device.id == plugStateEntityID {
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
                     let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
+                    print("Time since last check \(timeSinceLastCheck)")
                     if timeSinceLastCheck > 30 {
                         lastPlugStateCheckTime = Date()
+                        print(lastPlugStateCheckTime)
                         plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
                     }
-                
-                
+            }
                 updatePlugColour(state: device.state)
-            }
-            }
+           }
             if device.id == iPhoneBatteryStateEntityID {
-                //states not charging
-                //charging
-               // print(device.name)
+                
                 //set an alert to charge if the device is showing as not charging
-                if device.state == "Not Charging"{
-                    print(device.state)
+                if device.state == "Not Charging" && plugColour == K.off {
+                    print("\(device.name) is \(device.state)")
+                }else {
+                    switch device.state {
+                    case "Charging":
+                        print("\(device.name) is charging")
+                        break
+                    case "Not Charging":
+                        print("\(device.name) is not charging but the plug is on")
+                        break
+                    case "Full":
+                        print("\(device.name) is full and charging should be stopped")
+                        plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
+                        break
+                    default:
+                        print("\(device.name) has an unknown issue, check state in home assistant")
+                        break
+                    }
                 }
             }
         }
