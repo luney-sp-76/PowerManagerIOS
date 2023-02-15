@@ -66,10 +66,11 @@ class SettingsViewController: UIViewController {
         sender.isSelected = true
         performSegue(withIdentifier: K.settingsToBatteryMonitor, sender: self)
     }
-    
+    //sends the choosen devices to the device array in batterymonitorViewController and updates the batterystate variable for api calls
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BatteryMonitorViewController {
-            destination.devicesArray = selectedDevices
+            destination.updateDevicesArray(newDevicesArray: selectedDevices)
+            //destination.devicesArray = selectedDevices
             destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId
         }
         
@@ -168,7 +169,7 @@ extension SettingsViewController: UITableViewDelegate {
                 // add the new battery device to the array of selected devices
                 selectedDevices.append(device_id)
                 //from the entity id of the battery device check the entity id from after sensor.
-                var subString = setBatteryStateDevice(entity: device_id)
+                let subString = setBatteryStateDevice(entity: device_id)
                 for device in allBatteryStateDevices {
                     //if the allBatteryStateDevices contains that substring
                     if device.entity_id.contains(subString) {
