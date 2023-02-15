@@ -53,8 +53,6 @@ class BatteryMonitorViewController: UIViewController {
     override func viewDidLoad() {
         if !viewHasLoaded {
             viewHasLoaded = true
-           // print("view is loaded")
-            //print("devicesArray has \(devicesArray.count) devices")
             title = K.appName
             navigationItem.hidesBackButton = true
             deviceStateManager.delegate = self
@@ -65,9 +63,6 @@ class BatteryMonitorViewController: UIViewController {
         }
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        AppUtility.lockOrientation(.portrait, andRotateTo: .unknown)
-    }
     
     //this function checks if there are a battery_level and switch device in the devices Array
     //it updates the variables for iPhoneBatteryLevelEntityID and  plugStateEntityID with the data from the array
@@ -102,18 +97,18 @@ class BatteryMonitorViewController: UIViewController {
         // Or to rotate and lock
         // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
-    
+    //removes the contstraint on orientation lock from portrait back to all
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
     }
-    
+    //makes a call to the api for plug state
     @objc func checkPlugState(plugDevice: String) {
         deviceStateManager.fetchPlugState(urlEndPoint: plugDevice)
         
     }
-    
+    //makes a call to api for battery level or state
     @objc func checkBatteryLevel(batteryDevice: String) {
         deviceStateManager.fetchDeviceData(deviceName: batteryDevice)
        // print(iPhoneBatteryStateEntityID)
@@ -122,7 +117,7 @@ class BatteryMonitorViewController: UIViewController {
     
     
     
-    
+    //function to check the current devices
     func updateDevicesArray(newDevicesArray: [String]) {
         devicesArraySemaphore.wait()
         self.devicesArray = newDevicesArray
@@ -155,7 +150,7 @@ class BatteryMonitorViewController: UIViewController {
         }
        
     }
-    
+    // not in use with the scheduleFetchData as it will crash the app unless the function is changed to a timer
     func restartFetchData() {
       shouldStop = false
       scheduleFetchData()
@@ -224,6 +219,7 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         //update firebase
         //dataProvider.transferData()
+        //handling data for multiple device calls from the devicemanager
         DispatchQueue.main.async { [self] in
             if device.id == iPhoneBatteryLevelEntityID {
                 //change battery percentage to current battery percentage state
