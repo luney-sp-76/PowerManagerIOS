@@ -69,6 +69,7 @@ class SettingsViewController: UIViewController {
     //sends the choosen devices to the device array in batterymonitorViewController and updates the batterystate variable for api calls
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BatteryMonitorViewController {
+        
             destination.updateDevicesArray(newDevicesArray: selectedDevices)
             //destination.devicesArray = selectedDevices
             destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId

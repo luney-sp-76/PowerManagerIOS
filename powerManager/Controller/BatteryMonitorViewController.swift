@@ -34,6 +34,7 @@ class BatteryMonitorViewController: UIViewController {
     var iPhoneBatteryStateEntityID = " "
     var plugStateEntityID = " "
     var devicesArraySemaphore = DispatchSemaphore(value: 1)
+    var timer: Timer?
 
     
     @IBOutlet weak var batteryPercentageLabel: UILabel!
@@ -115,8 +116,6 @@ class BatteryMonitorViewController: UIViewController {
         
     }
     
-    
-    
     //function to check the current devices
     func updateDevicesArray(newDevicesArray: [String]) {
         devicesArraySemaphore.wait()
@@ -125,36 +124,56 @@ class BatteryMonitorViewController: UIViewController {
     }
     
     
-    //managed calls to check the battery level check the plug state in recursive loop
-    func scheduleFetchData() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-            //double check we are now using the updated devices
-            self.devicesArraySemaphore.wait()
-            let localDevicesArray = self.devicesArray
-            self.devicesArraySemaphore.signal()
-            
-            for device in localDevicesArray {
-                if device.contains(K.batteryLevel){
-                    self.iPhoneBatteryLevelEntityID = device
-                }
-                if device.contains(K.switchs){
-                    self.plugStateEntityID = device
-                }
+//    //managed calls to check the battery level check the plug state in recursive loop
+//    func scheduleFetchData() {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+//            //double check we are now using the updated devices
+//            self.devicesArraySemaphore.wait()
+//            let localDevicesArray = self.devicesArray
+//            self.devicesArraySemaphore.signal()
+//
+//            for device in localDevicesArray {
+//                if device.contains(K.batteryLevel){
+//                    self.iPhoneBatteryLevelEntityID = device
+//                }
+//                if device.contains(K.switchs){
+//                    self.plugStateEntityID = device
+//                }
+//            }
+//           // print("The current phone is \(self.iPhoneBatteryLevelEntityID)")
+//            //print("The current plug is \(self.plugStateEntityID)")
+//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
+//            self.checkPlugState(plugDevice: self.plugStateEntityID)
+//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
+//            self.scheduleFetchData()
+//        }
+//
+//    }
+    
+    func scheduleFetchData(){
+        timer?.invalidate()
+        timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] timer in
+            self!.fetchData()
+        }
+    }
+        
+        func stopFetchingData() {
+                timer?.invalidate()
             }
-           // print("The current phone is \(self.iPhoneBatteryLevelEntityID)")
-            //print("The current plug is \(self.plugStateEntityID)")
+        
+        func fetchData() {
             self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
             self.checkPlugState(plugDevice: self.plugStateEntityID)
             self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
             self.scheduleFetchData()
-        }
-       
-    }
+            }
+
+
     // not in use with the scheduleFetchData as it will crash the app unless the function is changed to a timer
-    func restartFetchData() {
-      shouldStop = false
-      scheduleFetchData()
-    }
+//    func restartFetchData() async {
+//      shouldStop = false
+//        await scheduleFetchData()
+//    }
     
     // change the plug icon color on the viewcontroller UI to match its state
     func updatePlugColour(state: String) {
@@ -176,8 +195,6 @@ class BatteryMonitorViewController: UIViewController {
         button.setTitle("Set", for: .normal)
         lowestBatteryChargeLevel = Int(sender.value)
         print("The LowestBatteryLevel is set at \(lowestBatteryChargeLevel)")
-        //set a public variable of the users choice of batterylevel to access outside of the viewcontroller
-       // V.usersSetBatteryLevel =  lowestBatteryChargeLevel
         // make the set level into text
         setBatteryLevel.text = String(format: "%d",  lowestBatteryChargeLevel)
         currentBatteryLevel = Int(batteryPercentageLabel.text ?? "0")!
@@ -188,6 +205,7 @@ class BatteryMonitorViewController: UIViewController {
         sender.isSelected = true
         setBatteryLevel.textColor = UIColor(named: K.ColourAssets.affirmAction)
         sender.setTitle("Done", for: .normal)
+        stopFetchingData()
         scheduleFetchData()
     }
     
