@@ -41,6 +41,7 @@ class StatisticsViewController: UIViewController {
     
     @IBOutlet weak var batteryLevelChartView: LineChartView!
     
+    @IBOutlet weak var powerUsageChartView: LineChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -51,6 +52,7 @@ class StatisticsViewController: UIViewController {
         view.addSubview(batteryLevelChartView)
         //converts the dateformat into month and day
         batteryLevelChartView.xAxis.valueFormatter = dateValueFormat
+        powerUsageChartView.xAxis.valueFormatter = dateValueFormat
         
     }
     
@@ -103,7 +105,8 @@ class StatisticsViewController: UIViewController {
                             }
                         }
                         print("The database should have \(self.deviceData.count)")
-                        self.chartBatteryData()
+                        self.chartSevenDaysBatteryData()
+                        self.chartSevenDaysEnergyData()
                     }
                 }
             }
@@ -113,8 +116,11 @@ class StatisticsViewController: UIViewController {
    
     //MARK: - Chartview Data
   
-     //function creates a LineChart of the batteryLevel over the past 7 days
-    func  chartBatteryData() {
+    
+    //MARK: - BatteryChartView Data
+    
+     //function creates a LineChart of the batteryLevel over the past 7 days this is the default view on load
+    func  chartSevenDaysBatteryData() {
         var chartDataEntries = [ChartDataEntry]()
         let aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
         let dateToCompare = DateFormat.dateConvert(inputDate: aWeekAgo)
@@ -154,14 +160,11 @@ class StatisticsViewController: UIViewController {
     
    
     // function to create chart data for a specific time frame
-    func chartData(forStartDate startDate: Date, endDate: Date) {
+    func batteryChartData(forStartDate startDate: Date, endDate: Date) {
         var chartDataEntries = [ChartDataEntry]()
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-        
-       
-        
         for device in deviceData {
             if device.entity_id.contains(K.batteryLevel) {
                 if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
@@ -191,13 +194,100 @@ class StatisticsViewController: UIViewController {
         
         batteryLevelChartView.data = chartData
     }
+    
+    
+//MARK: - Power ChartView Data
+    
+    func  chartSevenDaysEnergyData() {
+        var chartDataEntries = [ChartDataEntry]()
+        let aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
+        let dateToCompare = DateFormat.dateConvert(inputDate: aWeekAgo)
+        // print(dateToCompare)
+        for devices in deviceData {
+            if devices.entity_id.hasSuffix("_energy"){
+                //print(devices.lastUpdated)
+                if Double(devices.lastUpdated) ?? Date.timeIntervalSinceReferenceDate <= Double(dateToCompare) ?? Date.timeIntervalSinceReferenceDate {
+                    let batteryLevel = Double(devices.state)
+                    let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
+                    // convert Date to TimeInterval (typealias for Double)
+                    let timeInterval = reverseTimestamp.timeIntervalSince1970
+                    //print("This is what is sent to the chart \(timeInterval)")
+                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel ?? 0.0)
+                    chartDataEntries.append(dataEntry)
+                }
+            }
+        }
+        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "KWh")
+        chartDataSet.colors = [UIColor.blue]
+        chartDataSet.valueColors = [UIColor.red]
+        chartDataSet.drawValuesEnabled = true
+        let chartData = LineChartData(dataSet: chartDataSet)
+        lineChartView.data = chartData
+        //x-axis to use the last_updated as the time axis and the y-axis to use the KWh reading as the value axis.
+        lineChartView.xAxis.valueFormatter = dateValueFormat
+        print("This is in the chart \(dateValueFormat)")
+        lineChartView.leftAxis.axisMinimum = 0
+        lineChartView.leftAxis.axisMaximum = 3
+        lineChartView.rightAxis.enabled = false
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.chartDescription.text = "Energy Use Over Time"
+
+        powerUsageChartView.data = chartData
+        //print(type(of: chartData))
+    }
+    
+
+    // date picker operated chart view for the energy used by the smart plug
+    func energyChartData(forStartDate startDate: Date, endDate: Date) {
+        var chartDataEntries = [ChartDataEntry]()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
 
 
+        for device in deviceData {
+            if device.entity_id.hasSuffix("_energy") {
+                if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
+                   lastUpdated >= startDate && lastUpdated <= endDate {
+                    let energyUsage = Double(device.state) ?? 0.0
+                    let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
+                    let timeInterval = reverseTimestamp.timeIntervalSince1970
+                    let dataEntry = ChartDataEntry(x: timeInterval, y: energyUsage)
+                    chartDataEntries.append(dataEntry)
+                }
+            }
+        }
+
+        if chartDataEntries.isEmpty {
+            // no data to display
+            return
+        }
+
+        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Energy Usage (KWh)")
+        chartDataSet.colors = [UIColor.blue]
+        chartDataSet.valueColors = [UIColor.red]
+        chartDataSet.drawValuesEnabled = true
+
+        let chartData = LineChartData(dataSet: chartDataSet)
+        lineChartView.data = chartData
+        lineChartView.xAxis.valueFormatter = dateValueFormat
+        lineChartView.leftAxis.axisMinimum = 0
+        lineChartView.rightAxis.enabled = false
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.chartDescription.text = "Energy Usage Over Time"
+
+        powerUsageChartView.data = chartData
+    }
+
+    
+
+//MARK: - Date Picker
 
     @IBAction func datePickerMoved(_ sender: UIDatePicker) {
         let startDate = sender.date
            let endDate = Date()
-           chartData(forStartDate: startDate, endDate: endDate)
+           batteryChartData(forStartDate: startDate, endDate: endDate)
+           energyChartData(forStartDate: startDate, endDate: endDate)
     }
     
     

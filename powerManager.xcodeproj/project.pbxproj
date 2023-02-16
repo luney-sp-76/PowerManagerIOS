@@ -11,6 +11,7 @@
 		BD07C5B42974963300F4DE29 /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B32974963300F4DE29 /* RegisterViewController.swift */; };
 		BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B52974966400F4DE29 /* SettingsViewController.swift */; };
 		BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */; };
+		BD26C8C0299E44F000EBFCFB /* EnergyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */; };
 		BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C2F93297D7B5B00F4B914 /* Device.swift */; };
 		BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */; };
 		BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */; };
@@ -67,6 +68,7 @@
 		BD07C5B32974963300F4DE29 /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		BD07C5B52974966400F4DE29 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsViewController.swift; sourceTree = "<group>"; };
+		BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyModel.swift; sourceTree = "<group>"; };
 		BD3C2F93297D7B5B00F4B914 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerFireStoreService.swift; sourceTree = "<group>"; };
 		BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; path = "../../../../Downloads/client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 				BDC629C5299010E50063CA6F /* DataProvider.swift */,
 				BDC629C729901F060063CA6F /* DateFormatter.swift */,
 				BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */,
+				BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -447,6 +450,7 @@
 				BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */,
 				BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */,
 				BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */,
+				BD26C8C0299E44F000EBFCFB /* EnergyModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
