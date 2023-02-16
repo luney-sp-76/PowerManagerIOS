@@ -8,6 +8,8 @@
 		<string>fetch</string>
 		<string>processing</string>
 	</array>
+	<key>NSPasteboardUsageDescription</key>
+	<string>Access To The Clipboard is required for you to paste your url and token data in setup</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

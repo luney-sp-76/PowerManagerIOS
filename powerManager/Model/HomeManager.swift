@@ -58,8 +58,8 @@ class HomeManager  {
                     for item in device {
                         /// sensor is the entity id after the word sensor so it should be contained within the switch entity_id to be added to the array ie sensor.{0x0015bc002f00edf3}_energy
                         //let sensor = AppUtility.selectDeviceFromEntityString(entity: item.entity_id)
-                        if item.entity_id.contains("battery_level") || item.entity_id.contains("switch") || item.entity_id.contains("battery_state") || item.entity_id.contains("person") || !item.entity_id.contains("sun") || !item.entity_id.contains("update") || !item.entity_id.contains("binary")  {
-                            self.deviceArray.append(item)
+                        if item.entity_id.hasSuffix("_energy") || item.entity_id.hasSuffix("_battery_level") || item.entity_id.hasSuffix("_battery_state") || item.entity_id.hasPrefix("switch") {
+                                self.deviceArray.append(item)
                         }
                     }
                     self.cache.setObject(self.deviceArray as NSArray, forKey: "devices")
