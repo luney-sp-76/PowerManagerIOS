@@ -455,8 +455,13 @@
                                 <rect key="frame" x="15" y="26" width="343" height="297"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="420" width="343" height="247"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
                             <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i73-9S-kEe">
-                                <rect key="frame" x="32" y="652" width="311" height="34"/>
+                                <rect key="frame" x="31" y="672" width="311" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="41h-97-2Ih"/>
                                 </constraints>
@@ -464,27 +469,23 @@
                                     <action selector="datePickerMoved:" destination="GE5-nL-MZN" eventType="valueChanged" id="nbs-Gy-PlV"/>
                                 </connections>
                             </datePicker>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="420" width="343" height="247"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7a5-l9-CvK"/>
                         <color key="backgroundColor" name="statsandsettings"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="EzU-lW-jbb" secondAttribute="bottom" constant="432" id="1Y9-l7-dCO"/>
-                            <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="i73-9S-kEe" secondAttribute="bottom" constant="20" id="OrH-74-3Se"/>
-                            <constraint firstItem="i73-9S-kEe" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" constant="32" id="d4E-np-lTC"/>
+                            <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="i73-9S-kEe" secondAttribute="bottom" id="OrH-74-3Se"/>
+                            <constraint firstItem="i73-9S-kEe" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" constant="31" id="d4E-np-lTC"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" constant="26" id="f1m-sr-hzt"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="trailing" secondItem="U14-w0-x4Z" secondAttribute="trailingMargin" constant="-1" id="iW6-jC-Z1A"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="leading" secondItem="U14-w0-x4Z" secondAttribute="leadingMargin" constant="-1" id="j08-HI-hrN"/>
-                            <constraint firstItem="EzU-lW-jbb" firstAttribute="centerX" secondItem="i73-9S-kEe" secondAttribute="centerX" constant="-1" id="zNo-eQ-H9a"/>
+                            <constraint firstItem="EzU-lW-jbb" firstAttribute="centerX" secondItem="i73-9S-kEe" secondAttribute="centerX" id="zNo-eQ-H9a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fiK-yu-enY"/>
                     <connections>
                         <outlet property="batteryLevelChartView" destination="EzU-lW-jbb" id="wAV-N3-IL5"/>
+                        <outlet property="datePicker" destination="i73-9S-kEe" id="Bjx-D6-rXv"/>
                         <outlet property="powerUsageChartView" destination="QxU-TH-JoC" id="SDZ-iN-oHB"/>
                     </connections>
                 </hostingController>
@@ -698,7 +699,7 @@
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-mG-jWt">
-                                <rect key="frame" x="-3" y="30" width="376" height="44"/>
+                                <rect key="frame" x="-6" y="30" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="GAF-Hw-jsv"/>

@@ -40,10 +40,13 @@ class StatisticsViewController: UIViewController {
     var startDate: Date?
     var endDate: Date?
     var dateSelectionHandler: ((Date?, Date?) -> Void)?
+    let energyManager = EnergyManager()
     
     @IBOutlet weak var batteryLevelChartView: LineChartView!
     
     @IBOutlet weak var powerUsageChartView: LineChartView!
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +63,16 @@ class StatisticsViewController: UIViewController {
         startDate = calendar.date(byAdding: .day, value: -7, to: endDate!)
         dateSelectionHandler?(startDate, endDate)
         // Call `dateSelectionHandler` whenever the user changes the date picker
-        //datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
+        datePicker.addTarget(self, action: #selector(datePickerMoved), for: .valueChanged)
+        // call for the current cost for data from the energy cost api
+        energyManager.updateEnergyData(startDate: startDate!, endDate: endDate!) { energyData in
+            if let energyData = energyData {
+                // Use the energy data
+                print(energyData)
+            } else {
+                // Handle the error case
+            }
+        }
         
     }
     
@@ -303,7 +315,6 @@ class StatisticsViewController: UIViewController {
     
     
 }
-
 
 
 //MARK: - HomeManagerDelegate

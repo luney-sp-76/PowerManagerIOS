@@ -34,6 +34,8 @@ struct K {
     struct FStore {
         
         static let homeAssistantCollection = "homeAssistantCollection"
+        static let energyread = "energyread"
+        static let securedData = "securedData"
         static let user = "user"
         static let entity_id = "entity_id"
         static let state = "state"
