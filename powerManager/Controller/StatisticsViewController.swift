@@ -37,7 +37,9 @@ class StatisticsViewController: UIViewController {
     let dateValueFormat = DateValueFormatter()
     let calendar = Calendar.current
     let currentDate = Date()
-    
+    var startDate: Date?
+    var endDate: Date?
+    var dateSelectionHandler: ((Date?, Date?) -> Void)?
     
     @IBOutlet weak var batteryLevelChartView: LineChartView!
     
@@ -54,6 +56,11 @@ class StatisticsViewController: UIViewController {
         //converts the dateformat into month and day
         batteryLevelChartView.xAxis.valueFormatter = dateValueFormat
         powerUsageChartView.xAxis.valueFormatter = dateValueFormat
+        endDate = currentDate
+        startDate = calendar.date(byAdding: .day, value: -7, to: endDate!)
+        dateSelectionHandler?(startDate, endDate)
+        // Call `dateSelectionHandler` whenever the user changes the date picker
+        //datePicker.addTarget(self, action: #selector(datePickerValueChanged), for: .valueChanged)
         
     }
     
@@ -287,6 +294,8 @@ class StatisticsViewController: UIViewController {
     @IBAction func datePickerMoved(_ sender: UIDatePicker) {
         let startDate = sender.date
            let endDate = Date()
+        // Notify the date selection handler with the updated dates
+           dateSelectionHandler?(startDate, endDate)
            batteryChartData(forStartDate: startDate, endDate: endDate)
            energyChartData(forStartDate: startDate, endDate: endDate)
     }
