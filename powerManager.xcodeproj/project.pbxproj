@@ -29,6 +29,7 @@
 		BDC629C6299010E50063CA6F /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C5299010E50063CA6F /* DataProvider.swift */; };
 		BDC629C829901F060063CA6F /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C729901F060063CA6F /* DateFormatter.swift */; };
 		BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDCC52F02982AB6D00EEA034 /* AppUtility.swift */; };
+		BDF570E7299E5DF700AD93D0 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF570E6299E5DF700AD93D0 /* SetUpViewController.swift */; };
 		BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675629776359006495FC /* HomeAssistantData.swift */; };
 		BDFF675929788095006495FC /* HomeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDFF675829788095006495FC /* HomeManager.swift */; };
 		DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE45FED295E1CDD00704D59 /* AppDelegate.swift */; };
@@ -87,6 +88,7 @@
 		BDC629C5299010E50063CA6F /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		BDC629C729901F060063CA6F /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
 		BDCC52F02982AB6D00EEA034 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
+		BDF570E6299E5DF700AD93D0 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
 		BDFF675629776359006495FC /* HomeAssistantData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeAssistantData.swift; sourceTree = "<group>"; };
 		BDFF675829788095006495FC /* HomeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManager.swift; sourceTree = "<group>"; };
 		DAE45FEA295E1CDD00704D59 /* powerManager.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = powerManager.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -187,6 +189,7 @@
 				BD07C5B32974963300F4DE29 /* RegisterViewController.swift */,
 				BD07C5B52974966400F4DE29 /* SettingsViewController.swift */,
 				BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */,
+				BDF570E6299E5DF700AD93D0 /* SetUpViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -451,6 +454,7 @@
 				BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */,
 				BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */,
 				BD26C8C0299E44F000EBFCFB /* EnergyModel.swift in Sources */,
+				BDF570E7299E5DF700AD93D0 /* SetUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

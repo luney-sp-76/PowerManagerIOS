@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="-289" width="375" height="1044"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HN1-Rh-8OX">
-                                <rect key="frame" x="30" y="40" width="315" height="566.33333333333337"/>
+                                <rect key="frame" x="30" y="-7" width="315" height="564.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F39-dr-Ctn">
                                         <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="98"/>
@@ -47,10 +47,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT5-iO-d56">
-                                        <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="412.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="410.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6" userLabel="SliderStack View">
-                                                <rect key="frame" x="79.000000000000014" y="157.33333333333331" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79.000000000000014" y="156.33333333333331" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
@@ -73,7 +73,7 @@
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="132.66666666666666" y="276.66666666666669" width="49.666666666666657" height="34.333333333333314"/>
+                                                <rect key="frame" x="132.66666666666666" y="275.66666666666669" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
@@ -107,7 +107,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="204" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-Y7-r3b" userLabel="SettingsStack View">
-                                <rect key="frame" x="30" y="683" width="315" height="22"/>
+                                <rect key="frame" x="30" y="634" width="315" height="22"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powerplug" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lEP-TD-aV6">
                                         <rect key="frame" x="0.0" y="1.3333333333333321" width="55.666666666666664" height="19.666666666666668"/>
@@ -452,11 +452,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="15" y="73" width="343" height="268"/>
+                                <rect key="frame" x="15" y="26" width="343" height="297"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i73-9S-kEe">
-                                <rect key="frame" x="32" y="701" width="311" height="34"/>
+                                <rect key="frame" x="32" y="652" width="311" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="41h-97-2Ih"/>
                                 </constraints>
@@ -465,7 +465,7 @@
                                 </connections>
                             </datePicker>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="430" width="343" height="275"/>
+                                <rect key="frame" x="16" y="420" width="343" height="247"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -473,7 +473,7 @@
                         <viewLayoutGuide key="safeArea" id="7a5-l9-CvK"/>
                         <color key="backgroundColor" name="statsandsettings"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="EzU-lW-jbb" secondAttribute="bottom" constant="414" id="1Y9-l7-dCO"/>
+                            <constraint firstAttribute="bottom" secondItem="EzU-lW-jbb" secondAttribute="bottom" constant="432" id="1Y9-l7-dCO"/>
                             <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="i73-9S-kEe" secondAttribute="bottom" constant="20" id="OrH-74-3Se"/>
                             <constraint firstItem="i73-9S-kEe" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" constant="32" id="d4E-np-lTC"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" constant="26" id="f1m-sr-hzt"/>
@@ -501,7 +501,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-oa-KaM">
-                                <rect key="frame" x="0.0" y="47" width="375" height="648"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" name="BrandBlue"/>
                             </tableView>
@@ -529,7 +529,9 @@
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="top" secondItem="fcE-ys-8uG" secondAttribute="top" id="gxY-5X-iBa"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Title" id="LTp-pS-MtU" userLabel="Settings"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="tableView" destination="Euk-oa-KaM" id="GJF-cD-ovB"/>
                         <segue destination="R2t-gb-HE3" kind="show" identifier="SettingsToSetup" id="lf4-co-NaQ"/>
@@ -539,19 +541,19 @@
             </objects>
             <point key="canvasLocation" x="2386.4000000000001" y="-12.561576354679804"/>
         </scene>
-        <!--Setup View Controller-->
+        <!--SetUpViewController-->
         <scene sceneID="ONP-OR-No7">
             <objects>
-                <viewController id="R2t-gb-HE3" customClass="SetupViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="SetupViewController" id="R2t-gb-HE3" userLabel="SetUpViewController" customClass="SetUpViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Zb7-45-Xd7">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsW-2T-kno">
-                                <rect key="frame" x="-6" y="74" width="383" height="624"/>
+                                <rect key="frame" x="-6" y="27" width="383" height="622"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s53-YE-CoI">
-                                        <rect key="frame" x="0.0" y="0.0" width="383" height="595"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="383" height="593"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="background" highlightedImage="background" translatesAutoresizingMaskIntoConstraints="NO" id="vRc-ka-qNf">
                                                 <rect key="frame" x="-1172" y="28" width="2725" height="567"/>
@@ -614,7 +616,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="Long Lived Token" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8hV-lq-xiX">
-                                                <rect key="frame" x="114" y="562" width="137" height="21"/>
+                                                <rect key="frame" x="114" y="560" width="137" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="KKc-Wn-hbK"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="136" id="tDc-Aq-phy"/>
@@ -624,7 +626,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" verticalCompressionResistancePriority="752" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BsU-vy-xKw" userLabel="HASS Url Text">
-                                                <rect key="frame" x="20" y="436" width="343" height="34"/>
+                                                <rect key="frame" x="20" y="436" width="343" height="32"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
@@ -635,7 +637,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="Home Assistant URL" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jx0-Cs-Fqv">
-                                                <rect key="frame" x="110.66666666666669" y="478" width="162" height="21"/>
+                                                <rect key="frame" x="110.66666666666669" y="476" width="162" height="21"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="21" id="4UQ-Ve-cMc"/>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="162" id="h2W-SY-eB9"/>
@@ -683,7 +685,7 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qAq-Vg-9Ie">
-                                <rect key="frame" x="160" y="680" width="50" height="48"/>
+                                <rect key="frame" x="160" y="686" width="51" height="48"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="6oh-83-7HH"/>
                                 </constraints>
@@ -691,11 +693,12 @@
                                 <buttonConfiguration key="configuration" style="plain" title="Set"/>
                                 <connections>
                                     <action selector="setButtonPressed:" destination="SGa-WX-MCS" eventType="touchUpInside" id="DPm-MK-qi0"/>
+                                    <action selector="setButtonPressed:" destination="R2t-gb-HE3" eventType="touchUpInside" id="HAK-Cc-2Lw"/>
                                     <segue destination="SGa-WX-MCS" kind="show" identifier="SetupToSettings" id="PRf-ew-qaQ"/>
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-mG-jWt">
-                                <rect key="frame" x="2" y="30" width="375" height="44"/>
+                                <rect key="frame" x="-1" y="30" width="376" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="GAF-Hw-jsv"/>
@@ -710,14 +713,20 @@
                             <constraint firstItem="qAq-Vg-9Ie" firstAttribute="leading" secondItem="WYV-fh-EC6" secondAttribute="leading" constant="160" id="Unk-lw-TLC"/>
                             <constraint firstItem="lsW-2T-kno" firstAttribute="leading" secondItem="Zb7-45-Xd7" secondAttribute="leadingMargin" constant="-22" id="cJY-BB-vnu"/>
                             <constraint firstAttribute="trailingMargin" secondItem="lsW-2T-kno" secondAttribute="trailing" constant="-18" id="iHg-IH-fEW"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="qAq-Vg-9Ie" secondAttribute="bottom" constant="-7" id="ykD-gE-Lk3"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="qAq-Vg-9Ie" secondAttribute="bottom" constant="-13" id="ykD-gE-Lk3"/>
                             <constraint firstItem="lsW-2T-kno" firstAttribute="top" secondItem="WYV-fh-EC6" secondAttribute="top" constant="27" id="zZm-1L-v7j"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="HomeAssistantTokenTextField" destination="m6f-by-GrL" id="PMb-7x-5gI"/>
+                        <outlet property="dnoTextField" destination="isA-Zx-TV5" id="MRs-47-uDg"/>
+                        <outlet property="homeAssistantUrlTextField" destination="BsU-vy-xKw" id="JAb-5O-aUx"/>
+                        <outlet property="voltageTextField" destination="mar-KB-t5k" id="M7s-ss-nsO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eC1-ti-7rI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3172" y="-13.300492610837439"/>
+            <point key="canvasLocation" x="3864.8000000000002" y="-13.300492610837439"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wZc-Gc-AxG">

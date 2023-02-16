@@ -45,6 +45,7 @@ class StatisticsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //set this view as a homeManagerDelegate
         homeManager.delegate = self
         //collect all the data

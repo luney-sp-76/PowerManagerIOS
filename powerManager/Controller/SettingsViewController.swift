@@ -15,6 +15,7 @@ var batteryDelegate: BatteryMonitorViewControllerDelegate?
 class SettingsViewController: UIViewController {
     
     
+    @IBOutlet weak var setUpButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     var homeManager = HomeManager()
@@ -45,6 +46,8 @@ class SettingsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let setupButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(self.setupButtonTapped))
+                navigationItem.rightBarButtonItem = setupButton
         // initate this vew a s homeManager delegate
         homeManager.delegate = self
         // call the home manager method to fetchData from the API
@@ -59,6 +62,12 @@ class SettingsViewController: UIViewController {
         title = K.appName
         //navigationItem.hidesBackButton = true
     }
+    
+    @objc func setupButtonTapped() {
+           // Handle setup button tap here
+           // For example, perform a segue to the setup view controller
+        performSegue(withIdentifier: K.settingsToSetup, sender: self)
+       }
     
     @IBAction func setButtonPressed(_ sender: UIButton) {
         //print("when the set button was pressed count = \(count)")
@@ -76,6 +85,14 @@ class SettingsViewController: UIViewController {
         }
         
     }
+    
+    
+    @IBAction func setUpButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: K.settingsToSetup, sender: self)
+    }
+    
+    
+    
 }
 
 //MARK: - HomeManagerDelegate
@@ -153,6 +170,8 @@ extension SettingsViewController: UITableViewDataSource {
         return " "
        
     }
+    
+    
     
     
 }
