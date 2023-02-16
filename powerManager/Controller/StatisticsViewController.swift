@@ -49,7 +49,23 @@ class StatisticsViewController: UIViewController {
         //collect all the data
         homeManager.fetchDeviceData()
         view.addSubview(batteryLevelChartView)
+        //converts the dateformat into month and day
         batteryLevelChartView.xAxis.valueFormatter = dateValueFormat
+        
+    }
+    
+    //lock the screen orientation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait)
+        // Or to rotate and lock
+        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+    //removes the contstraint on orientation lock from portrait back to all
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
     }
     
     // send the data to firebase from the deviceInfo array
@@ -95,9 +111,9 @@ class StatisticsViewController: UIViewController {
         
     }
    
-    
-    //MARK: - ChartBatteryData()
-    // function creates a LineChart of the batteryLevel over the past 7 days
+    //MARK: - Chartview Data
+  
+     //function creates a LineChart of the batteryLevel over the past 7 days
     func  chartBatteryData() {
         var chartDataEntries = [ChartDataEntry]()
         let aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
@@ -131,9 +147,57 @@ class StatisticsViewController: UIViewController {
         lineChartView.rightAxis.enabled = false
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.chartDescription.text = "Battery Level Over Time"
+
+        batteryLevelChartView.data = chartData
+        //print(type(of: chartData))
+    }
+    
+   
+    // function to create chart data for a specific time frame
+    func chartData(forStartDate startDate: Date, endDate: Date) {
+        var chartDataEntries = [ChartDataEntry]()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        
+       
+        
+        for device in deviceData {
+            if device.entity_id.contains(K.batteryLevel) {
+                if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
+                   lastUpdated >= startDate && lastUpdated <= endDate {
+                    let batteryLevel = Double(device.state) ?? 0.0
+                    let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
+                    let timeInterval = reverseTimestamp.timeIntervalSince1970
+                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
+                    chartDataEntries.append(dataEntry)
+                }
+            }
+        }
+        
+        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Battery Level")
+        chartDataSet.colors = [UIColor.blue]
+        chartDataSet.valueColors = [UIColor.red]
+        chartDataSet.drawValuesEnabled = true
+        
+        let chartData = LineChartData(dataSet: chartDataSet)
+        lineChartView.data = chartData
+        lineChartView.xAxis.valueFormatter = dateValueFormat
+        lineChartView.leftAxis.axisMinimum = 0
+        lineChartView.leftAxis.axisMaximum = 100
+        lineChartView.rightAxis.enabled = false
+        lineChartView.xAxis.labelPosition = .bottom
+        lineChartView.chartDescription.text = "Battery Level Over Time"
         
         batteryLevelChartView.data = chartData
-        print(type(of: chartData))
+    }
+
+
+
+    @IBAction func datePickerMoved(_ sender: UIDatePicker) {
+        let startDate = sender.date
+           let endDate = Date()
+           chartData(forStartDate: startDate, endDate: endDate)
     }
     
     

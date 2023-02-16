@@ -451,14 +451,31 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
                                 <rect key="frame" x="16" y="117" width="343" height="281"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i73-9S-kEe">
+                                <rect key="frame" x="32" y="713" width="311" height="34"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="34" id="41h-97-2Ih"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="datePickerMoved:" destination="GE5-nL-MZN" eventType="valueChanged" id="nbs-Gy-PlV"/>
+                                </connections>
+                            </datePicker>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7a5-l9-CvK"/>
                         <color key="backgroundColor" name="statsandsettings"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="EzU-lW-jbb" secondAttribute="bottom" constant="414" id="1Y9-l7-dCO"/>
+                            <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="i73-9S-kEe" secondAttribute="bottom" constant="31" id="OrH-74-3Se"/>
+                            <constraint firstItem="i73-9S-kEe" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" constant="32" id="d4E-np-lTC"/>
+                            <constraint firstItem="EzU-lW-jbb" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" constant="26" id="f1m-sr-hzt"/>
+                            <constraint firstItem="EzU-lW-jbb" firstAttribute="trailing" secondItem="U14-w0-x4Z" secondAttribute="trailingMargin" id="iW6-jC-Z1A"/>
+                            <constraint firstItem="EzU-lW-jbb" firstAttribute="leading" secondItem="U14-w0-x4Z" secondAttribute="leadingMargin" id="j08-HI-hrN"/>
+                            <constraint firstItem="EzU-lW-jbb" firstAttribute="centerX" secondItem="i73-9S-kEe" secondAttribute="centerX" id="zNo-eQ-H9a"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fiK-yu-enY"/>
                     <connections>
