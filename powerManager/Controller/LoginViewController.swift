@@ -9,12 +9,11 @@ import UIKit
 import FirebaseAuth
 
 class LoginViewController: UIViewController {
-
-
+    
+    
     @IBOutlet weak var emailTextField: UITextField!
-    
-    
     @IBOutlet weak var passwordTextField: UITextField!
+    
     
     
     override func viewDidLoad() {
@@ -40,5 +39,34 @@ class LoginViewController: UIViewController {
             
         }
     }
+    
+    
+    // reset password with email field
+    @IBAction func forgotPasswordPressed(_ sender: Any) {
+        if let email = emailTextField.text, !email.isEmpty {
+            Auth.auth().sendPasswordReset(withEmail: email) { error in
+                if let error = error {
+                    //notify users
+                    let alert = UIAlertController(title: "Please Check!", message: error.localizedDescription, preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                } else {
+                    //notify users
+                    let alert = UIAlertController(title: "Password reset email sent", message: "Please check your email inbox for instructions on how to reset your password.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    alert.addAction(okAction)
+                    self.present(alert, animated: true, completion: nil)
+                }
+            }
+        } else {
+            //notify users
+            let alert = UIAlertController(title: "Please Check!", message: "Please enter your email address.", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+            alert.addAction(okAction)
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     
 }
