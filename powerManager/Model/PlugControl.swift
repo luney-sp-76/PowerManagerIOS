@@ -13,11 +13,11 @@ protocol PlugManagerDelegate {
 
 struct PlugControl {
     
-    let homeAssistantPostUrl = K.plugStateUrl
+    let homeAssistantPostUrl = K.baseURL
     var delegate: PlugManagerDelegate?
     
     func fetchPlugData(urlEndPoint: String, device: String) {
-        let urlString = "\(homeAssistantPostUrl)\(urlEndPoint)"
+        let urlString = "\(homeAssistantPostUrl)services/switch/\(urlEndPoint)"
         print(urlString)
         sendRequest(urlString: urlString, device: device)
     }
