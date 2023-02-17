@@ -70,14 +70,14 @@ class StatisticsViewController: UIViewController {
         // Call `dateSelectionHandler` whenever the user changes the date picker
         datePicker.addTarget(self, action: #selector(datePickerMoved), for: .valueChanged)
         
-        DispatchQueue.global(qos: .background).async {
+        DispatchQueue.global(qos: .background).async { [self] in
         // call for the current cost for data from the energy cost api
         energyManager.updateEnergyData(startDate: startDate!, endDate: endDate!) { [self] energyData in
             if let energyData = energyData {
                 // Use the energy data
                 energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: self.deviceData)
                 DispatchQueue.main.async {
-                chartSevenDaysEnergyData()
+                    self.chartSevenDaysEnergyData()
                 }
             } else {
                 // Handle the error case
