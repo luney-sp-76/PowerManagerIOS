@@ -20,6 +20,7 @@
 		BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6327D7297D599100514BF6 /* DevicesCell.xib */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
 		BD65FCFE2962F57900C80565 /* DeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCFD2962F57900C80565 /* DeviceData.swift */; };
+		BD6C4A5D299F7FD700D401DD /* EnergyCostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */; };
 		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
 		BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
@@ -80,6 +81,7 @@
 		BD6327D7297D599100514BF6 /* DevicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesCell.xib; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
 		BD65FCFD2962F57900C80565 /* DeviceData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceData.swift; sourceTree = "<group>"; };
+		BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostDataManager.swift; sourceTree = "<group>"; };
 		BD6D3ED829754082009C063A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
@@ -179,6 +181,7 @@
 				BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */,
 				BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */,
 				BDD015F3299E748E007D9036 /* EnergyManager.swift */,
+				BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -445,6 +448,7 @@
 				DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */,
 				BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */,
 				DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */,
+				BD6C4A5D299F7FD700D401DD /* EnergyCostDataManager.swift in Sources */,
 				BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */,
 				BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */,
 				DAE45FF0295E1CDD00704D59 /* SceneDelegate.swift in Sources */,

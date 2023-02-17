@@ -16,29 +16,40 @@ struct EnergyManager {
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let startString = dateFormatter.string(from: startDate)
         let endString = dateFormatter.string(from: endDate)
-        
+        print("fetching Data from FireStore.. currently hold the startDate \(startDate) and endDate \(endDate)")
         // Get the energy read data from Firestore
         let db = Firestore.firestore()
-        let userId = Auth.auth().currentUser?.uid
-        let docRef = db.collection(K.FStore.energyread).document()
+        let userEmail = Auth.auth().currentUser?.email ?? ""
+        let docRef = db.collection("energyReadCollection").document("energydatadocument")
         docRef.getDocument { document, error in
-            guard let document = document, document.exists, let dno = document.get("dno") as? String, let voltage = document.get("voltage") as? String else {
-                // Handle the error case
+            if let error = error {
+                print("Error getting document: \(error)")
                 completion(nil)
-                return
-            }
-            
-            // Fetch the energy data from the API and send it to the caller
-            fetchEnergyData(dno: dno, voltage: voltage, startDate: startString, endDate: endString) { energyModels in
-                completion(energyModels)
+            } else if let document = document, document.exists {
+                let dno = document.get("dno") as? Int ?? 0
+                let voltage = document.get("voltage") as? String ?? ""
+                let userEmail = document.get("user") as? String ?? ""
+                
+                // Fetch the energy data from the API
+                print("Fetching energy data...with \(dno) and \(voltage) for startdate \(startDate) and endDate \(endDate)")
+                // Fetch the energy data from the API
+                fetchEnergyData(dno: dno, voltage: voltage, startDate: startString, endDate: endString) { energyModels in
+                print("Finished fetching energy data")
+                    completion(energyModels)
+                }
+            } else {
+                //print("no document by the name \(document) exists")
+                completion(nil)
             }
         }
     }
 
     
     // The fetchEnergyData method remains unchanged
-    func fetchEnergyData(dno: String, voltage: String, startDate: String, endDate: String, completion: @escaping ([EnergyModel]?) -> Void) {
+    func fetchEnergyData(dno: Int, voltage: String, startDate: String, endDate: String, completion: @escaping ([EnergyModel]?) -> Void) {
         let urlString = "https://odegdcpnma.execute-api.eu-west-2.amazonaws.com/development/prices?dno=\(dno)&voltage=\(voltage)&start=\(startDate)&end=\(endDate)"
+    //https://odegdcpnma.execute-api.eu-west-2.amazonaws.com/development/prices?dno=23&voltage=LV&start=14-02-2023&end=15-02-2023
+        print("Call to for electricity cost data from the url \(urlString)")
         guard let url = URL(string: urlString) else {
             completion(nil)
             return
@@ -68,4 +79,5 @@ struct EnergyManager {
             }
         }.resume()
     }
+    
 }

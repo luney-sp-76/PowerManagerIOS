@@ -30,6 +30,7 @@ class StatisticsViewController: UIViewController {
     
     //the data for the database goes in here
     var deviceData: [HomeData] = []
+   
     let db = Firestore.firestore()
     let dataProvider = DataProvider()
     
@@ -41,6 +42,9 @@ class StatisticsViewController: UIViewController {
     var endDate: Date?
     var dateSelectionHandler: ((Date?, Date?) -> Void)?
     let energyManager = EnergyManager()
+    var energyCostArray: [EnergyModel] = []
+    let energyCostManager = EnergyCostDataManager()
+    var energyCostData: [ChartDataEntry] = []
     
     @IBOutlet weak var batteryLevelChartView: LineChartView!
     
@@ -59,18 +63,21 @@ class StatisticsViewController: UIViewController {
         //converts the dateformat into month and day
         batteryLevelChartView.xAxis.valueFormatter = dateValueFormat
         powerUsageChartView.xAxis.valueFormatter = dateValueFormat
+        //create data for default 7 day data
         endDate = currentDate
         startDate = calendar.date(byAdding: .day, value: -7, to: endDate!)
         dateSelectionHandler?(startDate, endDate)
         // Call `dateSelectionHandler` whenever the user changes the date picker
         datePicker.addTarget(self, action: #selector(datePickerMoved), for: .valueChanged)
         // call for the current cost for data from the energy cost api
-        energyManager.updateEnergyData(startDate: startDate!, endDate: endDate!) { energyData in
+        energyManager.updateEnergyData(startDate: startDate!, endDate: endDate!) { [self] energyData in
             if let energyData = energyData {
                 // Use the energy data
-                print(energyData)
+                energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: self.deviceData)
+                chartSevenDaysEnergyData()
             } else {
                 // Handle the error case
+                print("error collecting the energydata array")
             }
         }
         
@@ -92,11 +99,12 @@ class StatisticsViewController: UIViewController {
     
     // send the data to firebase from the deviceInfo array
     func sendData(){
-        if let userData = Auth.auth().currentUser?.email{
-            uploadData(userData: userData)
-        }
-        //pull data back from the database
-        downloadData()
+       // if let userData = Auth.auth().currentUser?.email{
+            //uploadData(userData: userData)
+            //}
+            //pull data back from the database
+            downloadData()
+        //}
         
     }
     
@@ -167,7 +175,7 @@ class StatisticsViewController: UIViewController {
         lineChartView.data = chartData
         //Finally, customize the chart view according to your preferences. For example, you can set the x-axis to use the last_updated as the time axis and the y-axis to use the battery level as the value axis.
         lineChartView.xAxis.valueFormatter = dateValueFormat
-        print("This is in the chart \(dateValueFormat)")
+        //print("This is in the chart \(dateValueFormat)")
         lineChartView.leftAxis.axisMinimum = 0
         lineChartView.leftAxis.axisMaximum = 100
         lineChartView.rightAxis.enabled = false
@@ -219,25 +227,19 @@ class StatisticsViewController: UIViewController {
 //MARK: - Power ChartView Data
     
     func  chartSevenDaysEnergyData() {
-        var chartDataEntries = [ChartDataEntry]()
-        let aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
-        let dateToCompare = DateFormat.dateConvert(inputDate: aWeekAgo)
+        var chartDataEntries = energyCostData
         // print(dateToCompare)
         for devices in deviceData {
-            if devices.entity_id.hasSuffix("_energy"){
-                //print(devices.lastUpdated)
-                if Double(devices.lastUpdated) ?? Date.timeIntervalSinceReferenceDate <= Double(dateToCompare) ?? Date.timeIntervalSinceReferenceDate {
-                    let batteryLevel = Double(devices.state)
+            if devices.entity_id.hasSuffix("_energy") {
+                if let batteryLevel = Double(devices.state) {
                     let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
-                    // convert Date to TimeInterval (typealias for Double)
                     let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    //print("This is what is sent to the chart \(timeInterval)")
-                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel ?? 0.0)
+                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
                     chartDataEntries.append(dataEntry)
                 }
             }
         }
-        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "KWh")
+        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Cost p/KWh")
         chartDataSet.colors = [UIColor.blue]
         chartDataSet.valueColors = [UIColor.red]
         chartDataSet.drawValuesEnabled = true
@@ -245,12 +247,17 @@ class StatisticsViewController: UIViewController {
         lineChartView.data = chartData
         //x-axis to use the last_updated as the time axis and the y-axis to use the KWh reading as the value axis.
         lineChartView.xAxis.valueFormatter = dateValueFormat
-        print("This is in the chart \(dateValueFormat)")
-        lineChartView.leftAxis.axisMinimum = 0
-        lineChartView.leftAxis.axisMaximum = 3
+        //print("This is in the chart \(dateValueFormat)")
+        if let minCost = chartDataEntries.min(by: { $0.y < $1.y })?.y,
+           let maxCost = chartDataEntries.max(by: { $0.y < $1.y })?.y {
+            let axisPadding = (maxCost - minCost) * 0.1 // add 10% padding to top and bottom
+            lineChartView.leftAxis.axisMinimum = minCost - axisPadding
+            lineChartView.leftAxis.axisMaximum = maxCost + axisPadding
+        }
+
         lineChartView.rightAxis.enabled = false
         lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.chartDescription.text = "Energy Use Over Time"
+        lineChartView.chartDescription.text = "Energy cost Over Time"
 
         powerUsageChartView.data = chartData
         //print(type(of: chartData))
@@ -258,45 +265,40 @@ class StatisticsViewController: UIViewController {
     
 
     // date picker operated chart view for the energy used by the smart plug
-    func energyChartData(forStartDate startDate: Date, endDate: Date) {
-        var chartDataEntries = [ChartDataEntry]()
-        
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-
-
-        for device in deviceData {
-            if device.entity_id.hasSuffix("_energy") {
-                if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
-                   lastUpdated >= startDate && lastUpdated <= endDate {
-                    let energyUsage = Double(device.state) ?? 0.0
-                    let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
+    func energyChartData() {
+        var chartDataEntries = energyCostData
+        for devices in deviceData {
+            if devices.entity_id.hasSuffix("_energy") {
+                if let batteryLevel = Double(devices.state) {
+                    let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
                     let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    let dataEntry = ChartDataEntry(x: timeInterval, y: energyUsage)
+                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
                     chartDataEntries.append(dataEntry)
                 }
             }
         }
-
-        if chartDataEntries.isEmpty {
-            // no data to display
-            return
-        }
-
-        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Energy Usage (KWh)")
+        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Cost p/KWh")
         chartDataSet.colors = [UIColor.blue]
         chartDataSet.valueColors = [UIColor.red]
         chartDataSet.drawValuesEnabled = true
-
         let chartData = LineChartData(dataSet: chartDataSet)
         lineChartView.data = chartData
+        //x-axis to use the last_updated as the time axis and the y-axis to use the KWh reading as the value axis.
         lineChartView.xAxis.valueFormatter = dateValueFormat
-        lineChartView.leftAxis.axisMinimum = 0
+        //print("This is in the chart \(dateValueFormat)")
+        if let minCost = chartDataEntries.min(by: { $0.y < $1.y })?.y,
+           let maxCost = chartDataEntries.max(by: { $0.y < $1.y })?.y {
+            let axisPadding = (maxCost - minCost) * 0.1 // add 10% padding to top and bottom
+            lineChartView.leftAxis.axisMinimum = minCost - axisPadding
+            lineChartView.leftAxis.axisMaximum = maxCost + axisPadding
+        }
+
         lineChartView.rightAxis.enabled = false
         lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.chartDescription.text = "Energy Usage Over Time"
+        lineChartView.chartDescription.text = "Energy cost Over Time"
 
         powerUsageChartView.data = chartData
+        //print(type(of: chartData))
     }
 
     
@@ -309,7 +311,25 @@ class StatisticsViewController: UIViewController {
         // Notify the date selection handler with the updated dates
            dateSelectionHandler?(startDate, endDate)
            batteryChartData(forStartDate: startDate, endDate: endDate)
-           energyChartData(forStartDate: startDate, endDate: endDate)
+        
+
+        //update the energyCost Array with data for the dates selected
+        DispatchQueue.global().async{
+            self.energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
+                if let energyData = energyData {
+                    // Use the energy data
+                    let energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: self.deviceData)
+                    self.energyCostData = energyCostData
+                    DispatchQueue.main.async {
+                        self.energyChartData()
+                    }
+                    
+                } else {
+                    // Handle the error case
+                    print("error collecting the energydata array")
+                }
+            }
+        }
     }
     
     
@@ -325,7 +345,7 @@ extension StatisticsViewController: HomeManagerDelegate {
         DispatchQueue.main.async {[self] in
             if !devices.isEmpty {
                 self.deviceInfo = devices
-                //upload the data to firebase
+                //upload the data to firebase and download from firebase to charts
                 sendData()
                 
             }
