@@ -123,33 +123,6 @@ class BatteryMonitorViewController: UIViewController {
         devicesArraySemaphore.signal()
     }
     
-    
-//    //managed calls to check the battery level check the plug state in recursive loop
-//    func scheduleFetchData() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-//            //double check we are now using the updated devices
-//            self.devicesArraySemaphore.wait()
-//            let localDevicesArray = self.devicesArray
-//            self.devicesArraySemaphore.signal()
-//
-//            for device in localDevicesArray {
-//                if device.contains(K.batteryLevel){
-//                    self.iPhoneBatteryLevelEntityID = device
-//                }
-//                if device.contains(K.switchs){
-//                    self.plugStateEntityID = device
-//                }
-//            }
-//           // print("The current phone is \(self.iPhoneBatteryLevelEntityID)")
-//            //print("The current plug is \(self.plugStateEntityID)")
-//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
-//            self.checkPlugState(plugDevice: self.plugStateEntityID)
-//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
-//            self.scheduleFetchData()
-//        }
-//
-//    }
-    
     func scheduleFetchData(){
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] timer in
@@ -168,12 +141,6 @@ class BatteryMonitorViewController: UIViewController {
             self.scheduleFetchData()
             }
 
-
-    // not in use with the scheduleFetchData as it will crash the app unless the function is changed to a timer
-//    func restartFetchData() async {
-//      shouldStop = false
-//        await scheduleFetchData()
-//    }
     
     // change the plug icon color on the viewcontroller UI to match its state
     func updatePlugColour(state: String) {
@@ -199,6 +166,7 @@ class BatteryMonitorViewController: UIViewController {
         setBatteryLevel.text = String(format: "%d",  lowestBatteryChargeLevel)
         currentBatteryLevel = Int(batteryPercentageLabel.text ?? "0")!
     }
+    
     // updates the colour of the text for the users battery level and changes thetext on the button to done
     @IBAction func buttonPressed(_ sender: UIButton) {
         // change button text to set level
@@ -208,8 +176,6 @@ class BatteryMonitorViewController: UIViewController {
         stopFetchingData()
         scheduleFetchData()
     }
-    
-    
     
     // performs the Firebase Auth logout function to sign the user out of the application
     @IBAction func logoutButtonPressed(_ sender: UIBarButtonItem) {
@@ -221,8 +187,8 @@ class BatteryMonitorViewController: UIViewController {
             navigationController?.popToRootViewController(animated: true)
         } catch let signOutError as NSError {
             print("Error signing out: %@", signOutError)
-        }
-    }
+      }
+   }
     
     
     
@@ -306,5 +272,29 @@ extension BatteryMonitorViewController: PlugManagerDelegate {
         print(error)
     }
 }
-
+//    //managed calls to check the battery level check the plug state in recursive loop
+//    func scheduleFetchData() {
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
+//            //double check we are now using the updated devices
+//            self.devicesArraySemaphore.wait()
+//            let localDevicesArray = self.devicesArray
+//            self.devicesArraySemaphore.signal()
+//
+//            for device in localDevicesArray {
+//                if device.contains(K.batteryLevel){
+//                    self.iPhoneBatteryLevelEntityID = device
+//                }
+//                if device.contains(K.switchs){
+//                    self.plugStateEntityID = device
+//                }
+//            }
+//           // print("The current phone is \(self.iPhoneBatteryLevelEntityID)")
+//            //print("The current plug is \(self.plugStateEntityID)")
+//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
+//            self.checkPlugState(plugDevice: self.plugStateEntityID)
+//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
+//            self.scheduleFetchData()
+//        }
+//
+//    }
 
