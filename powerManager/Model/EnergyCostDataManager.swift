@@ -8,13 +8,11 @@
 import Foundation
 import Charts
 //combine the homedata and energy cost data to create a chart of cost over time
-
-
     struct EnergyCostDataManager {
         func combineEnergyData(energyModels: [EnergyModel], energyReadings: [HomeData]) -> [ChartDataEntry] {
             // Filter energyReadings to only include data from devices with entity IDs ending in "_energy"
             let filteredReadings = energyReadings.filter { $0.entity_id.hasSuffix("_energy") }
-            
+            //chartData array 
             var chartDataEntries: [ChartDataEntry] = []
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
