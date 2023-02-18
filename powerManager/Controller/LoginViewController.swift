@@ -31,7 +31,7 @@ class LoginViewController: UIViewController {
                            if self?.failedLoginAttempts == 3 {
                                self?.showResetPasswordPrompt()
                            } else {
-                               // notify the user of the error
+                               // notify the user of the error followed by a dismissal of OK
                                let alert = UIAlertController(title: "Please Check!", message: e.localizedDescription, preferredStyle: .alert)
                                let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
                                alert.addAction(okAction)
