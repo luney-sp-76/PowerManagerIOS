@@ -8,8 +8,6 @@
 import UIKit
 
 protocol BatteryMonitorViewControllerDelegate {
-    
-    //update the battery monitor delegate
     func updateDevices(battery: String, plug: String)
 }
 var batteryDelegate: BatteryMonitorViewControllerDelegate?
@@ -50,7 +48,7 @@ class SettingsViewController: UIViewController {
         super.viewDidLoad()
         let setupButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(self.setupButtonTapped))
                 navigationItem.rightBarButtonItem = setupButton
-        // initate this view as homeManager delegate
+        // initate this vew a s homeManager delegate
         homeManager.delegate = self
         // call the home manager method to fetchData from the API
         homeManager.fetchDeviceData()
@@ -64,35 +62,36 @@ class SettingsViewController: UIViewController {
         title = K.appName
         //navigationItem.hidesBackButton = true
     }
-    //func segues to setupviewcontroller
+    
     @objc func setupButtonTapped() {
-           // Handle setup button
-           // perform a segue to the setup view controller
+           // Handle setup button tap here
+           // For example, perform a segue to the setup view controller
         performSegue(withIdentifier: K.settingsToSetup, sender: self)
        }
     
-    //is this a duplicate function???
-    @IBAction func setUpButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: K.settingsToSetup, sender: self)
-    }
-    
-    
-    
-    //func highlights the set button and then segues to batterymonitorviewcontroller
     @IBAction func setButtonPressed(_ sender: UIButton) {
+        //print("when the set button was pressed count = \(count)")
+        //print("and the array looks like this \(selectedDevices)")
         sender.isSelected = true
         performSegue(withIdentifier: K.settingsToBatteryMonitor, sender: self)
     }
     //sends the choosen devices to the device array in batterymonitorViewController and updates the batterystate variable for api calls
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BatteryMonitorViewController {
-              //update the batterymonitorviewcontroller  with the chosen devices
+        
             destination.updateDevicesArray(newDevicesArray: selectedDevices)
             //destination.devicesArray = selectedDevices
             destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId
         }
         
-    }  
+    }
+    
+    
+    @IBAction func setUpButtonPressed(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: K.settingsToSetup, sender: self)
+    }
+    
+    
     
 }
 
@@ -152,8 +151,8 @@ extension SettingsViewController: UITableViewDataSource {
         return cell
     }
     
-    // this func uses known knowledge that the string cannot be empty as it should not be called with an empty string
-    // but will return an empty string if it is called with an empty string
+    // this func uses known knowledge that the string cannot be empty as it should not be called
+    // but will return an empty string if its called with an empty string
     // the function expects a string that starts with sensor. so offsets at character 7
     //it expects a named device followed by battery_level so a minimum of 1 letter and _ beforehand
     // I have set it to end at character 17 which would encompass the word battery but no futher
@@ -171,7 +170,8 @@ extension SettingsViewController: UITableViewDataSource {
         return " "
        
     }
-
+    
+    
     
     
 }
@@ -205,6 +205,8 @@ extension SettingsViewController: UITableViewDelegate {
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
                     cell.isSelected = false
+                    //count -= 1
+                    // print(count)
                 }
                 batteryDeviceSelected = false
                 //print("You deselected the battery device")
@@ -217,14 +219,23 @@ extension SettingsViewController: UITableViewDelegate {
             if !switchDeviceSelected {
                 selectedDevices.append(device_id)
                 plugDevice = device_id
+                
                 switchDeviceSelected = true
+                //print("You set \(device_id) as the smart plug device")
+                //print("\(selectedDevices) potential second check of the array")
+                //count += 1
+                //print(count)
             } else {
                 // remove the existing switch device from the array
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
+                    //count -= 1
+                    //print(count)
                     cell.isSelected = false
                 }
                 switchDeviceSelected = false
+                // print("You deselected the smart plug device")
+                //print("\(selectedDevices) if you changed your mind then maybe second or greater check of the array")
                 DispatchQueue.main.async {
                     tableView.reloadData()
                 }
@@ -245,8 +256,8 @@ extension SettingsViewController: UITableViewDelegate {
 
 
 
-///Attributted Icons
-///<a href="https://www.flaticon.com/free-icons/full-battery" title="full battery icons">Full battery icons created by Pixel perfect - Flaticon</a>
-///<a href="https://www.flaticon.com/free-icons/plug" title="plug icons">Plug icons created by Flat Icons - Flaticon</a>
+//Attributted Icons
+//<a href="https://www.flaticon.com/free-icons/full-battery" title="full battery icons">Full battery icons created by Pixel perfect - Flaticon</a>
+//<a href="https://www.flaticon.com/free-icons/plug" title="plug icons">Plug icons created by Flat Icons - Flaticon</a>
 
 
