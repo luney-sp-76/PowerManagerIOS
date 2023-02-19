@@ -153,6 +153,48 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		BD91BFCB29A26ED20016FF41 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				BD65FCF92962EC5000C80565 /* DeviceModel.swift */,
+				BD3C2F93297D7B5B00F4B914 /* Device.swift */,
+				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
+				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
+				BDA6B0682965D5DF000EE544 /* PlugControl.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
+		BD91BFCC29A26EEF0016FF41 /* HASS */ = {
+			isa = PBXGroup;
+			children = (
+				BDFF675629776359006495FC /* HomeAssistantData.swift */,
+				BDB332BE29885E1D0067B721 /* HomeData.swift */,
+				BDFF675829788095006495FC /* HomeManager.swift */,
+			);
+			path = HASS;
+			sourceTree = "<group>";
+		};
+		BD91BFCD29A26F2E0016FF41 /* FirebaseFirestore */ = {
+			isa = PBXGroup;
+			children = (
+				BDC629C3299010770063CA6F /* FirebaseUpdater.swift */,
+				BDC629C5299010E50063CA6F /* DataProvider.swift */,
+				BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */,
+			);
+			path = FirebaseFirestore;
+			sourceTree = "<group>";
+		};
+		BD91BFCE29A26F5D0016FF41 /* EnergyCost */ = {
+			isa = PBXGroup;
+			children = (
+				BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */,
+				BDD015F3299E748E007D9036 /* EnergyManager.swift */,
+				BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */,
+			);
+			path = EnergyCost;
+			sourceTree = "<group>";
+		};
 		DAB806F5295E332E00C5136E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,21 +209,11 @@
 		DAB806F6295E333D00C5136E /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				BD65FCF92962EC5000C80565 /* DeviceModel.swift */,
-				BD3C2F93297D7B5B00F4B914 /* Device.swift */,
-				BD65FCFD2962F57900C80565 /* DeviceData.swift */,
-				BDA6B019296318AB000EE544 /* DeviceManager.swift */,
-				BDFF675629776359006495FC /* HomeAssistantData.swift */,
-				BDB332BE29885E1D0067B721 /* HomeData.swift */,
-				BDFF675829788095006495FC /* HomeManager.swift */,
-				BDA6B0682965D5DF000EE544 /* PlugControl.swift */,
-				BDC629C3299010770063CA6F /* FirebaseUpdater.swift */,
-				BDC629C5299010E50063CA6F /* DataProvider.swift */,
 				BDC629C729901F060063CA6F /* DateFormatter.swift */,
-				BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */,
-				BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */,
-				BDD015F3299E748E007D9036 /* EnergyManager.swift */,
-				BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */,
+				BD91BFCB29A26ED20016FF41 /* Devices */,
+				BD91BFCC29A26EEF0016FF41 /* HASS */,
+				BD91BFCD29A26F2E0016FF41 /* FirebaseFirestore */,
+				BD91BFCE29A26F5D0016FF41 /* EnergyCost */,
 			);
 			path = Model;
 			sourceTree = "<group>";
