@@ -23,6 +23,7 @@
 		BD6C4A5D299F7FD700D401DD /* EnergyCostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */; };
 		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
 		BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */; };
+		BD91BFD029A27D9D0016FF41 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD91BFCF29A27D9D0016FF41 /* Crypto.swift */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
 		BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB332BE29885E1D0067B721 /* HomeData.swift */; };
@@ -84,6 +85,7 @@
 		BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostDataManager.swift; sourceTree = "<group>"; };
 		BD6D3ED829754082009C063A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BD91BFCF29A27D9D0016FF41 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
 		BDB332BE29885E1D0067B721 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */,
 				BD6D3ED829754082009C063A /* Constants.swift */,
 				BDCC52F02982AB6D00EEA034 /* AppUtility.swift */,
+				BD91BFCF29A27D9D0016FF41 /* Crypto.swift */,
 			);
 			path = powerManager;
 			sourceTree = "<group>";
@@ -480,6 +483,7 @@
 				DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */,
 				BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */,
 				DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */,
+				BD91BFD029A27D9D0016FF41 /* Crypto.swift in Sources */,
 				BD6C4A5D299F7FD700D401DD /* EnergyCostDataManager.swift in Sources */,
 				BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */,
 				BDCC52F12982AB6D00EEA034 /* AppUtility.swift in Sources */,

@@ -28,7 +28,7 @@ struct EnergyManager {
             } else if let document = document, document.exists {
                 let dno = document.get("dno") as? Int ?? 0
                 let voltage = document.get("voltage") as? String ?? ""
-                let userEmail = document.get("user") as? String ?? ""
+                _ = document.get("user") as? String ?? ""
                 
                 // Fetch the energy data from the API
                 print("Fetching energy data...with \(dno) and \(voltage) for startdate \(startDate) and endDate \(endDate)")
