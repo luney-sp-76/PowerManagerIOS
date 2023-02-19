@@ -21,20 +21,32 @@ class BatteryMonitorViewController: UIViewController {
     var plugControl = PlugControl()
     //initial HomeManager
     var homeManager = HomeManager()
+    //for uploading device objects to firebase firestore
     var dataProvider = DataProvider()
     // to hold the devies selected in settings
     var devicesArray: [String] = []
     // a boolean to manage the async schedule in the scheduleFetchData function
     var shouldStop = false
-    
-    var batteryPercentage = 21
-    // Declare the delegate property in BatteryMonitorViewController
-    var plugColour = "off"
+    //used if we use the DistpatchQueue function
+    var devicesArraySemaphore = DispatchSemaphore(value: 1)
+    // used if we don't use the DispatchQueue function
+    var timer: Timer?
+  
     var iPhoneBatteryLevelEntityID = " "
     var iPhoneBatteryStateEntityID = " "
     var plugStateEntityID = " "
-    var devicesArraySemaphore = DispatchSemaphore(value: 1)
-    var timer: Timer?
+    
+  
+    //default currentbattery level
+    var currentBatteryLevel = 100
+    //default battery charge threshold
+    var lowestBatteryChargeLevel = 21
+    // default battery level
+    var batteryPercentage = 21
+   //default battery colour
+    var plugColour = "off"
+    // set a time of the last check of the plug state
+    var lastPlugStateCheckTime: Date = Date()
 
     
     @IBOutlet weak var batteryPercentageLabel: UILabel!
@@ -45,9 +57,7 @@ class BatteryMonitorViewController: UIViewController {
     @IBOutlet weak var iPhoneBatteryDeviceName: CLTypingLabel!
     
   
-    var currentBatteryLevel = 100
-    var lowestBatteryChargeLevel = 21
-    var lastPlugStateCheckTime: Date = Date()
+ 
     
     
     
@@ -255,9 +265,6 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
        
     }
 }
-
-
-
 
 
 //MARK: - PlugControlDelegate
