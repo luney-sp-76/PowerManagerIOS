@@ -95,11 +95,13 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
         }
         // Check if homeAssistantUrl is a valid URL
         guard let _ = URL(string: homeAssistantUrl) else {
+            print("url not accpeted")
             // handle error
             return
         }
         //long lived token must be over 40 characters long
         if longLivedToken.count < 40 {
+            print("token not accepted")
             // handle error
             return
         }
@@ -130,15 +132,15 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
         let voltageText = voltageTextField.text?.uppercased()
         let homeAssistantUrl = homeAssistantUrlTextField.text
         let longLivedToken = HomeAssistantTokenTextField.text
-
+        
         // Check if either the dno and voltage fields are both completed or the homeassistant URL and token fields are both completed
         guard (dnoText != nil && voltageText != nil && !dnoText!.isEmpty && !voltageText!.isEmpty) ||
-                  (homeAssistantUrl != nil && longLivedToken != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty)
+                (homeAssistantUrl != nil && longLivedToken != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty)
         else {
             // handle error
             return
         }
-
+        
         if let dno = Int(dnoText!), let voltage = voltageText {
             //default the dno to 23 if zero is entered
             let dnoWithDefault = dno == 0 ? 23 : dno
@@ -153,22 +155,8 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
                 }
             }
         }
-
+        
         if let url = homeAssistantUrl, let token = longLivedToken {
-            // Check if homeAssistantUrl is a valid URL
-            guard let _ = URL(string: url) else {
-                // handle error
-                return
-            }
-
-            //long lived token must be 40 characters long
-            if token.count != 40 {
-                // handle error
-                return
-            }
-
-         
-
             updateSecureData(homeAssistantUrl: homeAssistantUrl!, longLivedToken: longLivedToken!) { error in
                 if let error = error {
                     // handle error
