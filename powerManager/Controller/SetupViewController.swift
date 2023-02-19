@@ -18,6 +18,10 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var homeAssistantUrlTextField: UITextField!
     @IBOutlet weak var HomeAssistantTokenTextField: UITextField!
     var lastPastedTextField: UITextField?
+    var dnoText: String = "23"
+    var voltageText: String = " "
+    var homeAssistantURl: String = " "
+    var longLivedToken: String = " "
     
     
     
@@ -62,26 +66,47 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
             return true
         }
     
-    func updateDNOAndVoltageData(dno: String, voltage: Double, completion: @escaping (Error?) -> Void) {
+    //this function sets the data as
+    func updateDNOAndVoltageData(dno: Int, voltage: String, completion: @escaping (Error?) -> Void) {
         let db = Firestore.firestore()
-        let energyDataRef = db.collection("energyReadCollection").document("energydatadocument")
-        
-        energyDataRef.updateData([
-            "dno": dno,
-            "voltage": voltage
-        ]) { error in
-            if let error = error {
-                completion(error)
-            } else {
-                completion(nil)
+        if let userEmail = Auth.auth().currentUser?.email {
+            let energyDataRef = db.collection("energyReadCollection").document(userEmail)
+            energyDataRef.setData([
+                "user": userEmail,
+                "dno": dno,
+                "voltage": voltage
+            ]) { error in
+                if let error = error {
+                    completion(error)
+                } else {
+                    completion(nil)
+                }
             }
         }
     }
-        
 
+    //This code checks if dno is zero using the == operator, and if it is, it sets dnoWithDefault to 23 using the ternary operator ? :. If dno is not zero, dnoWithDefault is set to the value of dno.
     @IBAction func setButtonPressed(_ sender: Any) {
+        guard let dnoText = dnoTextField.text, let dno = Int(dnoText), !dnoText.isEmpty,
+              let voltageText = voltageTextField.text?.uppercased(), !voltageText.isEmpty
+        else {
+            // handle error
+            return
+        }
         
+        let dnoWithDefault = dno == 0 ? 23 : dno
         
+        if !dnoText.isEmpty && !voltageText.isEmpty {
+            updateDNOAndVoltageData(dno: dnoWithDefault, voltage: voltageText) { error in
+                if let error = error {
+                    // handle error
+                    print("Error updating data: \(error.localizedDescription)")
+                } else {
+                    // data updated successfully
+                    print("Data updated successfully")
+                }
+            }
+        }
     }
     
 

@@ -699,7 +699,7 @@
                                 </connections>
                             </button>
                             <navigationBar contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G7e-mG-jWt">
-                                <rect key="frame" x="-6" y="30" width="375" height="44"/>
+                                <rect key="frame" x="-6" y="30" width="374" height="44"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem id="GAF-Hw-jsv"/>

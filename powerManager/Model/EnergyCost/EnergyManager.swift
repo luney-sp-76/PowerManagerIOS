@@ -20,7 +20,7 @@ struct EnergyManager {
         // Get the energy read data from Firestore
         let db = Firestore.firestore()
         let userEmail = Auth.auth().currentUser?.email ?? ""
-        let docRef = db.collection("energyReadCollection").document("energydatadocument")
+        let docRef = db.collection("energyReadCollection").document(userEmail)
         docRef.getDocument { document, error in
             if let error = error {
                 print("Error getting document: \(error)")
