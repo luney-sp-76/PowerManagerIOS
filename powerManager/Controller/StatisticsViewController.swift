@@ -321,6 +321,7 @@ class StatisticsViewController: UIViewController {
         DispatchQueue.global(qos: .background).async {
             self.energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
                 if let energyData = energyData {
+                    self.energyCostData = []
                     // Use the energy data
                     let energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: self.deviceData)
                     self.energyCostData = energyCostData

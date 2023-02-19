@@ -12,15 +12,11 @@ import FirebaseAuth
 class SetUpViewController: UIViewController , UITextFieldDelegate {
     
     
-    ///dno text for distribution network operator
+    
     @IBOutlet weak var dnoTextField: UITextField!
-    ///voltage text in Caps either LV HV or LV-SUB
     @IBOutlet weak var voltageTextField: UITextField!
-    ///potential url capture for the users Homeassistant instance
     @IBOutlet weak var homeAssistantUrlTextField: UITextField!
-    ///potential longlived token capture for the users Homeassistant intance
     @IBOutlet weak var HomeAssistantTokenTextField: UITextField!
-    //variable to mark user pasted data from clipboard
     var lastPastedTextField: UITextField?
     
     
@@ -65,6 +61,22 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
             lastPastedTextField = nil
             return true
         }
+    
+    func updateDNOAndVoltageData(dno: String, voltage: Double, completion: @escaping (Error?) -> Void) {
+        let db = Firestore.firestore()
+        let energyDataRef = db.collection("energyReadCollection").document("energydatadocument")
+        
+        energyDataRef.updateData([
+            "dno": dno,
+            "voltage": voltage
+        ]) { error in
+            if let error = error {
+                completion(error)
+            } else {
+                completion(nil)
+            }
+        }
+    }
         
 
     @IBAction func setButtonPressed(_ sender: Any) {
