@@ -98,9 +98,14 @@ class StatisticsViewController: UIViewController {
     func updateCharts(withStartDate startDate: Date, endDate: Date) async {
         await downloadData()
         print("The start date recieved by updateCharts is \(startDate) and the end date recieved is \(endDate)")
-       energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
+        energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
             if let energyData = energyData {
-                energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: deviceData)
+                energyCostData = energyCostManager.combineEnergyData(
+                                energyModels: energyData,
+                                energyReadings: deviceData,
+                                chartView: lineChartView,
+                                dateValueFormat: dateValueFormat
+                            )
                 DispatchQueue.main.async {
                     self.batteryChartData(forStartDate: startDate, endDate: endDate)
                     self.energyChartData()
@@ -153,7 +158,7 @@ class StatisticsViewController: UIViewController {
 
     // function to create chart data for a specific time frame
     func batteryChartData(forStartDate startDate: Date, endDate: Date) {
-        //print("The start date recieved by batteryChartData is \(startDate) and the end date recieved is \(endDate)")
+        print("The start date recieved by batteryChartData is \(startDate) and the end date recieved is \(endDate)")
         batteryLevelChartView.setNeedsDisplay()
         var chartDataEntries = [ChartDataEntry]()
         //print(startDate , endDate)
@@ -164,14 +169,14 @@ class StatisticsViewController: UIViewController {
             if device.entity_id.contains(K.batteryLevel) {
                 if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
                           lastUpdated >= startDate && lastUpdated <= endDate {
-                           print("Yes, date \(lastUpdated) is within the range \(startDate) - \(endDate)")
+                           //print("Yes, date \(lastUpdated) is within the range \(startDate) - \(endDate)")
                            let batteryLevel = Double(device.state) ?? 0.0
                            let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
                            let timeInterval = reverseTimestamp.timeIntervalSince1970
                            let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
                            chartDataEntries.append(dataEntry)
                        } else {
-                           print("No, date \(device.lastUpdated) is NOT within the range \(startDate) - \(endDate)")
+                          // print("No, date \(device.lastUpdated) is NOT within the range \(startDate) - \(endDate)")
                        }
                    }
                }
@@ -197,6 +202,7 @@ class StatisticsViewController: UIViewController {
     
     // date picker operated chart view for the energy used by the smart plug
     func energyChartData() {
+        //print(energyCostData)
         let chartDataEntries = energyCostData
         let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Cost p/KWh")
         chartDataSet.colors = [UIColor.blue]
@@ -204,9 +210,11 @@ class StatisticsViewController: UIViewController {
         chartDataSet.drawValuesEnabled = true
         let chartData = LineChartData(dataSet: chartDataSet)
         lineChartView.data = chartData
+        lineChartView.notifyDataSetChanged()
         //x-axis to use the last_updated as the time axis and the y-axis to use the KWh reading as the value axis.
         lineChartView.xAxis.valueFormatter = dateValueFormat
         //print("This is in the chart \(dateValueFormat)")
+        
         if let minCost = chartDataEntries.min(by: { $0.y < $1.y })?.y,
            let maxCost = chartDataEntries.max(by: { $0.y < $1.y })?.y {
             let axisPadding = (maxCost - minCost) * 0.1 // add 10% padding to top and bottom
@@ -214,8 +222,9 @@ class StatisticsViewController: UIViewController {
             lineChartView.leftAxis.axisMaximum = maxCost + axisPadding
         }
 
-        lineChartView.rightAxis.enabled = false
-        lineChartView.xAxis.labelPosition = .bottom
+
+        lineChartView.rightAxis.enabled = false // enable the right y-axis
+        lineChartView.xAxis.labelPosition = .bottom // set the position of the x-axis labels to the top
         lineChartView.chartDescription.text = "Energy cost Over Time"
 
         powerUsageChartView.data = chartData

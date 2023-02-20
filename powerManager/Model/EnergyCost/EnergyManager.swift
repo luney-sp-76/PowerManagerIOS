@@ -12,6 +12,7 @@ import FirebaseFirestore
 struct EnergyManager {
     // call the energy cost api with the startdate and end date and dno and voltage as set by the user in Setup and in the statisticsviewcontroller
     func updateEnergyData(startDate: Date, endDate: Date, completion: @escaping ([EnergyModel]?) -> Void) {
+        print("The start date recieved by updateEnergyData is \(startDate) and the end date recieved is \(endDate)")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-MM-yyyy"
         let startString = dateFormatter.string(from: startDate)
