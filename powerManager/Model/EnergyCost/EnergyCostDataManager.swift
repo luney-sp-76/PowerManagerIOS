@@ -11,6 +11,7 @@ import Charts
 
 
     struct EnergyCostDataManager {
+        
         func combineEnergyData(energyModels: [EnergyModel], energyReadings: [HomeData]) -> [ChartDataEntry] {
             // Filter energyReadings to only include data from devices with entity IDs ending in "_energy"
             let filteredReadings = energyReadings.filter { $0.entity_id.hasSuffix("_energy") }

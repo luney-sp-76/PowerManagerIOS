@@ -32,6 +32,21 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
         
     }
     
+    //lock the screen orientation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.portrait)
+        // Or to rotate and lock
+        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+    
+    //removes the contstraint on orientation lock from portrait back to all
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Don't forget to reset when view is being removed
+        AppUtility.lockOrientation(.all)
+    }
+    
     // function otcheck if the textfield is empty and allow the text to be pasted from clip board
     //we first calculate the length of the new text after pasting by adding the length of the current text and the pasted string, and then subtracting the length of the range being replaced. We then check if this new length is within the maximum length of the text field (textField.maxLength). If it is, we replace the range with the pasted string. Otherwise, we do nothing and return false to prevent the paste action from happening.
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

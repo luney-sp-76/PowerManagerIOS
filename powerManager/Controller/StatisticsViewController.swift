@@ -30,7 +30,7 @@ class StatisticsViewController: UIViewController {
     
     //the data for the database goes in here
     var deviceData: [HomeData] = []
-   
+    
     let db = Firestore.firestore()
     let dataProvider = DataProvider()
     
@@ -52,7 +52,9 @@ class StatisticsViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    override func viewDidLoad() {
+    
+    
+    override func viewDidLoad()  {
         super.viewDidLoad()
         
         //set this view as a homeManagerDelegate
@@ -67,25 +69,10 @@ class StatisticsViewController: UIViewController {
         endDate = currentDate
         startDate = calendar.date(byAdding: .day, value: -7, to: endDate!)
         dateSelectionHandler?(startDate, endDate)
-        // Call `dateSelectionHandler` whenever the user changes the date picker
-        datePicker.addTarget(self, action: #selector(datePickerMoved), for: .valueChanged)
-        
-        DispatchQueue.global(qos: .background).async { [self] in
-        // call for the current cost for data from the energy cost api
-        energyManager.updateEnergyData(startDate: startDate!, endDate: endDate!) { [self] energyData in
-            if let energyData = energyData {
-                // Use the energy data
-                energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: self.deviceData)
-                DispatchQueue.main.async {
-                    self.chartSevenDaysEnergyData()
-                }
-            } else {
-                // Handle the error case
-                print("error collecting the energydata array")
+        Task {
+                await updateCharts(withStartDate: startDate!, endDate: endDate!)
             }
-        }
-      }
-   }
+    }
     
     //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
@@ -102,113 +89,92 @@ class StatisticsViewController: UIViewController {
     }
     
     // send the data to firebase from the deviceInfo array
-    func sendData(){
-       // if let userData = Auth.auth().currentUser?.email{
-            //uploadData(userData: userData)
-            //}
-            //pull data back from the database
-            downloadData()
-        //}
-        
-    }
+//    func sendData(){
+//        if let userData = Auth.auth().currentUser?.email{
+//            uploadData(userData: userData)
+//        }
+//    }
     
-    // takes the device data in the deviceinfo array and uploads it to the firestore db
-    func uploadData(userData: String) {
-        self.dataProvider.transferData()
-    }
-    
-    // draw data from the database ordered by lastupdated
-    func downloadData() {
-        // reset the device data to none
-        deviceData = []
-        DispatchQueue.main.async{
-            self.db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments { querySnapshot, error in
-                if let e = error {
-                    print("There was an issue retrieving data from the firestore \(e)")
-                } else {
-                    
-                    if let snapShotDocuments = querySnapshot?.documents {
-                        for doc in snapShotDocuments {
-                            let data = doc.data()
-                            if let userData = data[K.FStore.user]
-                                as? String, let entity = data[K.FStore.entity_id], let state = data[K.FStore.state], let lastUpdated = data[K.FStore.lastUpdated], let friendlyName = data[K.FStore.friendlyName], let uuid = data[K.FStore.uuid]{
-                                let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
-                                self.deviceData.append(newDevice)
-                            }
-                        }
-                        print("The database should have \(self.deviceData.count)")
-                        self.chartSevenDaysBatteryData()
-                        self.chartSevenDaysEnergyData()
-                    }
+    func updateCharts(withStartDate startDate: Date, endDate: Date) async {
+        await downloadData()
+        print("The start date recieved by updateCharts is \(startDate) and the end date recieved is \(endDate)")
+       energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
+            if let energyData = energyData {
+                energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: deviceData)
+                DispatchQueue.main.async {
+                    self.batteryChartData(forStartDate: startDate, endDate: endDate)
+                    self.energyChartData()
                 }
+            } else {
+                print("Error collecting the energydata array")
             }
         }
-        
     }
+
+
+    
+//    // takes the device data in the deviceinfo array and uploads it to the firestore db
+//    func uploadData(userData: String) {
+//        self.dataProvider.transferData()
+//    }
+    
+    // draw data from the database ordered by lastupdated
+    func downloadData() async {
+        // reset the device data to none
+        deviceData = []
+        do {
+            let querySnapshot = try await db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments()
+            for doc in querySnapshot.documents {
+                let data = doc.data()
+                if let userData = data[K.FStore.user] as? String,
+                   let entity = data[K.FStore.entity_id],
+                   let state = data[K.FStore.state],
+                   let lastUpdated = data[K.FStore.lastUpdated],
+                   let friendlyName = data[K.FStore.friendlyName],
+                   let uuid = data[K.FStore.uuid] {
+                    let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
+                    //print(newDevice.entity_id)
+                    deviceData.append(newDevice)
+                }
+            }
+            print("The database should have \(self.deviceData.count)")
+        } catch {
+            print("There was an issue retrieving data from the firestore \(error)")
+        }
+    }
+
+
+
    
     //MARK: - Chartview Data
   
     
     //MARK: - BatteryChartView Data
-    
-     //function creates a LineChart of the batteryLevel over the past 7 days this is the default view on load
-    func  chartSevenDaysBatteryData() {
-        var chartDataEntries = [ChartDataEntry]()
-        let aWeekAgo = Calendar.current.date(byAdding: .day, value: -7, to: Date())!
-        let dateToCompare = DateFormat.dateConvert(inputDate: aWeekAgo)
-        // print(dateToCompare)
-        for devices in deviceData {
-            if devices.entity_id.contains(K.batteryLevel){
-                //print(devices.lastUpdated)
-                if Double(devices.lastUpdated) ?? Date.timeIntervalSinceReferenceDate <= Double(dateToCompare) ?? Date.timeIntervalSinceReferenceDate {
-                    let batteryLevel = Double(devices.state)
-                    let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
-                    // convert Date to TimeInterval (typealias for Double)
-                    let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    //print("This is what is sent to the chart \(timeInterval)")
-                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel ?? 0.0)
-                    chartDataEntries.append(dataEntry)
-                }
-            }
-        }
-        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Battery Level")
-        chartDataSet.colors = [UIColor.blue]
-        chartDataSet.valueColors = [UIColor.red]
-        chartDataSet.drawValuesEnabled = true
-        let chartData = LineChartData(dataSet: chartDataSet)
-        lineChartView.data = chartData
-        //Finally, customize the chart view according to your preferences. For example, you can set the x-axis to use the last_updated as the time axis and the y-axis to use the battery level as the value axis.
-        lineChartView.xAxis.valueFormatter = dateValueFormat
-        //print("This is in the chart \(dateValueFormat)")
-        lineChartView.leftAxis.axisMinimum = 0
-        lineChartView.leftAxis.axisMaximum = 100
-        lineChartView.rightAxis.enabled = false
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.chartDescription.text = "Battery Level Over Time"
 
-        batteryLevelChartView.data = chartData
-        //print(type(of: chartData))
-    }
-    
-   
     // function to create chart data for a specific time frame
     func batteryChartData(forStartDate startDate: Date, endDate: Date) {
+        //print("The start date recieved by batteryChartData is \(startDate) and the end date recieved is \(endDate)")
+        batteryLevelChartView.setNeedsDisplay()
         var chartDataEntries = [ChartDataEntry]()
-        
+        //print(startDate , endDate)
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
+        
         for device in deviceData {
             if device.entity_id.contains(K.batteryLevel) {
                 if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
-                   lastUpdated >= startDate && lastUpdated <= endDate {
-                    let batteryLevel = Double(device.state) ?? 0.0
-                    let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
-                    let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
-                    chartDataEntries.append(dataEntry)
-                }
-            }
-        }
+                          lastUpdated >= startDate && lastUpdated <= endDate {
+                           print("Yes, date \(lastUpdated) is within the range \(startDate) - \(endDate)")
+                           let batteryLevel = Double(device.state) ?? 0.0
+                           let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
+                           let timeInterval = reverseTimestamp.timeIntervalSince1970
+                           let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
+                           chartDataEntries.append(dataEntry)
+                       } else {
+                           print("No, date \(device.lastUpdated) is NOT within the range \(startDate) - \(endDate)")
+                       }
+                   }
+               }
         
         let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Battery Level")
         chartDataSet.colors = [UIColor.blue]
@@ -223,64 +189,15 @@ class StatisticsViewController: UIViewController {
         lineChartView.rightAxis.enabled = false
         lineChartView.xAxis.labelPosition = .bottom
         lineChartView.chartDescription.text = "Battery Level Over Time"
-        
         batteryLevelChartView.data = chartData
     }
     
     
 //MARK: - Power ChartView Data
     
-    func  chartSevenDaysEnergyData() {
-        var chartDataEntries = energyCostData
-        // print(dateToCompare)
-        for devices in deviceData {
-            if devices.entity_id.hasSuffix("_energy") {
-                if let batteryLevel = Double(devices.state) {
-                    let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
-                    let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
-                    chartDataEntries.append(dataEntry)
-                }
-            }
-        }
-        let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Cost p/KWh")
-        chartDataSet.colors = [UIColor.blue]
-        chartDataSet.valueColors = [UIColor.red]
-        chartDataSet.drawValuesEnabled = true
-        let chartData = LineChartData(dataSet: chartDataSet)
-        lineChartView.data = chartData
-        //x-axis to use the last_updated as the time axis and the y-axis to use the KWh reading as the value axis.
-        lineChartView.xAxis.valueFormatter = dateValueFormat
-        //print("This is in the chart \(dateValueFormat)")
-        if let minCost = chartDataEntries.min(by: { $0.y < $1.y })?.y,
-           let maxCost = chartDataEntries.max(by: { $0.y < $1.y })?.y {
-            let axisPadding = (maxCost - minCost) * 0.1 // add 10% padding to top and bottom
-            lineChartView.leftAxis.axisMinimum = minCost - axisPadding
-            lineChartView.leftAxis.axisMaximum = maxCost + axisPadding
-        }
-
-        lineChartView.rightAxis.enabled = false
-        lineChartView.xAxis.labelPosition = .bottom
-        lineChartView.chartDescription.text = "Energy cost Over Time"
-
-        powerUsageChartView.data = chartData
-        //print(type(of: chartData))
-    }
-    
-
     // date picker operated chart view for the energy used by the smart plug
     func energyChartData() {
-        var chartDataEntries = energyCostData
-        for devices in deviceData {
-            if devices.entity_id.hasSuffix("_energy") {
-                if let batteryLevel = Double(devices.state) {
-                    let reverseTimestamp = DateFormat.dateFormatted(date: devices.lastUpdated)
-                    let timeInterval = reverseTimestamp.timeIntervalSince1970
-                    let dataEntry = ChartDataEntry(x: timeInterval, y: batteryLevel)
-                    chartDataEntries.append(dataEntry)
-                }
-            }
-        }
+        let chartDataEntries = energyCostData
         let chartDataSet = LineChartDataSet(entries: chartDataEntries, label: "Cost p/KWh")
         chartDataSet.colors = [UIColor.blue]
         chartDataSet.valueColors = [UIColor.red]
@@ -310,30 +227,11 @@ class StatisticsViewController: UIViewController {
 //MARK: - Date Picker
 
     @IBAction func datePickerMoved(_ sender: UIDatePicker) {
-        let startDate = sender.date
-           let endDate = Date()
-        // Notify the date selection handler with the updated dates
-           dateSelectionHandler?(startDate, endDate)
-           batteryChartData(forStartDate: startDate, endDate: endDate)
-        
-
-        //update the energyCost Array with data for the dates selected
-        DispatchQueue.global(qos: .background).async {
-            self.energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
-                if let energyData = energyData {
-                    self.energyCostData = []
-                    // Use the energy data
-                    let energyCostData = energyCostManager.combineEnergyData(energyModels: energyData, energyReadings: self.deviceData)
-                    self.energyCostData = energyCostData
-                    DispatchQueue.main.async {
-                        self.energyChartData()
-                    }
-                    
-                } else {
-                    // Handle the error case
-                    print("error collecting the energydata array")
-                }
-            }
+        Task { @MainActor in
+            let startDate = sender.date
+            let endDate = Date()
+            await updateCharts(withStartDate: startDate, endDate: endDate)
+            
         }
     }
     
@@ -345,20 +243,18 @@ class StatisticsViewController: UIViewController {
 //MARK: - HomeManagerDelegate
 // manage the data from the HomeManager and create the data for deviceInfo from the array of Devices
 extension StatisticsViewController: HomeManagerDelegate {
-    
+
     func didReceiveDevices(_ devices: [HomeAssistantData]) {
         DispatchQueue.main.async {[self] in
             if !devices.isEmpty {
+             
                 self.deviceInfo = devices
-                //upload the data to firebase and download from firebase to charts
-                sendData()
-                
             }
         }
     }
-    
-    
-    
+
+
+
     func didFailWithError(error: Error) {
         print(error)
     }
