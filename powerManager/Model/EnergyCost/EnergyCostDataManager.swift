@@ -16,36 +16,6 @@ import Charts
 //        For each HomeData object, the function finds the EnergyModel object with the closest timestamp to the HomeData object's lastUpdated timestamp. It calculates the cost of energy for this reading, and creates a new ChartDataEntry object with the timestamp converted to Unix time and the cost as the y-value. The function then appends the new ChartDataEntry object to the array.
 //
 //        Finally, the function returns the array of ChartDataEntry objects.
-//        func combineEnergyData(energyModels: [EnergyModel], energyReadings: [HomeData]) -> [ChartDataEntry] {
-//            // Filter energyReadings to only include data from devices with entity IDs ending in "_energy"
-//            let filteredReadings = energyReadings.filter { $0.entity_id.hasSuffix("_energy") }
-//
-//            var chartDataEntries: [ChartDataEntry] = []
-//            let dateFormatter = DateFormatter()
-//            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
-//            for energyReading in filteredReadings {
-//                // Find the energy model with the closest timestamp to the energy reading timestamp
-//                var closestEnergyModel: EnergyModel?
-//                var smallestTimeDiff: Double = Double.greatestFiniteMagnitude
-//                for energyModel in energyModels {
-//                    let timeDiff = abs(energyModel.unixTimestamp - (dateFormatter.date(from: energyReading.lastUpdated)?.timeIntervalSince1970 ?? 0))
-//                    if timeDiff < smallestTimeDiff {
-//                        smallestTimeDiff = timeDiff
-//                        closestEnergyModel = energyModel
-//                    }
-//                }
-//
-//                // Calculate the cost of energy for this reading
-//                if let closestEnergyModel = closestEnergyModel {
-//                    let cost = closestEnergyModel.overall * (Double(energyReading.state) ?? 0.0)
-//                    let chartDataEntry = ChartDataEntry(x: (dateFormatter.date(from: energyReading.lastUpdated)?.timeIntervalSince1970 ?? 0), y: cost)
-//                    chartDataEntries.append(chartDataEntry)
-//                }
-//            }
-//
-//            return chartDataEntries
-//        }
-        
         func combineEnergyData(energyModels: [EnergyModel], energyReadings: [HomeData], chartView: LineChartView, dateValueFormat: DateValueFormatter) -> [ChartDataEntry] {
             // Filter energyReadings to only include data from devices with entity IDs ending in "_energy"
             let filteredReadings = energyReadings.filter { $0.entity_id.hasSuffix("_energy") }

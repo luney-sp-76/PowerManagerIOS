@@ -8,6 +8,7 @@
 import Foundation
 import CryptoKit
 
+//cryptography for hashing the token and url for home assistant
 struct SHA256Crypto {
     static func hashString(_ string: String) -> String {
         let inputData = Data(string.utf8)
