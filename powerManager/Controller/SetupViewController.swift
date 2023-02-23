@@ -121,6 +121,9 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
             return
         }
         
+        let password = "mysecretpassword"
+        let salt = UUID().uuidString
+        
         // Hash the homeAssistantUrl and longLivedToken using SHA-256 algorithm
         let hashedUrl = SHA256Crypto.hashString(homeAssistantUrl)
         let hashedToken = SHA256Crypto.hashString(longLivedToken)

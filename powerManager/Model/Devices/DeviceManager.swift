@@ -11,6 +11,7 @@ protocol DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel)
     func didFailWithError(error: Error)
 }
+
 var plugControl = PlugControl()
 //var currentBatteryLevel = 21
 struct DeviceManager  {

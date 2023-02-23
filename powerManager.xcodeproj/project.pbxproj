@@ -24,6 +24,7 @@
 		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
 		BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */; };
 		BD91BFD029A27D9D0016FF41 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD91BFCF29A27D9D0016FF41 /* Crypto.swift */; };
+		BD9EDD0B29A763E200110F3A /* SecuredDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
 		BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB332BE29885E1D0067B721 /* HomeData.swift */; };
@@ -86,6 +87,7 @@
 		BD6D3ED829754082009C063A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		BD91BFCF29A27D9D0016FF41 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
+		BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredDataFetch.swift; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
 		BDB332BE29885E1D0067B721 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
@@ -272,6 +274,7 @@
 				BD6D3ED829754082009C063A /* Constants.swift */,
 				BDCC52F02982AB6D00EEA034 /* AppUtility.swift */,
 				BD91BFCF29A27D9D0016FF41 /* Crypto.swift */,
+				BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */,
 			);
 			path = powerManager;
 			sourceTree = "<group>";
@@ -473,6 +476,7 @@
 			files = (
 				BDFF675929788095006495FC /* HomeManager.swift in Sources */,
 				BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */,
+				BD9EDD0B29A763E200110F3A /* SecuredDataFetch.swift in Sources */,
 				BDFF675729776359006495FC /* HomeAssistantData.swift in Sources */,
 				BDC629C6299010E50063CA6F /* DataProvider.swift in Sources */,
 				BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */,
