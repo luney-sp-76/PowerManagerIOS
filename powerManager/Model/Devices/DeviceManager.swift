@@ -6,30 +6,51 @@
 // TODO / Refactor to allow the callForData function to be used for the plug and the phone
 
 import Foundation
+import FirebaseAuth
 
 protocol DeviceManagerDelegate {
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel)
     func didFailWithError(error: Error)
 }
 
+
 var plugControl = PlugControl()
+//let securedData = SecuredDataFetcher()
+var homeAssistantFetchUrl: String?
+var token: String?
 //var currentBatteryLevel = 21
+
+
 struct DeviceManager  {
+    let homeAssistantFetchUrl = K.baseURL
+
+//    init() {
+//        securedData.fetch(email: "example@gmail.com", password: "password") { securedData, error in
+//            if let securedData = securedData {
+//                homeAssistantFetchUrl = K.baseURL
+//                token = securedData.token
+//            } else if let error = error {
+//                print("Error: \(error.localizedDescription)")
+//            }
+//        }
+//    }
+
     var isOff = true
     let dataProvider = DataProvider()
-    let homeAssistantFetchUrl = K.baseURL
+    //let homeAssistantFetchUrl = K.baseURL
     var delegate: DeviceManagerDelegate?
+ 
     //call to return the iphone BatteryLevel state (should be an int) used UrlEndPoint Model to form the endpoints
 
     // returns a DeviceModel from the ApiCall Model
     func fetchDeviceData(deviceName: String) {
-        let urlString = "\(homeAssistantFetchUrl)states/\(deviceName)"
+        let urlString = "\(String(describing: homeAssistantFetchUrl))states/\(deviceName)"
         print(urlString)
         callForData(urlString: urlString)
     }
     //for testing use switch.0x0015bc002f00edf3 as the urlEndPoint
     func fetchPlugState(urlEndPoint: String){
-        let urlString = "\(homeAssistantFetchUrl)states/\(urlEndPoint)"
+        let urlString = "\(String(describing: homeAssistantFetchUrl))states/\(urlEndPoint)"
         callForData(urlString: urlString)
     }
     
@@ -47,7 +68,7 @@ struct DeviceManager  {
             //print("task 2")
             //2: Create a URLSession
             urlRequest.httpMethod = "GET"
-            urlRequest.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("Bearer \(String(describing: token))", forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
             
            //print("task 3 in Device Manager")

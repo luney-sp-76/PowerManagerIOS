@@ -8,7 +8,8 @@ target 'powerManager' do
   pod 'FirebaseFirestore'
   pod 'Charts', '~> 4.1'
   pod 'Alamofire', '~> 5.6'
-  pod 'GoogleSignIn'
+  pod 'IQKeyboardManagerSwift', '~> 6.5'
+
   
 end
 
