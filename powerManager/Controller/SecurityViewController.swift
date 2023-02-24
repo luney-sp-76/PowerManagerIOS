@@ -16,8 +16,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
     
     let secureData = SecuredDataFetcher()
     
-    @IBOutlet weak var dnoTextField: UITextField!
-    @IBOutlet weak var voltageTextField: UITextField!
+ 
     @IBOutlet weak var homeAssistantUrlTextField: UITextField!
     @IBOutlet weak var HomeAssistantTokenTextField: UITextField!
     
@@ -172,33 +171,17 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
     
     //This code checks if dno is zero using the == operator, and if it is, it sets dnoWithDefault to 23 using the ternary operator ? :. If dno is not zero, dnoWithDefault is set to the value of dno. CURRENTLY SETS PASSWORD TO Hardcoded value as it would require a seperate server or expensive management to hold the password in a keyvault.
     @IBAction func setButtonPressed(_ sender: Any) {
-        let dnoText = dnoTextField.text
-        let voltageText = voltageTextField.text?.uppercased()
+ 
         let homeAssistantUrl = homeAssistantUrlTextField.text
         let longLivedToken = HomeAssistantTokenTextField.text
         let password = saltedPasswordTextField.text
         // Check if either the dno and voltage fields are both completed or the homeassistant URL and token fields are both completed
-        guard (dnoText != nil && voltageText != nil && !dnoText!.isEmpty && !voltageText!.isEmpty) ||
-                (homeAssistantUrl != nil && longLivedToken != nil && password != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty && !password!.isEmpty)
+        guard (homeAssistantUrl != nil && longLivedToken != nil && password != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty && !password!.isEmpty)
         else {
             // handle error
             return
         }
         
-        if let dno = Int(dnoText!), let voltage = voltageText {
-            //default the dno to 23 if zero is entered
-            let dnoWithDefault = dno == 0 ? 23 : dno
-            
-            updateDNOAndVoltageData(dno: dnoWithDefault, voltage: voltage) { error in
-                if let error = error {
-                    // handle error
-                    print("Error updating data: \(error.localizedDescription)")
-                } else {
-                    // data updated successfully
-                    print("Data updated successfully")
-                }
-            }
-        }
         
         if let url = homeAssistantUrl, let token = longLivedToken, let password = password {
             updateSecureData(homeAssistantUrl: url, longLivedToken: token, password: password) { error in
