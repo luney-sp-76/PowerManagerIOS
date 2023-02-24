@@ -16,6 +16,7 @@
 		BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */; };
 		BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
+		BD5FB24A29A8B781008F27CF /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FB24929A8B781008F27CF /* SecurityViewController.swift */; };
 		BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6327D6297D599100514BF6 /* DevicesCell.swift */; };
 		BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6327D7297D599100514BF6 /* DevicesCell.xib */; };
 		BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD65FCF92962EC5000C80565 /* DeviceModel.swift */; };
@@ -79,6 +80,7 @@
 		BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; path = "../../../../Downloads/client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BD5FB24929A8B781008F27CF /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		BD6327D6297D599100514BF6 /* DevicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesCell.swift; sourceTree = "<group>"; };
 		BD6327D7297D599100514BF6 /* DevicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesCell.xib; sourceTree = "<group>"; };
 		BD65FCF92962EC5000C80565 /* DeviceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceModel.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				BD07C5B52974966400F4DE29 /* SettingsViewController.swift */,
 				BD07C5B72974969400F4DE29 /* StatisticsViewController.swift */,
 				BDF570E6299E5DF700AD93D0 /* SetUpViewController.swift */,
+				BD5FB24929A8B781008F27CF /* SecurityViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -482,6 +485,7 @@
 				BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */,
 				BDD015F4299E748E007D9036 /* EnergyManager.swift in Sources */,
 				BD07C5B42974963300F4DE29 /* RegisterViewController.swift in Sources */,
+				BD5FB24A29A8B781008F27CF /* SecurityViewController.swift in Sources */,
 				BD07C5B2297495B200F4DE29 /* WelcomeViewController.swift in Sources */,
 				BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */,
 				DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */,
