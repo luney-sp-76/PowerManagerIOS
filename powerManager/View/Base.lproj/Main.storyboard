@@ -750,6 +750,7 @@
                     <connections>
                         <outlet property="HomeAssistantTokenTextField" destination="dYp-N8-uuW" id="F4a-nQ-UIG"/>
                         <outlet property="homeAssistantUrlTextField" destination="8kT-b1-W33" id="5GU-1a-uvv"/>
+                        <outlet property="saltedPasswordTextField" destination="OGp-AE-TLb" id="Q3k-Zj-R1a"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvO-Vn-Nsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
