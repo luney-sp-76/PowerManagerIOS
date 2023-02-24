@@ -30,8 +30,6 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         //set the UiTextFIeldDelegate as self for paste from clipboard
-        //dnoTextField.delegate = self
-        //voltageTextField.delegate = self
         homeAssistantUrlTextField.delegate = self
         HomeAssistantTokenTextField.delegate = self
         
@@ -87,27 +85,6 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
         return true
     }
 
-
-
-    
-    //this function sets the data as
-    func updateDNOAndVoltageData(dno: Int, voltage: String, completion: @escaping (Error?) -> Void) {
-        let db = Firestore.firestore()
-        if let userEmail = Auth.auth().currentUser?.email {
-            let energyDataRef = db.collection("energyReadCollection").document(userEmail)
-            energyDataRef.setData([
-                "user": userEmail,
-                "dno": dno,
-                "voltage": voltage
-            ]) { error in
-                if let error = error {
-                    completion(error)
-                } else {
-                    completion(nil)
-                }
-            }
-        }
-    }
     
     //This function generates a 256-bit symmetric key using bcrypt based on the user's password, salt, and the number of iterations. The plaintext data (i.e., the concatenated homeAssistantUrl and longLivedToken) is then encrypted using the key and a randomly generated nonce using the AES.GCM algorithm. The encrypted data, nonce, and salt are then stored in the securedData collection in Firestore.
     func updateSecureData(homeAssistantUrl: String, longLivedToken: String, password: String, completion: @escaping (Error?) -> Void) {
