@@ -556,7 +556,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SBl-Ij-Bel">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Distrib Network Operator" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f0J-IG-Aj9" userLabel="DnoText">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Distrib Network Operator" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f0J-IG-Aj9" userLabel="DnoText">
                                         <rect key="frame" x="49" y="51" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -581,7 +581,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="r5v-ur-57q">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="Voltage" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1W-DA-gVN" userLabel="VoltageText">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Voltage" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="U1W-DA-gVN" userLabel="VoltageText">
                                         <rect key="frame" x="49" y="48" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -651,7 +651,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="bFX-YB-TqF">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="https://&lt;homeassistaturl&gt;/api" placeholder="Email" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-b1-W33" userLabel="urlText">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="https://&lt;homeassistaturl&gt;/api" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-b1-W33" userLabel="urlText">
                                         <rect key="frame" x="49" y="51" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -670,13 +670,13 @@
                                     <constraint firstAttribute="right" secondItem="8kT-b1-W33" secondAttribute="right" constant="48" id="t7Q-ho-eRo"/>
                                 </constraints>
                             </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTg-FC-Ugi" userLabel="PasswordView">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTg-FC-Ugi" userLabel="TokenView">
                                 <rect key="frame" x="0.0" y="124" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-iO-dOj">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="long lived token" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-N8-uuW" userLabel="longLivedToken">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="long lived token" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-N8-uuW" userLabel="longLivedToken">
                                         <rect key="frame" x="49" y="48" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -706,15 +706,43 @@
                                     <constraint firstItem="SwM-iO-dOj" firstAttribute="leading" secondItem="DTg-FC-Ugi" secondAttribute="leading" id="kJb-EQ-kID"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SuA-de-mKy" userLabel="PasswordTextView">
+                                <rect key="frame" x="-20" y="322" width="415" height="168"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="Tes-D4-4xd" userLabel="textField">
+                                        <rect key="frame" x="20" y="20" width="375" height="128"/>
+                                    </imageView>
+                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OGp-AE-TLb">
+                                        <rect key="frame" x="58" y="50" width="299" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="Tes-D4-4xd" firstAttribute="centerY" secondItem="SuA-de-mKy" secondAttribute="centerY" id="Ard-4t-uHv"/>
+                                    <constraint firstItem="Tes-D4-4xd" firstAttribute="leading" secondItem="SuA-de-mKy" secondAttribute="leading" constant="20" id="BcE-w4-nXA"/>
+                                    <constraint firstItem="Tes-D4-4xd" firstAttribute="top" secondItem="SuA-de-mKy" secondAttribute="top" constant="20" id="RrZ-9B-8fO"/>
+                                    <constraint firstAttribute="bottom" secondItem="OGp-AE-TLb" secondAttribute="bottom" constant="84" id="U4i-R3-J7A"/>
+                                    <constraint firstItem="OGp-AE-TLb" firstAttribute="leading" secondItem="SuA-de-mKy" secondAttribute="leading" constant="58" id="ZIf-IN-51S"/>
+                                    <constraint firstItem="OGp-AE-TLb" firstAttribute="centerX" secondItem="Tes-D4-4xd" secondAttribute="centerX" id="kJP-Vi-fCQ"/>
+                                    <constraint firstItem="OGp-AE-TLb" firstAttribute="centerX" secondItem="SuA-de-mKy" secondAttribute="centerX" id="rux-PN-5gM"/>
+                                    <constraint firstItem="OGp-AE-TLb" firstAttribute="top" secondItem="SuA-de-mKy" secondAttribute="top" constant="50" id="s5c-Ba-0k1"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Nlx-2q-eVc"/>
                         <color key="backgroundColor" red="0.1647058824" green="0.78039215689999997" blue="0.99607843139999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="1N7-TA-noV" firstAttribute="top" secondItem="Nlx-2q-eVc" secondAttribute="top" id="GS1-dd-PfK"/>
+                            <constraint firstItem="SuA-de-mKy" firstAttribute="leading" secondItem="hZ1-qB-Dw5" secondAttribute="leadingMargin" constant="-36" id="H6H-Rl-HDc"/>
+                            <constraint firstItem="SuA-de-mKy" firstAttribute="centerX" secondItem="DTg-FC-Ugi" secondAttribute="centerX" id="JUS-56-7XP"/>
                             <constraint firstItem="1N7-TA-noV" firstAttribute="trailing" secondItem="Nlx-2q-eVc" secondAttribute="trailing" id="MlO-6u-e9U"/>
                             <constraint firstItem="DTg-FC-Ugi" firstAttribute="trailing" secondItem="Nlx-2q-eVc" secondAttribute="trailing" id="Qeh-1N-n80"/>
                             <constraint firstItem="1N7-TA-noV" firstAttribute="leading" secondItem="Nlx-2q-eVc" secondAttribute="leading" id="UxL-DG-4o1"/>
+                            <constraint firstItem="SuA-de-mKy" firstAttribute="centerY" secondItem="hZ1-qB-Dw5" secondAttribute="centerY" id="ebH-vB-Kcp"/>
                             <constraint firstItem="DTg-FC-Ugi" firstAttribute="leading" secondItem="Nlx-2q-eVc" secondAttribute="leading" id="rZf-WI-Vix"/>
+                            <constraint firstItem="SuA-de-mKy" firstAttribute="top" secondItem="DTg-FC-Ugi" secondAttribute="bottom" constant="21" id="tlY-iT-y4v"/>
                             <constraint firstItem="DTg-FC-Ugi" firstAttribute="top" secondItem="1N7-TA-noV" secondAttribute="bottom" constant="-100" id="ygq-Nk-FPc"/>
                         </constraints>
                     </view>
@@ -726,7 +754,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvO-Vn-Nsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4644" y="-140"/>
+            <point key="canvasLocation" x="4644" y="-140.39408866995075"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wZc-Gc-AxG">
