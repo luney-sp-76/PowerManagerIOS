@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="-289" width="375" height="1101"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HN1-Rh-8OX">
-                                <rect key="frame" x="30" y="84" width="315" height="545.33333333333337"/>
+                                <rect key="frame" x="30" y="40" width="315" height="540.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F39-dr-Ctn">
                                         <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="95.666666666666671"/>
@@ -47,10 +47,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT5-iO-d56">
-                                        <rect key="frame" x="0.0" y="151.66666666666666" width="315" height="393.66666666666674"/>
+                                        <rect key="frame" x="0.0" y="151.66666666666666" width="315" height="388.66666666666674"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6" userLabel="SliderStack View">
-                                                <rect key="frame" x="79.000000000000014" y="148.00000000000003" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79.000000000000014" y="145.33333333333334" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
@@ -67,13 +67,13 @@
                                                 </subviews>
                                             </stackView>
                                             <slider opaque="NO" contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="21" minValue="0.0" maxValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Fe9-yB-oRC">
-                                                <rect key="frame" x="18" y="60.000000000000028" width="279" height="31"/>
+                                                <rect key="frame" x="18" y="60" width="279" height="31"/>
                                                 <connections>
                                                     <action selector="sliderMoved:" destination="BYZ-38-t0r" eventType="valueChanged" id="dzg-Wa-MPb"/>
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="132.66666666666666" y="267.33333333333337" width="49.666666666666657" height="34.333333333333314"/>
+                                                <rect key="frame" x="132.66666666666666" y="264.66666666666663" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
@@ -107,7 +107,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="204" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-Y7-r3b" userLabel="SettingsStack View">
-                                <rect key="frame" x="30" y="706" width="315" height="22"/>
+                                <rect key="frame" x="30" y="657" width="315" height="22"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powerplug" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lEP-TD-aV6">
                                         <rect key="frame" x="0.0" y="1.3333333333333321" width="55.666666666666664" height="19.666666666666668"/>
@@ -452,11 +452,11 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="111" width="343" height="263"/>
+                                <rect key="frame" x="16" y="67" width="343" height="307"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i73-9S-kEe">
-                                <rect key="frame" x="31" y="744" width="311" height="34"/>
+                                <rect key="frame" x="31" y="695" width="311" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="41h-97-2Ih"/>
                                 </constraints>
@@ -465,7 +465,7 @@
                                 </connections>
                             </datePicker>
                             <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="11" y="384" width="340" height="253"/>
+                                <rect key="frame" x="10" y="384" width="340" height="253"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -502,7 +502,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-oa-KaM">
-                                <rect key="frame" x="0.0" y="91" width="375" height="578"/>
+                                <rect key="frame" x="0.0" y="47" width="375" height="622"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" name="BrandBlue"/>
                             </tableView>
@@ -551,7 +551,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjT-Ie-fPb" userLabel="DNOView">
-                                <rect key="frame" x="0.0" y="91" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="47" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SBl-Ij-Bel">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -576,7 +576,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgn-WZ-KWW" userLabel="VoltageView">
-                                <rect key="frame" x="0.0" y="168" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="124" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="r5v-ur-57q">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -593,6 +593,9 @@
                                         <state key="normal" title="Update">
                                             <color key="titleColor" name="BrandLightBlue"/>
                                         </state>
+                                        <connections>
+                                            <action selector="setButtonPressed:" destination="R2t-gb-HE3" eventType="touchUpInside" id="Grk-ve-UXz"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <constraints>
@@ -623,10 +626,11 @@
                             <constraint firstItem="OjT-Ie-fPb" firstAttribute="leading" secondItem="Eha-hm-VkI" secondAttribute="leading" id="kUH-u6-kmk"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="mhg-Dp-gCq"/>
+                    <navigationItem key="navigationItem" title="Title" id="1Li-Et-bSG" userLabel="securityButton"/>
                     <connections>
                         <outlet property="dnoTextField" destination="f0J-IG-Aj9" id="fq5-ee-d0X"/>
                         <outlet property="voltageTextField" destination="U1W-DA-gVN" id="poO-iN-Thj"/>
+                        <segue destination="gQs-ua-qYL" kind="show" identifier="SetUpToSecurity" id="iKg-Sa-liT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eC1-ti-7rI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -714,6 +718,11 @@
                             <constraint firstItem="DTg-FC-Ugi" firstAttribute="top" secondItem="1N7-TA-noV" secondAttribute="bottom" constant="-100" id="ygq-Nk-FPc"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="7kd-hP-Wxt"/>
+                    <connections>
+                        <outlet property="HomeAssistantTokenTextField" destination="dYp-N8-uuW" id="F4a-nQ-UIG"/>
+                        <outlet property="homeAssistantUrlTextField" destination="8kT-b1-W33" id="5GU-1a-uvv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvO-Vn-Nsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -742,7 +751,7 @@
         <designable name="2V3-2u-1eT"/>
     </designables>
     <inferredMetricsTieBreakers>
-        <segue reference="TJ0-bM-Sdq"/>
+        <segue reference="Dad-9D-DNK"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="background" width="2725" height="1595"/>

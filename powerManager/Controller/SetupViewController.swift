@@ -8,8 +8,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
-import CryptoKit
-import CommonCrypto
+
 
 class SetUpViewController: UIViewController , UITextFieldDelegate {
     
@@ -19,23 +18,22 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
     @IBOutlet weak var dnoTextField: UITextField!
     @IBOutlet weak var voltageTextField: UITextField!
  
-    
 
-    
-    var lastPastedTextField: UITextField?
-    
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         //set the UiTextFIeldDelegate as self for paste from clipboard
-        //dnoTextField.delegate = self
-        //voltageTextField.delegate = self
-        homeAssistantUrlTextField.delegate = self
-        HomeAssistantTokenTextField.delegate = self
+       dnoTextField.delegate = self
+       voltageTextField.delegate = self
+        let securityButton = UIBarButtonItem(title: "Security", style: .plain, target: self, action: #selector(self.securityButtonTapped))
+                navigationItem.rightBarButtonItem = securityButton
         
     }
+    
+    @objc func securityButtonTapped() {
+           // Handle setup button tap here
+           // For example, perform a segue to the setup view controller
+        performSegue(withIdentifier: K.setUpToSecurity, sender: self)
+       }
     
     //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +79,7 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
         let dnoText = dnoTextField.text
         let voltageText = voltageTextField.text?.uppercased()
         // Check if either the dno and voltage fields are both completed or the homeassistant URL and token fields are both completed
-        guard (dnoText != nil && voltageText != nil && !dnoText!.isEmpty && !voltageText!.isEmpty))
+        guard (dnoText != nil && voltageText != nil && !dnoText!.isEmpty && !voltageText!.isEmpty)
         else {
             // handle error
             return
@@ -101,6 +99,7 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
                 }
             }
         }
+    }
         
       
 
