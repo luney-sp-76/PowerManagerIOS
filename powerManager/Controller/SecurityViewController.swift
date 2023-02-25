@@ -133,6 +133,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
                 "salt": salt
             ]) { error in
                 if let error = error {
+                    print("error uploading data to database")
                     completion(error)
                 } else {
                     completion(nil)
