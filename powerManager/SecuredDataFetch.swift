@@ -33,7 +33,7 @@ class SecuredDataFetcher {
         let docRef = db.collection("securedData").document(email)
         
         // Capture a mutable reference to self
-        var weakSelf = self
+       let weakSelf = self
         
         docRef.getDocument { [weak weakSelf] document, error in
             guard let weakSelf = weakSelf else { return }
@@ -68,9 +68,10 @@ class SecuredDataFetcher {
     
     func generateBcryptKey(from password: String, salt: Data, rounds: Int = 12) -> Data {
         let passwordData = password.data(using: .utf8)!
-        var derivedKeyData = Data(count: 64)
+        let keyLength  = 32
+        let derivedKeyData = Data(count: keyLength)
         var result = Data(count: derivedKeyData.count)
-        derivedKeyData.withUnsafeBytes { derivedKeyPtr in
+       _ = derivedKeyData.withUnsafeBytes { derivedKeyPtr in
             passwordData.withUnsafeBytes { passwordPtr in
                 salt.withUnsafeBytes { saltPtr in
                     CCKeyDerivationPBKDF(CCPBKDFAlgorithm(kCCPBKDF2),
@@ -85,6 +86,7 @@ class SecuredDataFetcher {
                 }
             }
         }
+        print(result.count)
         return result
     }
     

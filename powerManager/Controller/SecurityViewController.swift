@@ -87,19 +87,13 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
 
     
     //This function generates a 256-bit symmetric key using bcrypt based on the user's password, salt, and the number of iterations. The plaintext data (i.e., the concatenated homeAssistantUrl and longLivedToken) is then encrypted using the key and a randomly generated nonce using the AES.GCM algorithm. The encrypted data, nonce, and salt are then stored in the securedData collection in Firestore.
-    func updateSecureData(homeAssistantUrl: String, longLivedToken: String, password: String, completion: @escaping (Error?) -> Void) {
-        guard let userEmail = Auth.auth().currentUser?.email, !homeAssistantUrl.isEmpty, !longLivedToken.isEmpty, !password.isEmpty else {
+    func updateSecureData(homeAssistantUrl: String, longLivedToken: String, completion: @escaping (Error?) -> Void) {
+        guard let userEmail = Auth.auth().currentUser?.email, !homeAssistantUrl.isEmpty, !longLivedToken.isEmpty else {
             return
         }
         let password = K.decrypt
 
-        // Check if homeAssistantUrl is a valid URL
-        guard let _ = URL(string: homeAssistantUrl) else {
-            print("url not accepted")
-            // handle error
-            return
-        }
-
+        
         //long lived token must be over 40 characters long
         if longLivedToken.count < 40 {
             print("token not accepted")
@@ -116,6 +110,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
 
         // Convert the plaintext data to bytes
         let plaintext = "\(homeAssistantUrl),\(longLivedToken)".data(using: .utf8)!
+        print(plaintext.count)
 
         // Encrypt the plaintext using the key and nonce
         let symmetricKey = SymmetricKey(data: key)
@@ -154,7 +149,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
         let longLivedToken = HomeAssistantTokenTextField.text
         let password = K.decrypt
         // Check if either the dno and voltage fields are both completed or the homeassistant URL and token fields are both completed
-        guard (homeAssistantUrl != nil && longLivedToken != nil && password != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty && !password!.isEmpty)
+        guard (homeAssistantUrl != nil && longLivedToken != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty && !password.isEmpty)
         else {
             // handle error
             return
@@ -162,7 +157,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
         
         
         if let url = homeAssistantUrl, let token = longLivedToken {
-            updateSecureData(homeAssistantUrl: url, longLivedToken: token, password: password) { error in
+            updateSecureData(homeAssistantUrl: url, longLivedToken: token) { error in
                 if let error = error {
                     // handle error
                     print("Error updating data: \(error.localizedDescription)")
