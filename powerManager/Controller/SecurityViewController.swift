@@ -152,7 +152,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
  
         let homeAssistantUrl = homeAssistantUrlTextField.text
         let longLivedToken = HomeAssistantTokenTextField.text
-        let password = saltedPasswordTextField.text
+        let password = K.decrypt
         // Check if either the dno and voltage fields are both completed or the homeassistant URL and token fields are both completed
         guard (homeAssistantUrl != nil && longLivedToken != nil && password != nil && !homeAssistantUrl!.isEmpty && !longLivedToken!.isEmpty && !password!.isEmpty)
         else {
@@ -161,7 +161,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
         }
         
         
-        if let url = homeAssistantUrl, let token = longLivedToken, let password = password {
+        if let url = homeAssistantUrl, let token = longLivedToken {
             updateSecureData(homeAssistantUrl: url, longLivedToken: token, password: password) { error in
                 if let error = error {
                     // handle error
