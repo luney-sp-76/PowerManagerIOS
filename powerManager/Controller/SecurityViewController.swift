@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import CryptoKit
 import CommonCrypto
+import RNCryptor
 
 class SecurityViewController: UIViewController , UITextFieldDelegate {
     
@@ -93,39 +94,24 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
         }
         let password = K.decrypt
 
-        
         //long lived token must be over 40 characters long
         if longLivedToken.count < 40 {
             print("token not accepted")
             // handle error
             return
         }
-        
-        // Generate a symmetric key using bcrypt
-        let salt = UUID().uuidString
-        let key = secureData.generateBcryptKey(from: password, salt: Data(salt.utf8))
-
-        // Create a 12-byte nonce
-        let nonce = AES.GCM.Nonce()
 
         // Convert the plaintext data to bytes
         let plaintext = "\(homeAssistantUrl),\(longLivedToken)".data(using: .utf8)!
         print(plaintext.count)
 
-        // Encrypt the plaintext using the key and nonce
-        let symmetricKey = SymmetricKey(data: key)
-        do {
-            // Encrypt the plaintext using the key and nonce
-            let sealedBox = try AES.GCM.seal(plaintext, using: symmetricKey, nonce: nonce)
-
-            // Store the encrypted data, nonce, and salt in your database
+        // Encrypt the plaintext using RNCryptor
+            let encryptedData = RNCryptor.encrypt(data: plaintext, withPassword: password)
             let db = Firestore.firestore()
             let securedDataRef = db.collection("securedData").document(userEmail)
             securedDataRef.setData([
                 "user": userEmail,
-                "encryptedData": sealedBox.ciphertext,
-                "nonce": Data(nonce),
-                "salt": salt
+                "encryptedData": encryptedData,
             ]) { error in
                 if let error = error {
                     print("error uploading data to database")
@@ -134,12 +120,8 @@ class SecurityViewController: UIViewController , UITextFieldDelegate {
                     completion(nil)
                 }
             }
-        } catch {
-            print("Error encrypting the plaintext: \(error)")
-            // handle error
-        }
     }
-    
+
     
     
     //This code checks if dno is zero using the == operator, and if it is, it sets dnoWithDefault to 23 using the ternary operator ? :. If dno is not zero, dnoWithDefault is set to the value of dno. CURRENTLY SETS PASSWORD TO Hardcoded value as it would require a seperate server or expensive management to hold the password in a keyvault.

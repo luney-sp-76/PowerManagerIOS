@@ -713,6 +713,7 @@ PODS:
   - nanopb/decode (2.30909.0)
   - nanopb/encode (2.30909.0)
   - PromisesObjC (2.2.0)
+  - RNCryptor (5.1.0)
   - SwiftAlgorithms (1.0.0)
 
 DEPENDENCIES:
@@ -722,6 +723,7 @@ DEPENDENCIES:
   - FirebaseAuth
   - FirebaseFirestore
   - IQKeyboardManagerSwift (~> 6.5)
+  - RNCryptor
 
 SPEC REPOS:
   trunk:
@@ -743,6 +745,7 @@ SPEC REPOS:
     - Libuv-gRPC
     - nanopb
     - PromisesObjC
+    - RNCryptor
     - SwiftAlgorithms
 
 SPEC CHECKSUMS:
@@ -764,8 +767,9 @@ SPEC CHECKSUMS:
   Libuv-gRPC: 55e51798e14ef436ad9bc45d12d43b77b49df378
   nanopb: b552cce312b6c8484180ef47159bc0f65a1f0431
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
+  RNCryptor: a369134686cd2ad391323cc856b62e591193ba79
   SwiftAlgorithms: 38dda4731d19027fdeee1125f973111bf3386b53
 
-PODFILE CHECKSUM: 9461eb1fd4a27ed1b47ee3aa3d379da5b7080710
+PODFILE CHECKSUM: 3edbfd3b2db90b40abfd3d04ee607ab4c788b477
 
 COCOAPODS: 1.11.3
