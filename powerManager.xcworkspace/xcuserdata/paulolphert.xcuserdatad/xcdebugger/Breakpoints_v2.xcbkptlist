@@ -63,8 +63,8 @@
             filePath = "powerManager/Model/HASS/HomeManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "fetchDeviceData(completion:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -111,37 +111,12 @@ class StatisticsViewController: UIViewController {
 
  
     // draw data from the database ordered by lastupdated
-//    func downloadData() async {
-//        let email = Auth.auth().currentUser?.email
-//        // reset the device data to none
-//        deviceData = []
-//        do {
-//            let querySnapshot = try await db.collection(K.FStore.homeAssistantDeviceCollection).document(email!).collection(K.FStore.devices).order(by: K.FStore.lastUpdated).getDocuments()
-//            for doc in querySnapshot.documents {
-//                let data = doc.data()
-//                if let userData = data[K.FStore.user] as? String,
-//                   let entity = data[K.FStore.entity_id],
-//                   let state = data[K.FStore.state],
-//                   let lastUpdated = data[K.FStore.lastUpdated],
-//                   let friendlyName = data[K.FStore.friendlyName],
-//                   let uuid = data[K.FStore.uuid] {
-//                    let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
-//                    //print(newDevice.entity_id)
-//                    deviceData.append(newDevice)
-//                }
-//            }
-//            print("The database should have \(self.deviceData.count)")
-//        } catch {
-//            print("There was an issue retrieving data from the firestore \(error)")
-//        }
-//    }
-    //old version updated to make the database only for the user
     func downloadData() async {
         let email = Auth.auth().currentUser?.email
         // reset the device data to none
         deviceData = []
         do {
-            let querySnapshot = try await db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments()
+            let querySnapshot = try await db.collection(K.FStore.homeAssistantDeviceCollection).document(email!).collection(K.FStore.devices).order(by: K.FStore.lastUpdated).getDocuments()
             for doc in querySnapshot.documents {
                 let data = doc.data()
                 if let userData = data[K.FStore.user] as? String,
@@ -160,6 +135,31 @@ class StatisticsViewController: UIViewController {
             print("There was an issue retrieving data from the firestore \(error)")
         }
     }
+    //old version updated to make the database only for the user
+//    func downloadData() async {
+//        let email = Auth.auth().currentUser?.email
+//        // reset the device data to none
+//        deviceData = []
+//        do {
+//            let querySnapshot = try await db.collection(K.FStore.homeAssistantCollection).order(by: K.FStore.lastUpdated).getDocuments()
+//            for doc in querySnapshot.documents {
+//                let data = doc.data()
+//                if let userData = data[K.FStore.user] as? String,
+//                   let entity = data[K.FStore.entity_id],
+//                   let state = data[K.FStore.state],
+//                   let lastUpdated = data[K.FStore.lastUpdated],
+//                   let friendlyName = data[K.FStore.friendlyName],
+//                   let uuid = data[K.FStore.uuid] {
+//                    let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
+//                    //print(newDevice.entity_id)
+//                    deviceData.append(newDevice)
+//                }
+//            }
+//            print("The database should have \(self.deviceData.count)")
+//        } catch {
+//            print("There was an issue retrieving data from the firestore \(error)")
+//        }
+//    }
 
 
 

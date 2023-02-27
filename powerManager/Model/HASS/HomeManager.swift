@@ -44,7 +44,9 @@ class HomeManager  {
             }
         }
     }
-    
+    static var shared: HomeManager {
+           return AppDelegate.sharedHomeManager
+       }
     func fetchDeviceData(completion: @escaping (Result<[HomeAssistantData], Error>) -> Void) {
         let urlString = "\(APIState.shared.url ?? "error: ")states"
         print(urlString)
@@ -66,6 +68,11 @@ class HomeManager  {
                 }
             }
         }
+    }
+    
+    // Call this function to remove all objects from the cache when the user logs out
+    func clearCache() {
+        cache.removeAllObjects()
     }
     
     

@@ -187,6 +187,7 @@ class BatteryMonitorViewController: UIViewController {
         do {
             //clears the device array on log out
             devicesArray = []
+            HomeManager.shared.clearCache()
             try Auth.auth().signOut()
             //jumps back to the root page
             navigationController?.popToRootViewController(animated: true)
