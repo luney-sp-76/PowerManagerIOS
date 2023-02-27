@@ -29,6 +29,7 @@
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
 		BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB332BE29885E1D0067B721 /* HomeData.swift */; };
+		BDC4197F29ACCB8900C80391 /* HomeManagerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC4197E29ACCB8900C80391 /* HomeManagerSingleton.swift */; };
 		BDC629C4299010780063CA6F /* FirebaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C3299010770063CA6F /* FirebaseUpdater.swift */; };
 		BDC629C6299010E50063CA6F /* DataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C5299010E50063CA6F /* DataProvider.swift */; };
 		BDC629C829901F060063CA6F /* DateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C729901F060063CA6F /* DateFormatter.swift */; };
@@ -93,6 +94,7 @@
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
 		BDB332BE29885E1D0067B721 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
+		BDC4197E29ACCB8900C80391 /* HomeManagerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManagerSingleton.swift; sourceTree = "<group>"; };
 		BDC629C3299010770063CA6F /* FirebaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUpdater.swift; sourceTree = "<group>"; };
 		BDC629C5299010E50063CA6F /* DataProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataProvider.swift; sourceTree = "<group>"; };
 		BDC629C729901F060063CA6F /* DateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateFormatter.swift; sourceTree = "<group>"; };
@@ -177,6 +179,7 @@
 				BDFF675629776359006495FC /* HomeAssistantData.swift */,
 				BDB332BE29885E1D0067B721 /* HomeData.swift */,
 				BDFF675829788095006495FC /* HomeManager.swift */,
+				BDC4197E29ACCB8900C80391 /* HomeManagerSingleton.swift */,
 			);
 			path = HASS;
 			sourceTree = "<group>";
@@ -503,6 +506,7 @@
 				BD07C5B62974966400F4DE29 /* SettingsViewController.swift in Sources */,
 				BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */,
 				BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */,
+				BDC4197F29ACCB8900C80391 /* HomeManagerSingleton.swift in Sources */,
 				BD07C5B82974969400F4DE29 /* StatisticsViewController.swift in Sources */,
 				BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */,
 				BD26C8C0299E44F000EBFCFB /* EnergyModel.swift in Sources */,

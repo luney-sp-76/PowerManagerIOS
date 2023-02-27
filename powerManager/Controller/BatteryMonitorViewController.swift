@@ -20,7 +20,7 @@ class BatteryMonitorViewController: UIViewController {
     //initiate PlugControl
     var plugControl = PlugControl()
     //initial HomeManager
-    var homeManager = HomeManager()
+    //var homeManager = HomeManager()
     var dataProvider = DataProvider()
     // to hold the devies selected in settings
     var devicesArray: [String] = []
@@ -124,31 +124,7 @@ class BatteryMonitorViewController: UIViewController {
     }
     
     
-//    //managed calls to check the battery level check the plug state in recursive loop
-//    func scheduleFetchData() {
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 30) {
-//            //double check we are now using the updated devices
-//            self.devicesArraySemaphore.wait()
-//            let localDevicesArray = self.devicesArray
-//            self.devicesArraySemaphore.signal()
-//
-//            for device in localDevicesArray {
-//                if device.contains(K.batteryLevel){
-//                    self.iPhoneBatteryLevelEntityID = device
-//                }
-//                if device.contains(K.switchs){
-//                    self.plugStateEntityID = device
-//                }
-//            }
-//           // print("The current phone is \(self.iPhoneBatteryLevelEntityID)")
-//            //print("The current plug is \(self.plugStateEntityID)")
-//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
-//            self.checkPlugState(plugDevice: self.plugStateEntityID)
-//            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
-//            self.scheduleFetchData()
-//        }
-//
-//    }
+
     
     func scheduleFetchData(){
         timer?.invalidate()
@@ -169,11 +145,6 @@ class BatteryMonitorViewController: UIViewController {
             }
 
 
-    // not in use with the scheduleFetchData as it will crash the app unless the function is changed to a timer
-//    func restartFetchData() async {
-//      shouldStop = false
-//        await scheduleFetchData()
-//    }
     
     // change the plug icon color on the viewcontroller UI to match its state
     func updatePlugColour(state: String) {

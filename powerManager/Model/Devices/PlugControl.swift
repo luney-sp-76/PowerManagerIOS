@@ -18,33 +18,16 @@ struct PlugControl {
    // let homeAssistantPostUrl = K.baseURL
     var delegate: PlugManagerDelegate?
     var homeAssistantPostUrl: String?
-    var token: String?
-    let securedData = SecuredDataFetcher()
-    let email = Auth.auth().currentUser?.email
 
-    init() {
-        var manager = self
-        securedData.fetchSecureData(for: email!, password: K.decrypt){url, token, error in
-            
-            if let error = error {
-                print("Error: \(error)")
-            } else {
-                manager.homeAssistantPostUrl = url
-                manager.token = token
-                print("URL: \(url ?? "no url returned")")
-                print("Token: \(token ?? "no token returned")")
-            }
-        }
-    }
-    
+ 
     func fetchPlugData(urlEndPoint: String, device: String) {
-        let urlString = "\(securedData.apiState.url ?? K.baseURL)services/switch/\(urlEndPoint)"
+        let urlString = "\(APIState.shared.url ?? "Error")services/switch/\(urlEndPoint)"
         print(urlString)
         sendRequest(urlString: urlString, device: device)
     }
     
     func sendRequest(urlString: String, device: String) {
-        let token = securedData.apiState.token
+        let token = APIState.shared.token
         let plug = device
         //print("POST task 1 started...")
         //1: Create a URL
@@ -59,7 +42,7 @@ struct PlugControl {
             //print("POST task 3 started...")
             //3: Create POST request
             urlRequest.httpMethod = "POST"
-            urlRequest.setValue("Bearer \(token ?? K.token)", forHTTPHeaderField: "Authorization")
+            urlRequest.setValue("Bearer \(token ?? "Error")", forHTTPHeaderField: "Authorization")
             urlRequest.setValue("application/json", forHTTPHeaderField: "Content-Type")
            // print("POST task 3 complete")
            // print("POST task 4 started...")

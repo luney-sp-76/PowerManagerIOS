@@ -18,7 +18,8 @@ class SettingsViewController: UIViewController {
     @IBOutlet weak var setUpButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
-    var homeManager = HomeManager()
+    let securedData = SecuredDataFetcher()
+    let homeManager = HomeManager()
     var delegate: BatteryMonitorViewControllerDelegate?
     
     //all the battery level and plug devicesfrom homeassistant
@@ -50,8 +51,22 @@ class SettingsViewController: UIViewController {
                 navigationItem.rightBarButtonItem = setupButton
         // initate this vew a s homeManager delegate
         homeManager.delegate = self
+      
         // call the home manager method to fetchData from the API
-        homeManager.fetchDeviceData()
+        print(("settingsView Calls Home Manager"))
+        homeManager.fetchDeviceData { result in
+                    switch result {
+                    case .success(let devices):
+                        self.deviceInfo = devices.filter { device in
+                            return device.entity_id.contains(K.batteryLevel) || device.entity_id.contains(K.switchs)
+                        }
+                        DispatchQueue.main.async {
+                            self.tableView.reloadData()
+                        }
+                    case .failure(let error):
+                        print("Failed to fetch device data: \(error.localizedDescription)")
+                    }
+                }
         // set this view as the source of the table data
         tableView.dataSource = self
         // set this view as the delegate for tableview data
@@ -98,21 +113,18 @@ class SettingsViewController: UIViewController {
 //MARK: - HomeManagerDelegate
 // manage the data from the HomeManager and create the data for deviceInfo from the array of Devices
 extension SettingsViewController: HomeManagerDelegate {
-    
+    func didFailToFetchDeviceData(with error: Error) {
+        print("Failed to fetch device data: \(error.localizedDescription)")
+    }
     func didReceiveDevices(_ devices: [HomeAssistantData]) {
-        DispatchQueue.main.async {[self] in
+        DispatchQueue.main.async { [self] in
             if !devices.isEmpty {
                 for device in devices {
-                    if device.entity_id.contains(K.batteryLevel) || device.entity_id.contains(K.switchs){
-                        self.deviceInfo.append(device)
-                    }
-                    if device.entity_id.contains("battery_state"){
+                   if device.entity_id.contains("battery_state") {
                         self.allBatteryStateDevices.append(device)
                     }
                 }
             }
-            //print(self.allBatteryStateDevices)
-            self.tableView.reloadData()
         }
     }
 }

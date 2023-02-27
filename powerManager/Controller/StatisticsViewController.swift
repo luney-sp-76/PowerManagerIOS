@@ -24,7 +24,6 @@ class DateValueFormatter: NSObject, AxisValueFormatter {
 class StatisticsViewController: UIViewController {
     
     let lineChartView = LineChartView()
-    var homeManager = HomeManager()
     // the devices from HomeAssistant go here
     var deviceInfo: [HomeAssistantData] = []
     
@@ -32,7 +31,7 @@ class StatisticsViewController: UIViewController {
     var deviceData: [HomeData] = []
     
     let db = Firestore.firestore()
-    let dataProvider = DataProvider()
+    //let dataProvider = DataProvider()
     
     //set of date management variables
     let dateValueFormat = DateValueFormatter()
@@ -52,15 +51,10 @@ class StatisticsViewController: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     
-    
+    @IBOutlet weak var costOfEnergyLabel: UILabel!
     
     override func viewDidLoad()  {
         super.viewDidLoad()
-        
-        //set this view as a homeManagerDelegate
-        homeManager.delegate = self
-        //collect all the data
-        homeManager.fetchDeviceData()
         view.addSubview(batteryLevelChartView)
         //converts the dateformat into month and day
         batteryLevelChartView.xAxis.valueFormatter = dateValueFormat
@@ -88,27 +82,26 @@ class StatisticsViewController: UIViewController {
         AppUtility.lockOrientation(.all)
     }
     
-    // send the data to firebase from the deviceInfo array
-//    func sendData(){
-//        if let userData = Auth.auth().currentUser?.email{
-//            uploadData(userData: userData)
-//        }
-//    }
+ 
     
     func updateCharts(withStartDate startDate: Date, endDate: Date) async {
         await downloadData()
         print("The start date recieved by updateCharts is \(startDate) and the end date recieved is \(endDate)")
         energyManager.updateEnergyData(startDate: startDate, endDate: endDate) { [self] energyData in
             if let energyData = energyData {
-                energyCostData = energyCostManager.combineEnergyData(
-                                energyModels: energyData,
-                                energyReadings: deviceData,
-                                chartView: lineChartView,
-                                dateValueFormat: dateValueFormat
-                            )
-                DispatchQueue.main.async {
+                let result = energyCostManager.combineEnergyData(
+                                            energyModels: energyData,
+                                            energyReadings: deviceData,
+                                            chartView: lineChartView,
+                                            dateValueFormat: dateValueFormat)
+                energyCostData = result.chartDataEntries
+ 
+                DispatchQueue.main.async { [self] in
                     self.batteryChartData(forStartDate: startDate, endDate: endDate)
                     self.energyChartData()
+                    if !result.totalCost.isZero {
+                        self.costOfEnergyLabel.text = String(format: "Cost: £ %.2f", result.totalCost/1000)
+                    }
                 }
             } else {
                 print("Error collecting the energydata array")
@@ -116,15 +109,35 @@ class StatisticsViewController: UIViewController {
         }
     }
 
-
-    
-//    // takes the device data in the deviceinfo array and uploads it to the firestore db
-//    func uploadData(userData: String) {
-//        self.dataProvider.transferData()
-//    }
-    
+ 
     // draw data from the database ordered by lastupdated
+//    func downloadData() async {
+//        let email = Auth.auth().currentUser?.email
+//        // reset the device data to none
+//        deviceData = []
+//        do {
+//            let querySnapshot = try await db.collection(K.FStore.homeAssistantDeviceCollection).document(email!).collection(K.FStore.devices).order(by: K.FStore.lastUpdated).getDocuments()
+//            for doc in querySnapshot.documents {
+//                let data = doc.data()
+//                if let userData = data[K.FStore.user] as? String,
+//                   let entity = data[K.FStore.entity_id],
+//                   let state = data[K.FStore.state],
+//                   let lastUpdated = data[K.FStore.lastUpdated],
+//                   let friendlyName = data[K.FStore.friendlyName],
+//                   let uuid = data[K.FStore.uuid] {
+//                    let newDevice = HomeData(user: userData, entity_id: entity as! String, state:state as! String, lastUpdated: lastUpdated as! String , friendlyName: friendlyName as! String, uuid: uuid as! String)
+//                    //print(newDevice.entity_id)
+//                    deviceData.append(newDevice)
+//                }
+//            }
+//            print("The database should have \(self.deviceData.count)")
+//        } catch {
+//            print("There was an issue retrieving data from the firestore \(error)")
+//        }
+//    }
+    //old version updated to make the database only for the user
     func downloadData() async {
+        let email = Auth.auth().currentUser?.email
         // reset the device data to none
         deviceData = []
         do {
@@ -147,6 +160,7 @@ class StatisticsViewController: UIViewController {
             print("There was an issue retrieving data from the firestore \(error)")
         }
     }
+
 
 
 
@@ -249,22 +263,3 @@ class StatisticsViewController: UIViewController {
 }
 
 
-//MARK: - HomeManagerDelegate
-// manage the data from the HomeManager and create the data for deviceInfo from the array of Devices
-extension StatisticsViewController: HomeManagerDelegate {
-
-    func didReceiveDevices(_ devices: [HomeAssistantData]) {
-        DispatchQueue.main.async {[self] in
-            if !devices.isEmpty {
-             
-                self.deviceInfo = devices
-            }
-        }
-    }
-
-
-
-    func didFailWithError(error: Error) {
-        print(error)
-    }
-}

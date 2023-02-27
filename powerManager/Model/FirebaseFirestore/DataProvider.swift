@@ -6,14 +6,17 @@
 //
 
 import Foundation
+
 // creates a delegate and calls the delegate function that calls the homeassistant api for all devices
-//that will return the data to the Firebase Updater struct
+// that will return the data to the Firebase Updater struct
 class DataProvider {
     let homeManager = HomeManager()
     let firebaseUpdater = FirebaseUpdater()
 
-    func transferData() {
+    func transferData(completion: @escaping (Result<[HomeAssistantData], Error>) -> Void) {
         homeManager.delegate = firebaseUpdater
-        homeManager.fetchDeviceData()
+        homeManager.fetchDeviceData { result in
+            completion(result)
+        }
     }
 }

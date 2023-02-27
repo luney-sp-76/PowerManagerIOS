@@ -11,6 +11,10 @@ import FirebaseFirestore
 
 // the FirebaseUpdater class implements the HomeManagerDelegate protocol and implements the didReceiveDevices(_:) method.
 class FirebaseUpdater: HomeManagerDelegate {
+    func didFailToFetchDeviceData(with error: Error) {
+        print("Failed to fetch device data: \(error.localizedDescription)")
+    }
+    
     let db = Firestore.firestore()
    
     
@@ -22,9 +26,10 @@ class FirebaseUpdater: HomeManagerDelegate {
     }
     
     func updateFirebase(with devices: [HomeAssistantData], userData: String) {
+        let id = Auth.auth().currentUser?.email
         for device in devices {
             DispatchQueue.main.async {
-                self.db.collection(K.FStore.homeAssistantCollection).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: device.entity_id, K.FStore.state: device.state, K.FStore.lastUpdated: device.last_updated, K.FStore.friendlyName: device.attributes.friendlyName, K.FStore.uuid: device.context.id]) {
+                self.db.collection(K.FStore.homeAssistantDeviceCollection).document(id!).collection(K.FStore.devices).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: device.entity_id, K.FStore.state: device.state, K.FStore.lastUpdated: device.last_updated, K.FStore.friendlyName: device.attributes.friendlyName, K.FStore.uuid: device.context.id]) {
                     error in
                     if let e = error {
                         print("there was an issue sending data to FireStore \(e)")
@@ -35,4 +40,18 @@ class FirebaseUpdater: HomeManagerDelegate {
             }
         }
     }
+    //    func updateFirebase(with devices: [HomeAssistantData], userData: String) {
+    //        for device in devices {
+    //            DispatchQueue.main.async {
+    //                self.db.collection(K.FStore.homeAssistantCollection).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: device.entity_id, K.FStore.state: device.state, K.FStore.lastUpdated: device.last_updated, K.FStore.friendlyName: device.attributes.friendlyName, K.FStore.uuid: device.context.id]) {
+    //                    error in
+    //                    if let e = error {
+    //                        print("there was an issue sending data to FireStore \(e)")
+    //                    } else {
+    //                        print("Successfully saved data")
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    }
 }

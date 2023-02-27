@@ -464,27 +464,43 @@
                                     <action selector="datePickerMoved:" destination="GE5-nL-MZN" eventType="valueChanged" id="nbs-Gy-PlV"/>
                                 </connections>
                             </datePicker>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="9" y="384" width="340" height="251"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
+                                <rect key="frame" x="16" y="422" width="341" height="265"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp5-0C-cWy">
+                                <rect key="frame" x="16" y="382" width="116" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="32" id="ldE-oV-H0U"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="7a5-l9-CvK"/>
                         <color key="backgroundColor" name="statsandsettings"/>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="EzU-lW-jbb" secondAttribute="bottom" constant="438" id="1Y9-l7-dCO"/>
+                            <constraint firstItem="i73-9S-kEe" firstAttribute="top" secondItem="QxU-TH-JoC" secondAttribute="bottom" constant="8" id="DgA-XA-nup"/>
+                            <constraint firstItem="hp5-0C-cWy" firstAttribute="leading" secondItem="EzU-lW-jbb" secondAttribute="leading" id="IkY-xm-V2L"/>
+                            <constraint firstItem="QxU-TH-JoC" firstAttribute="centerX" secondItem="i73-9S-kEe" secondAttribute="centerX" id="Ksn-WU-e6G"/>
+                            <constraint firstItem="QxU-TH-JoC" firstAttribute="top" secondItem="hp5-0C-cWy" secondAttribute="bottom" constant="8" id="MCR-ro-bbW"/>
                             <constraint firstItem="7a5-l9-CvK" firstAttribute="bottom" secondItem="i73-9S-kEe" secondAttribute="bottom" id="OrH-74-3Se"/>
                             <constraint firstItem="i73-9S-kEe" firstAttribute="leading" secondItem="7a5-l9-CvK" secondAttribute="leading" constant="31" id="d4E-np-lTC"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="top" secondItem="7a5-l9-CvK" secondAttribute="top" constant="20" id="f1m-sr-hzt"/>
+                            <constraint firstItem="hp5-0C-cWy" firstAttribute="top" secondItem="EzU-lW-jbb" secondAttribute="bottom" constant="8" id="fQL-So-Z9R"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="trailing" secondItem="U14-w0-x4Z" secondAttribute="trailingMargin" id="iW6-jC-Z1A"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="leading" secondItem="U14-w0-x4Z" secondAttribute="leadingMargin" id="j08-HI-hrN"/>
+                            <constraint firstItem="7a5-l9-CvK" firstAttribute="trailing" secondItem="hp5-0C-cWy" secondAttribute="trailing" constant="243" id="sRc-o9-Z0G"/>
+                            <constraint firstItem="hp5-0C-cWy" firstAttribute="leading" secondItem="QxU-TH-JoC" secondAttribute="leading" id="t3h-3l-dMw"/>
                             <constraint firstItem="EzU-lW-jbb" firstAttribute="centerX" secondItem="i73-9S-kEe" secondAttribute="centerX" constant="1" id="zNo-eQ-H9a"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="fiK-yu-enY"/>
                     <connections>
                         <outlet property="batteryLevelChartView" destination="EzU-lW-jbb" id="wAV-N3-IL5"/>
+                        <outlet property="costOfEnergyLabel" destination="hp5-0C-cWy" id="xrE-Yb-Bbo"/>
                         <outlet property="datePicker" destination="i73-9S-kEe" id="Bjx-D6-rXv"/>
                         <outlet property="powerUsageChartView" destination="QxU-TH-JoC" id="SDZ-iN-oHB"/>
                     </connections>

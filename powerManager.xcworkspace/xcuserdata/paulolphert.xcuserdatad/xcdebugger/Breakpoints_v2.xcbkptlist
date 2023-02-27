@@ -52,5 +52,22 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "092FA991-256D-4C4C-9766-C358041DD0DC"
+            shouldBeEnabled = "Yes"
+            nameForDebugger = "HomeManagerCallsAPi"
+            ignoreCount = "0"
+            continueAfterRunningActions = "Yes"
+            filePath = "powerManager/Model/HASS/HomeManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "fetchDeviceData(completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
