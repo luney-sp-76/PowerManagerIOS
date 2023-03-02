@@ -204,6 +204,17 @@
 			path = EnergyCost;
 			sourceTree = "<group>";
 		};
+		BDAE1F2D29B0AED4005E9ED3 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				BD6D3ED829754082009C063A /* Constants.swift */,
+				BDCC52F02982AB6D00EEA034 /* AppUtility.swift */,
+				BD91BFCF29A27D9D0016FF41 /* Crypto.swift */,
+				BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
 		DAB806F5295E332E00C5136E /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -273,14 +284,11 @@
 				DAB806F6295E333D00C5136E /* Model */,
 				DAB806F5295E332E00C5136E /* View */,
 				DAB806F7295E334900C5136E /* Controller */,
+				BDAE1F2D29B0AED4005E9ED3 /* Utilities */,
 				DAE45FF6295E1CDF00704D59 /* Assets.xcassets */,
 				DAE45FFB295E1CDF00704D59 /* Info.plist */,
 				BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */,
 				BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */,
-				BD6D3ED829754082009C063A /* Constants.swift */,
-				BDCC52F02982AB6D00EEA034 /* AppUtility.swift */,
-				BD91BFCF29A27D9D0016FF41 /* Crypto.swift */,
-				BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */,
 			);
 			path = powerManager;
 			sourceTree = "<group>";

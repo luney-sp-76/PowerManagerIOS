@@ -522,10 +522,12 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="sectionIndexBackgroundColor" name="BrandBlue"/>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl7-nu-Fjm">
-                                <rect key="frame" x="162" y="683" width="50" height="48"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl7-nu-Fjm">
+                                <rect key="frame" x="0.0" y="683" width="375" height="48"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" title="Set"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Set">
+                                    <color key="baseBackgroundColor" name="BrandBlue"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="setButtonPressed:" destination="SGa-WX-MCS" eventType="touchUpInside" id="Bxi-s9-QBd"/>
                                     <segue destination="BYZ-38-t0r" kind="show" identifier="settingsToBatteryMonitor" id="Dad-9D-DNK"/>
@@ -539,8 +541,8 @@
                             <constraint firstItem="Cl7-nu-Fjm" firstAttribute="top" secondItem="fcE-ys-8uG" secondAttribute="top" constant="636" id="7LG-hf-Jei"/>
                             <constraint firstItem="Cl7-nu-Fjm" firstAttribute="centerX" secondItem="Euk-oa-KaM" secondAttribute="centerX" id="8M6-1k-X8D"/>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="trailing" secondItem="fcE-ys-8uG" secondAttribute="trailing" id="DSV-4j-nLz"/>
-                            <constraint firstAttribute="bottomMargin" secondItem="Cl7-nu-Fjm" secondAttribute="bottom" constant="-10" id="VAI-NT-8eP"/>
-                            <constraint firstItem="Cl7-nu-Fjm" firstAttribute="leading" secondItem="fcE-ys-8uG" secondAttribute="leading" constant="162" id="Wdl-Ae-Nea"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="Cl7-nu-Fjm" secondAttribute="bottom" constant="-2" id="VAI-NT-8eP"/>
+                            <constraint firstItem="Cl7-nu-Fjm" firstAttribute="leading" secondItem="fcE-ys-8uG" secondAttribute="leading" id="Wdl-Ae-Nea"/>
                             <constraint firstItem="fcE-ys-8uG" firstAttribute="bottom" secondItem="Euk-oa-KaM" secondAttribute="bottom" constant="60" id="b6S-1C-4La"/>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="leading" secondItem="fcE-ys-8uG" secondAttribute="leading" id="cUk-Fy-Wsx"/>
                             <constraint firstItem="Euk-oa-KaM" firstAttribute="top" secondItem="fcE-ys-8uG" secondAttribute="top" id="gxY-5X-iBa"/>
