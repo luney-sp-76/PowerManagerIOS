@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BatteryMonitorViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="36R-Xm-h2A">
-                                <rect key="frame" x="0.0" y="-289" width="375" height="1101"/>
+                                <rect key="frame" x="0.0" y="-289" width="375" height="1044"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HN1-Rh-8OX">
-                                <rect key="frame" x="30" y="40" width="315" height="540.33333333333337"/>
+                                <rect key="frame" x="30" y="-7" width="315" height="564.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F39-dr-Ctn">
                                         <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="98"/>
@@ -47,10 +47,10 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT5-iO-d56">
-                                        <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="386.33333333333326"/>
+                                        <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="410.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6" userLabel="SliderStack View">
-                                                <rect key="frame" x="79.000000000000014" y="144.33333333333331" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79.000000000000014" y="156.33333333333331" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
@@ -73,13 +73,13 @@
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="132.66666666666666" y="263.66666666666669" width="49.666666666666657" height="34.333333333333314"/>
+                                                <rect key="frame" x="132.66666666666666" y="275.66666666666669" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
                                                 <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="tinted" title="Set" cornerStyle="dynamic">
-                                                    <backgroundConfiguration key="background" cornerRadius="28" strokeWidth="15">
+                                                <buttonConfiguration key="configuration" style="tinted" title="Set" cornerStyle="large">
+                                                    <backgroundConfiguration key="background" strokeWidth="15">
                                                         <color key="backgroundColor" name="Set Button Colour"/>
                                                     </backgroundConfiguration>
                                                 </buttonConfiguration>
@@ -107,7 +107,7 @@
                                 </constraints>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="204" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-Y7-r3b" userLabel="SettingsStack View">
-                                <rect key="frame" x="30" y="657" width="315" height="22"/>
+                                <rect key="frame" x="30" y="634" width="315" height="22"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powerplug" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lEP-TD-aV6">
                                         <rect key="frame" x="0.0" y="1.3333333333333321" width="55.666666666666664" height="19.666666666666668"/>
@@ -448,15 +448,15 @@
             <objects>
                 <hostingController id="GE5-nL-MZN" customClass="StatisticsViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U14-w0-x4Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="67" width="343" height="307"/>
+                                <rect key="frame" x="16" y="67" width="343" height="250"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i73-9S-kEe">
-                                <rect key="frame" x="31" y="695" width="311" height="34"/>
+                                <rect key="frame" x="31" y="721" width="311" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="41h-97-2Ih"/>
                                 </constraints>
@@ -465,11 +465,11 @@
                                 </connections>
                             </datePicker>
                             <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="16" y="422" width="341" height="265"/>
+                                <rect key="frame" x="16" y="365" width="341" height="348"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="£0" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hp5-0C-cWy">
-                                <rect key="frame" x="16" y="382" width="116" height="32"/>
+                                <rect key="frame" x="16" y="325" width="116" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="ldE-oV-H0U"/>
                                 </constraints>
@@ -514,16 +514,15 @@
             <objects>
                 <hostingController id="SGa-WX-MCS" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tmt-p7-6MM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-oa-KaM">
-                                <rect key="frame" x="0.0" y="47" width="375" height="622"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="sectionIndexBackgroundColor" name="BrandBlue"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
+                                <color key="backgroundColor" name="BrandLightBlue"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl7-nu-Fjm">
-                                <rect key="frame" x="0.0" y="683" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="636" width="375" height="72"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Set">
                                     <color key="baseBackgroundColor" name="BrandBlue"/>
@@ -565,11 +564,11 @@
             <objects>
                 <viewController title="SetupViewController" id="R2t-gb-HE3" userLabel="SetUpViewController" customClass="SetUpViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oux-m9-2i3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjT-Ie-fPb" userLabel="DNOView">
-                                <rect key="frame" x="0.0" y="47" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SBl-Ij-Bel">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -594,7 +593,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgn-WZ-KWW" userLabel="VoltageView">
-                                <rect key="frame" x="0.0" y="124" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="r5v-ur-57q">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -660,11 +659,11 @@
             <objects>
                 <viewController id="gQs-ua-qYL" userLabel="SecurityViewController" customClass="SecurityViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hZ1-qB-Dw5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1N7-TA-noV" userLabel="UrlTextFieldView">
-                                <rect key="frame" x="0.0" y="47" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="bFX-YB-TqF">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -689,7 +688,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTg-FC-Ugi" userLabel="TokenView">
-                                <rect key="frame" x="0.0" y="124" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-iO-dOj">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -772,6 +771,7 @@
         <designable name="2V3-2u-1eT"/>
     </designables>
     <inferredMetricsTieBreakers>
+        <segue reference="fyh-NU-JxY"/>
         <segue reference="Dad-9D-DNK"/>
     </inferredMetricsTieBreakers>
     <resources>
