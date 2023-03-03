@@ -26,8 +26,17 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
        voltageTextField.delegate = self
         let securityButton = UIBarButtonItem(title: "Security", style: .plain, target: self, action: #selector(self.securityButtonTapped))
                 navigationItem.rightBarButtonItem = securityButton
+        title = "Set Up"
         
     }
+    //lock the screen orientation
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        AppUtility.lockOrientation(.all)
+        // Or to rotate and lock
+        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+    }
+   
     
     @objc func securityButtonTapped() {
            // Handle setup button tap here
@@ -35,13 +44,7 @@ class SetUpViewController: UIViewController , UITextFieldDelegate {
         performSegue(withIdentifier: K.setUpToSecurity, sender: self)
        }
     
-    //lock the screen orientation
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        AppUtility.lockOrientation(.portrait)
-        // Or to rotate and lock
-        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
-    }
+  
     
     //removes the contstraint on orientation lock from portrait back to all
     override func viewWillDisappear(_ animated: Bool) {
