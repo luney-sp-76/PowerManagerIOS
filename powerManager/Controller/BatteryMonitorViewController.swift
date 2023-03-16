@@ -220,7 +220,7 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 self.iPhoneBatteryDeviceName?.text = phoneName
                
             }
-            print("handling plug data is : \(device.id == plugStateEntityID) for \(plugStateEntityID) as the device is now \(device.id)")
+            //print("handling plug data is : \(device.id == plugStateEntityID) for \(plugStateEntityID) as the device is now \(device.id)")
           if device.id == plugStateEntityID {
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
                     let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
@@ -244,7 +244,7 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                         print("\(device.name) is charging")
                         break
                     case "Not Charging":
-                        print("\(device.name) is not charging but the plug is on")
+                        //print("\(device.name) is not charging but the plug is on")
                         break
                     case "Full":
                         print("\(device.name) is full and charging should be stopped")

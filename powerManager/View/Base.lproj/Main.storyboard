@@ -577,9 +577,12 @@
                                         <rect key="frame" x="49" y="51" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                 </subviews>
+                                <accessibility key="accessibilityConfiguration" hint="Enter a two digit number" label="Distribution Network Operator Number">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="177" id="06B-Go-Hr9"/>
                                     <constraint firstAttribute="right" secondItem="f0J-IG-Aj9" secondAttribute="right" constant="48" id="A98-o7-LlH"/>
@@ -602,7 +605,7 @@
                                         <rect key="frame" x="49" y="48" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
-                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" enablesReturnKeyAutomatically="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1op-tw-F1m" userLabel="Update" colorLabel="IBBuiltInLabel-Gray">
                                         <rect key="frame" x="0.0" y="124" width="375" height="53"/>
@@ -652,7 +655,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eC1-ti-7rI" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3784.8000000000002" y="-139.65517241379311"/>
+            <point key="canvasLocation" x="3538" y="443"/>
         </scene>
         <!--SecurityViewController-->
         <scene sceneID="oh1-u3-zDI">
@@ -668,7 +671,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="bFX-YB-TqF">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="https://&lt;homeassistaturl&gt;/api" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-b1-W33" userLabel="urlText">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="https://&lt;homeassistaturl&gt;/api" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8kT-b1-W33" userLabel="urlText" customClass="CustomTextField" customModule="powerManager" customModuleProvider="target">
                                         <rect key="frame" x="49" y="51" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -693,7 +696,7 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-iO-dOj">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
                                     </imageView>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="long lived token" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-N8-uuW" userLabel="longLivedToken">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="long lived token" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dYp-N8-uuW" userLabel="longLivedToken" customClass="CustomTextField" customModule="powerManager" customModuleProvider="target">
                                         <rect key="frame" x="49" y="48" width="278" height="45"/>
                                         <color key="textColor" name="BrandBlue"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="25"/>
@@ -746,7 +749,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HvO-Vn-Nsp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4644" y="-140.39408866995075"/>
+            <point key="canvasLocation" x="4940" y="443"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="wZc-Gc-AxG">

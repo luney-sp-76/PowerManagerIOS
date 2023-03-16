@@ -32,7 +32,7 @@ class HomeManager  {
                 APIState.shared.url = url
                 APIState.shared.token = token
                 print("HomeManager URL: \(url ?? "no url returned")")
-                print("HomeManager Token: \(token ?? "no token returned")")
+                //print("HomeManager Token: \(token ?? "no token returned")")
                 self.fetchDeviceData { result in
                     switch result {
                     case .success(let devices):
@@ -49,7 +49,7 @@ class HomeManager  {
        }
     func fetchDeviceData(completion: @escaping (Result<[HomeAssistantData], Error>) -> Void) {
         let urlString = "\(APIState.shared.url ?? "error: ")states"
-        print(urlString)
+       // print(urlString)
         if let cachedData = cache.object(forKey: "devices") {
             self.deviceArray = cachedData as! [HomeAssistantData]
             delegate?.didReceiveDevices(self.deviceArray)
