@@ -1,10 +1,9 @@
 # powerManager_ios
-power manager is an app to monitor and control the charging of a smart battery powered device. 
-The app is part of an Internet of Things project involving the Home Assistant and Firebase platform and Swift and Python code development to persistently monitor the battery level of an iPhone via another iOS device or Mac and switch on and off a connected smart plug used to charged the iPhone. The plug will switch off when the phone battery level is at 100% and on at a set minimum threshold determined by the application user. 
+Power Manager is an app designed to monitor and control the charging of smart battery-powered devices as part of an Internet of Things (IoT) project. The app leverages the Home Assistant and Firebase platforms, along with Swift and Python code, to continuously monitor an iPhone's battery level via another iOS device or Mac, and intelligently control a connected smart plug used to charge the iPhone. The smart plug automatically turns off when the phone's battery reaches 100% and turns back on when the battery level drops below a user-defined threshold.
 
-The use of an Azure Event hub reading specified messages from Home Assistant in regard to the iPhone and smart Plug allows regular timed check-ins that in turn updates an SQL database with charging statistics, power used, times of changes to battery charging state and switch state. All this data can provide information such as how long the battery lasts between charges, how much energy the device takes to charge, how long the battery takes to charge and even the cost of charging can be determined. Over time this will also determine battery health and value for money.
+By utilizing the REST API from Home Assistant, the app enables regular timed check-ins that subsequently update a Firestore database with relevant charging statistics, including power usage, battery charging state changes, and smart plug state transitions. This wealth of data allows users to gain insights into battery performance, such as the duration between charges, energy consumption during charging, charging time, and even the cost of charging. Over time, this information can also be used to assess battery health and evaluate the overall value for money.
 
-The Azure homeassistanteventhub function app is a seperate repository to this one and is written in Python.
+An Azure HomeassistantEventHub function app, written in Python, is a separate repository associated with this project.
 
-The Home Assistant Api has both a local and Nabu Casa Cloud version to test both home and remote control of the application. 
+The Home Assistant API offers both a local and Nabu Casa Cloud version, facilitating both in-home and remote control of the application.
 
