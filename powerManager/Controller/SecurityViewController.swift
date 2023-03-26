@@ -85,7 +85,17 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
     }
     
 
-    //This function generates a 256-bit symmetric key using bcrypt based on the user's password, salt, and the number of iterations. The plaintext data (i.e., the concatenated homeAssistantUrl and longLivedToken) is then encrypted using the key and a randomly generated nonce using the AES.GCM algorithm. The encrypted data, nonce, and salt are then stored in the securedData collection in Firestore.
+///   This function updates a Firestore document that contains encrypted sensitive information related to a user. The information is encrypted using the RNCryptor encryption library and stored in the Firestore database.
+    
+///   The function takes in three parameters: a homeAssistantUrl, a longLivedToken, and a completion closure. The homeAssistantUrl and longLivedToken are used to create a plaintext string that will be encrypted and stored in the Firestore database. The completion closure is used to handle any errors that occur during the update process.
+
+///    The function first checks that the current user's email is not nil, and that both the homeAssistantUrl and longLivedToken parameters are not empty. If any of these conditions are not met, the function returns early and does not perform any database updates.
+
+///    Next, the function checks that the length of the longLivedToken parameter is at least 40 characters. If it is not, the function prints an error message and returns early.
+
+///    The function then converts the homeAssistantUrl and longLivedToken parameters into a plaintext string and encrypts it using the RNCryptor library. The encrypted data is then uploaded to the Firestore database as a new document under the "securedData" collection, with the user's email as the document ID. The document contains the encrypted data and the user's email.
+
+///    If there are any errors during the upload process, the function calls the completion closure with the error. Otherwise, the function calls the completion closure with a nil error to indicate that the update was successful.
     func updateSecureData(homeAssistantUrl: String, longLivedToken: String, completion: @escaping (Error?) -> Void) {
         guard let userEmail = Auth.auth().currentUser?.email, !homeAssistantUrl.isEmpty, !longLivedToken.isEmpty else {
             return

@@ -1,1 +1,36 @@
-
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>170320565442-gocqc1fl0r66bcq954b0qmd8361l68iu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.170320565442-gocqc1fl0r66bcq954b0qmd8361l68iu</string>
+	<key>API_KEY</key>
+	<string>AIzaSyCfWjJVB1--KCSsjCgTp1Q84IVP6DMsJDc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>170320565442</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.powermanager.powerManager</string>
+	<key>PROJECT_ID</key>
+	<string>power-manager-aef8d</string>
+	<key>STORAGE_BUCKET</key>
+	<string>power-manager-aef8d.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:170320565442:ios:d46c4a69c29c1ec31c975b</string>
+	<key>DATABASE_URL</key>
+	<string>https://power-manager-aef8d-default-rtdb.europe-west1.firebasedatabase.app</string>
+</dict>
+</plist>

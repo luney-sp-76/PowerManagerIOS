@@ -16,6 +16,11 @@
 		BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */; };
 		BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
+		BD5A76EA29C9021700E1337F /* EnergyCostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76E929C9021700E1337F /* EnergyCostTests.swift */; };
+		BD5A76EF29C909A700E1337F /* EnergyCostManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */; };
+		BD5A76F129C9951A00E1337F /* EnergyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76F029C9951A00E1337F /* EnergyManagerTests.swift */; };
+		BD5A76F329C9977C00E1337F /* FireStoreMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76F229C9977C00E1337F /* FireStoreMocks.swift */; };
+		BD5A76F529C99D0C00E1337F /* FireStoreProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76F429C99D0C00E1337F /* FireStoreProtocols.swift */; };
 		BD5FB24A29A8B781008F27CF /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FB24929A8B781008F27CF /* SecurityViewController.swift */; };
 		BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6327D6297D599100514BF6 /* DevicesCell.swift */; };
 		BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BD6327D7297D599100514BF6 /* DevicesCell.xib */; };
@@ -24,6 +29,7 @@
 		BD6C4A5D299F7FD700D401DD /* EnergyCostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */; };
 		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
 		BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */; };
+		BD80AA0829C9004000A80501 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD80AA0729C9004000A80501 /* Charts.framework */; };
 		BD91BFD029A27D9D0016FF41 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD91BFCF29A27D9D0016FF41 /* Crypto.swift */; };
 		BD9EDD0B29A763E200110F3A /* SecuredDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
@@ -81,6 +87,11 @@
 		BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; path = "../../../../Downloads/client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		BD5A76E929C9021700E1337F /* EnergyCostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostTests.swift; sourceTree = "<group>"; };
+		BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostManagerTests.swift; sourceTree = "<group>"; };
+		BD5A76F029C9951A00E1337F /* EnergyManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagerTests.swift; sourceTree = "<group>"; };
+		BD5A76F229C9977C00E1337F /* FireStoreMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreMocks.swift; sourceTree = "<group>"; };
+		BD5A76F429C99D0C00E1337F /* FireStoreProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreProtocols.swift; sourceTree = "<group>"; };
 		BD5FB24929A8B781008F27CF /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		BD6327D6297D599100514BF6 /* DevicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesCell.swift; sourceTree = "<group>"; };
 		BD6327D7297D599100514BF6 /* DevicesCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DevicesCell.xib; sourceTree = "<group>"; };
@@ -89,6 +100,7 @@
 		BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostDataManager.swift; sourceTree = "<group>"; };
 		BD6D3ED829754082009C063A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		BD80AA0729C9004000A80501 /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BD91BFCF29A27D9D0016FF41 /* Crypto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Crypto.swift; sourceTree = "<group>"; };
 		BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredDataFetch.swift; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
@@ -131,6 +143,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD80AA0829C9004000A80501 /* Charts.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,6 +160,7 @@
 		0C9062B8D8C97858F2EB0C0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BD80AA0729C9004000A80501 /* Charts.framework */,
 				B647118994F43D6D95784CE2 /* Pods_powerManager.framework */,
 			);
 			name = Frameworks;
@@ -190,6 +204,7 @@
 				BDC629C3299010770063CA6F /* FirebaseUpdater.swift */,
 				BDC629C5299010E50063CA6F /* DataProvider.swift */,
 				BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */,
+				BD5A76F429C99D0C00E1337F /* FireStoreProtocols.swift */,
 			);
 			path = FirebaseFirestore;
 			sourceTree = "<group>";
@@ -297,6 +312,10 @@
 			isa = PBXGroup;
 			children = (
 				DAE46004295E1CDF00704D59 /* powerManagerTests.swift */,
+				BD5A76E929C9021700E1337F /* EnergyCostTests.swift */,
+				BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */,
+				BD5A76F029C9951A00E1337F /* EnergyManagerTests.swift */,
+				BD5A76F229C9977C00E1337F /* FireStoreMocks.swift */,
 			);
 			path = powerManagerTests;
 			sourceTree = "<group>";
@@ -499,6 +518,7 @@
 				BD5FB24A29A8B781008F27CF /* SecurityViewController.swift in Sources */,
 				BD07C5B2297495B200F4DE29 /* WelcomeViewController.swift in Sources */,
 				BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */,
+				BD5A76F529C99D0C00E1337F /* FireStoreProtocols.swift in Sources */,
 				DAE45FF2295E1CDD00704D59 /* BatteryMonitorViewController.swift in Sources */,
 				BD65FCFA2962EC5000C80565 /* DeviceModel.swift in Sources */,
 				DAE45FEE295E1CDD00704D59 /* AppDelegate.swift in Sources */,
@@ -526,7 +546,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BD5A76EF29C909A700E1337F /* EnergyCostManagerTests.swift in Sources */,
+				BD5A76EA29C9021700E1337F /* EnergyCostTests.swift in Sources */,
+				BD5A76F329C9977C00E1337F /* FireStoreMocks.swift in Sources */,
 				DAE46005295E1CDF00704D59 /* powerManagerTests.swift in Sources */,
+				BD5A76F129C9951A00E1337F /* EnergyManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

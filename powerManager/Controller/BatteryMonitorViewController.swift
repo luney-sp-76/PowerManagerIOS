@@ -205,7 +205,6 @@ class BatteryMonitorViewController: UIViewController {
 
 extension BatteryMonitorViewController: DeviceManagerDelegate {
     
-    
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
         //update firebase
         //dataProvider.transferData()

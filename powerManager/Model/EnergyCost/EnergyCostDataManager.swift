@@ -17,6 +17,7 @@ import Charts
 //
 //        Finally, the function returns the array of ChartDataEntry objects.
         func combineEnergyData(energyModels: [EnergyModel], energyReadings: [HomeData], chartView: LineChartView, dateValueFormat: DateValueFormatter) -> (chartDataEntries: [ChartDataEntry], totalCost: Double) {
+
             // Initialize total cost to zero
             var totalCost: Double = 0.0
             

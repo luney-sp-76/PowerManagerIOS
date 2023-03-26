@@ -56,6 +56,8 @@ class StatisticsViewController: UIViewController {
     override func viewDidLoad()  {
         super.viewDidLoad()
         view.addSubview(batteryLevelChartView)
+        batteryLevelChartView.frame = view.bounds
+        batteryLevelChartView.isHidden = false
         //converts the dateformat into month and day
         batteryLevelChartView.xAxis.valueFormatter = dateValueFormat
         powerUsageChartView.xAxis.valueFormatter = dateValueFormat
@@ -66,6 +68,7 @@ class StatisticsViewController: UIViewController {
         Task {
                 await updateCharts(withStartDate: startDate!, endDate: endDate!)
             }
+        print("Chart view frame: \(lineChartView.frame)")
     }
     
     //lock the screen orientation
@@ -146,7 +149,7 @@ class StatisticsViewController: UIViewController {
         print("The start date recieved by batteryChartData is \(startDate) and the end date recieved is \(endDate)")
         batteryLevelChartView.setNeedsDisplay()
         var chartDataEntries = [ChartDataEntry]()
-        //print(startDate , endDate)
+       print("batteryChartData \(startDate) , \(endDate)")
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
         
@@ -154,7 +157,7 @@ class StatisticsViewController: UIViewController {
             if device.entity_id.contains(K.batteryLevel) {
                 if let lastUpdated = dateFormatter.date(from: device.lastUpdated),
                           lastUpdated >= startDate && lastUpdated <= endDate {
-                           //print("Yes, date \(lastUpdated) is within the range \(startDate) - \(endDate)")
+                           print("Yes, date \(lastUpdated) is within the range \(startDate) - \(endDate)")
                            let batteryLevel = Double(device.state) ?? 0.0
                            let reverseTimestamp = DateFormat.dateFormatted(date: device.lastUpdated)
                            let timeInterval = reverseTimestamp.timeIntervalSince1970

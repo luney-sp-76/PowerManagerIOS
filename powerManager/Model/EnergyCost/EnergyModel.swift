@@ -17,3 +17,11 @@ class EnergyModel {
         self.timestamp = timestamp
     }
 }
+
+extension EnergyModel: Equatable {
+    static func == (lhs: EnergyModel, rhs: EnergyModel) -> Bool {
+        return lhs.overall == rhs.overall &&
+        lhs.unixTimestamp == rhs.unixTimestamp &&
+        lhs.timestamp == rhs.timestamp
+    }
+}
