@@ -151,10 +151,13 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
             updateSecureData(homeAssistantUrl: url, longLivedToken: token) { error in
                 if let error = error {
                     // handle error
+                    sender.setTitle("That didn't work, log out and try again", for: .normal)
                     print("Error updating data: \(error.localizedDescription)")
                 } else {
                     // data updated successfully
                     sender.setTitle("Data updated successfully", for: .normal)
+                    self.homeAssistantUrlTextField.text =  " "
+                    self.HomeAssistantTokenTextField.text = " "
                     print("Data updated successfully")
                 }
             }
