@@ -111,6 +111,7 @@ class SettingsViewController: UIViewController {
             destination.updateDevicesArray(newDevicesArray: selectedDevices)
             //destination.devicesArray = selectedDevices
             destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId
+            destination.checked = true
         }
         
     }

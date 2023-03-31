@@ -12,6 +12,8 @@ import CLTypingLabel
 
 
 class BatteryMonitorViewController: UIViewController {
+   
+    
     
     //ensure the viewDidLoad only happens once on each occasion
     private var viewHasLoaded = false
@@ -35,6 +37,8 @@ class BatteryMonitorViewController: UIViewController {
     var plugStateEntityID = " "
     var devicesArraySemaphore = DispatchSemaphore(value: 1)
     var timer: Timer?
+    var checked = false
+    var count = 0
 
     
     @IBOutlet weak var batteryPercentageLabel: UILabel!
@@ -43,8 +47,8 @@ class BatteryMonitorViewController: UIViewController {
     @IBOutlet weak var settingsButton: UIButton!
     @IBOutlet weak var powerPlugIcon: UIImageView!
     @IBOutlet weak var iPhoneBatteryDeviceName: CLTypingLabel!
+    @IBOutlet weak var plugName: CLTypingLabel!
     
-  
     var currentBatteryLevel = 100
     var lowestBatteryChargeLevel = 21
     var lastPlugStateCheckTime: Date = Date()
@@ -52,22 +56,19 @@ class BatteryMonitorViewController: UIViewController {
     
     
     override func viewDidLoad() {
-        if !viewHasLoaded {
-            viewHasLoaded = true
             title = K.appName
             navigationItem.hidesBackButton = true
             deviceStateManager.delegate = self
             checkDataHasLoaded()
         }
-        else {
-           return
-        }
-    }
+
+        
+    
     
     
     //this function checks if there are a battery_level and switch device in the devices Array
     //it updates the variables for iPhoneBatteryLevelEntityID and  plugStateEntityID with the data from the array
-    //if iPhoneBatteryLevelEntityID is not present or has no value the user is prompted to add devices and pointed to the SettigsViewController via the segue
+    //if iPhoneBatteryLevelEntityID is not present or has no value the user is prompted to add devices and pointed to the SettingsViewController via the segue
     func checkDataHasLoaded() {
         //print("The array of devices chosen in settings is now \(devicesArray)")
         for device in devicesArray {
@@ -79,15 +80,19 @@ class BatteryMonitorViewController: UIViewController {
                 plugStateEntityID = device
             }
         }
-        
-        if iPhoneBatteryLevelEntityID == " " {
-            devicesArray = []
-            let alert = UIAlertController(title: "Please set your device preferences in settings!", message:"Please set your device preferences in settings!" , preferredStyle: .alert)
-            let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
-                self.performSegue(withIdentifier: "batteryMonitorToSettings", sender: self)
-            })
-            alert.addAction(okAction)
-            self.present(alert, animated: true, completion: nil)
+        if !checked {
+           // count += 1
+           // print("Check of the device array = \(checked) and this happened \(count) times")
+            if iPhoneBatteryLevelEntityID == " " {
+                devicesArray = []
+                let alert = UIAlertController(title: "Please set your device preferences in settings!", message:"Please set your device preferences in settings!" , preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "OK", style: .default, handler: { (action) in
+                    self.performSegue(withIdentifier: "batteryMonitorToSettings", sender: self)
+                })
+                alert.addAction(okAction)
+                self.present(alert, animated: true, completion: nil)
+                checked = true
+            }
         }
     }
     
@@ -95,16 +100,18 @@ class BatteryMonitorViewController: UIViewController {
     //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        AppUtility.lockOrientation(.portrait)
-        // Or to rotate and lock
-        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+            AppUtility.lockOrientation(.portrait)
+            // Or to rotate and lock
+            // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
+    
     //removes the contstraint on orientation lock from portrait back to all
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
     }
+    
     //makes a call to the api for plug state
     @objc func checkPlugState(plugDevice: String) {
         deviceStateManager.fetchPlugState(urlEndPoint: plugDevice)
@@ -215,13 +222,14 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 //change battery percentage to current battery percentage state
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-                ///changes the battery level label to the friendly name of the device
+                ///changes the battery level label to the friendly name of the device with white space to centralize the string
                 let phoneName = AppUtility.shortenString(string: device.name, maxLength: 19, minLength: 17)
                 self.iPhoneBatteryDeviceName?.text = phoneName
                
             }
             //print("handling plug data is : \(device.id == plugStateEntityID) for \(plugStateEntityID) as the device is now \(device.id)")
           if device.id == plugStateEntityID {
+              plugName.text = "\(device.name) plug connected"
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
                     let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
                     print("Time since last check \(timeSinceLastCheck)")

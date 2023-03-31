@@ -15,14 +15,14 @@
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="BatteryMonitorViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background" translatesAutoresizingMaskIntoConstraints="NO" id="36R-Xm-h2A">
-                                <rect key="frame" x="0.0" y="-289" width="375" height="1101"/>
+                                <rect key="frame" x="0.0" y="-289" width="375" height="1044"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="HN1-Rh-8OX">
-                                <rect key="frame" x="30" y="40" width="315" height="540.33333333333337"/>
+                                <rect key="frame" x="30" y="-7" width="315" height="564.33333333333337"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F39-dr-Ctn">
                                         <rect key="frame" x="157.66666666666663" y="0.0" width="157.33333333333337" height="95.666666666666671"/>
@@ -42,15 +42,15 @@
                                         </subviews>
                                     </stackView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="iPhone Battery Level" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qgq-bo-bld" customClass="CLTypingLabel" customModule="CLTypingLabel">
-                                        <rect key="frame" x="25" y="105.66666666666666" width="290" height="36"/>
+                                        <rect key="frame" x="25" y="105.66666666666667" width="290" height="38.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="IT5-iO-d56">
-                                        <rect key="frame" x="0.0" y="151.66666666666666" width="315" height="388.66666666666674"/>
+                                        <rect key="frame" x="0.0" y="153.99999999999997" width="315" height="410.33333333333326"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dNA-vP-Tu6" userLabel="SliderStack View">
-                                                <rect key="frame" x="79.000000000000014" y="145.33333333333334" width="157.33333333333337" height="98"/>
+                                                <rect key="frame" x="79.000000000000014" y="156.33333333333331" width="157.33333333333337" height="98"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="21" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qbF-Vi-zdd" userLabel="Percentage">
                                                         <rect key="frame" x="0.0" y="0.0" width="92.666666666666671" height="98"/>
@@ -73,7 +73,7 @@
                                                 </connections>
                                             </slider>
                                             <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" reversesTitleShadowWhenHighlighted="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" lineBreakMode="middleTruncation" pointerInteraction="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dKC-zG-HFM">
-                                                <rect key="frame" x="132.66666666666666" y="264.66666666666663" width="49.666666666666657" height="34.333333333333314"/>
+                                                <rect key="frame" x="132.66666666666666" y="275.66666666666669" width="49.666666666666657" height="34.333333333333314"/>
                                                 <color key="backgroundColor" name="Set Button Colour"/>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <size key="titleShadowOffset" width="13" height="0.0"/>
@@ -106,15 +106,15 @@
                                     <constraint firstItem="IT5-iO-d56" firstAttribute="leading" secondItem="HN1-Rh-8OX" secondAttribute="leading" id="yhA-e0-vBb"/>
                                 </constraints>
                             </stackView>
-                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="204" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-Y7-r3b" userLabel="SettingsStack View">
-                                <rect key="frame" x="30" y="657" width="315" height="22"/>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="fillEqually" spacing="208" translatesAutoresizingMaskIntoConstraints="NO" id="dDq-Y7-r3b" userLabel="SettingsStack View">
+                                <rect key="frame" x="30" y="634" width="315" height="22"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="powerplug" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="lEP-TD-aV6">
-                                        <rect key="frame" x="0.0" y="1.3333333333333321" width="55.666666666666664" height="19.666666666666668"/>
+                                        <rect key="frame" x="0.0" y="1.3333333333333321" width="53.666666666666664" height="19.666666666666668"/>
                                         <color key="tintColor" name="PlugIconColourOn"/>
                                     </imageView>
                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lkn-ci-W0h" userLabel="SettingsButton">
-                                        <rect key="frame" x="259.66666666666669" y="0.0" width="55.333333333333314" height="22"/>
+                                        <rect key="frame" x="261.66666666666669" y="0.0" width="53.333333333333314" height="22"/>
                                         <color key="tintColor" name="AffirmAction"/>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                         <state key="normal" image="gearshape" catalog="system"/>
@@ -124,6 +124,12 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PE0-VP-hCo" userLabel="Plug Name" customClass="CLTypingLabel" customModule="CLTypingLabel">
+                                <rect key="frame" x="96" y="634" width="197" height="0.0"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" name="AccentColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -132,13 +138,16 @@
                             <constraint firstItem="HN1-Rh-8OX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="C8A-mO-Bfo"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="HN1-Rh-8OX" secondAttribute="bottom" constant="148.66666666666663" id="DOS-WT-PPn"/>
                             <constraint firstItem="HN1-Rh-8OX" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="-7" id="E7a-8d-Zdh"/>
+                            <constraint firstItem="PE0-VP-hCo" firstAttribute="top" secondItem="dDq-Y7-r3b" secondAttribute="top" id="Ipv-R7-rf6"/>
                             <constraint firstItem="HN1-Rh-8OX" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="JFF-8n-3D2"/>
+                            <constraint firstItem="PE0-VP-hCo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="96" id="KsR-LY-Wot"/>
                             <constraint firstAttribute="bottom" secondItem="36R-Xm-h2A" secondAttribute="bottom" id="NwA-er-2gu"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dDq-Y7-r3b" secondAttribute="trailing" constant="30" id="ZMZ-K9-lbO"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="dDq-Y7-r3b" secondAttribute="bottom" constant="50" id="eZC-lZ-Xcv"/>
                             <constraint firstItem="dDq-Y7-r3b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="fMF-Pe-rcZ"/>
                             <constraint firstItem="36R-Xm-h2A" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="-289" id="h62-j7-nnb"/>
                             <constraint firstItem="HN1-Rh-8OX" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="30" id="hJA-p0-ykn"/>
+                            <constraint firstItem="PE0-VP-hCo" firstAttribute="centerX" secondItem="dDq-Y7-r3b" secondAttribute="centerX" constant="7" id="kA3-Vw-q7K"/>
                             <constraint firstItem="36R-Xm-h2A" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="qp3-t2-KbG"/>
                         </constraints>
                     </view>
@@ -158,6 +167,7 @@
                         <outlet property="batteryPercentageLabel" destination="LQI-oe-TA5" id="ReS-HI-Pee"/>
                         <outlet property="button" destination="dKC-zG-HFM" id="IR4-tC-zN5"/>
                         <outlet property="iPhoneBatteryDeviceName" destination="Qgq-bo-bld" id="P42-xG-SR3"/>
+                        <outlet property="plugName" destination="PE0-VP-hCo" id="nJq-jo-QTw"/>
                         <outlet property="powerPlugIcon" destination="lEP-TD-aV6" id="PRw-VC-H28"/>
                         <outlet property="setBatteryLevel" destination="qbF-Vi-zdd" id="eOS-3P-evw"/>
                         <outlet property="settingsButton" destination="lkn-ci-W0h" id="84c-Cq-SfX"/>
@@ -448,21 +458,21 @@
             <objects>
                 <hostingController id="GE5-nL-MZN" customClass="StatisticsViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="U14-w0-x4Z">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzU-lW-jbb" userLabel="BatteryLevel ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="31" y="63" width="311" height="298"/>
+                                <rect key="frame" x="31" y="16" width="311" height="345"/>
                                 <viewLayoutGuide key="safeArea" id="Tx4-R4-F3Y"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <view clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QxU-TH-JoC" userLabel="PowerUsage ChartView" customClass="LineChartView" customModule="Charts">
-                                <rect key="frame" x="31" y="422" width="311" height="265"/>
+                                <rect key="frame" x="31" y="422" width="311" height="242"/>
                                 <viewLayoutGuide key="safeArea" id="Jzv-Lt-Wf3"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                             <datePicker contentMode="scaleAspectFill" contentHorizontalAlignment="fill" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="i73-9S-kEe">
-                                <rect key="frame" x="31" y="695" width="311" height="34"/>
+                                <rect key="frame" x="31" y="672" width="311" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="08x-mY-SN5"/>
                                 </constraints>
@@ -516,15 +526,15 @@
             <objects>
                 <hostingController id="SGa-WX-MCS" userLabel="Settings View Controller" customClass="SettingsViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tmt-p7-6MM">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Euk-oa-KaM">
-                                <rect key="frame" x="0.0" y="47" width="375" height="622"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="646"/>
                                 <color key="backgroundColor" name="BrandLightBlue"/>
                             </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cl7-nu-Fjm">
-                                <rect key="frame" x="0.0" y="683" width="375" height="48"/>
+                                <rect key="frame" x="0.0" y="636" width="375" height="72"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled" title="Set">
                                     <color key="baseBackgroundColor" name="BrandBlue"/>
@@ -566,11 +576,11 @@
             <objects>
                 <viewController title="SetupViewController" id="R2t-gb-HE3" userLabel="SetUpViewController" customClass="SetUpViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="oux-m9-2i3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OjT-Ie-fPb" userLabel="DNOView">
-                                <rect key="frame" x="0.0" y="47" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SBl-Ij-Bel">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -598,7 +608,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tgn-WZ-KWW" userLabel="VoltageView">
-                                <rect key="frame" x="0.0" y="124" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="r5v-ur-57q">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -664,11 +674,11 @@
             <objects>
                 <viewController id="gQs-ua-qYL" userLabel="SecurityViewController" customClass="SecurityViewController" customModule="powerManager" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hZ1-qB-Dw5">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="755"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1N7-TA-noV" userLabel="UrlTextFieldView">
-                                <rect key="frame" x="0.0" y="47" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="bFX-YB-TqF">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -693,7 +703,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DTg-FC-Ugi" userLabel="TokenView">
-                                <rect key="frame" x="0.0" y="124" width="375" height="177"/>
+                                <rect key="frame" x="0.0" y="77" width="375" height="177"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="textfield" translatesAutoresizingMaskIntoConstraints="NO" id="SwM-iO-dOj">
                                         <rect key="frame" x="0.0" y="20" width="375" height="137"/>
@@ -777,6 +787,7 @@
         <designable name="Qgq-bo-bld"/>
     </designables>
     <inferredMetricsTieBreakers>
+        <segue reference="fyh-NU-JxY"/>
         <segue reference="Dad-9D-DNK"/>
     </inferredMetricsTieBreakers>
     <resources>
