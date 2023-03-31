@@ -66,6 +66,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
     @IBOutlet weak var saltedPasswordTextField: UITextField!
     
 
+   
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -133,7 +134,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
     
     
     // CURRENTLY SETS PASSWORD TO Hardcoded value as it would require a seperate server or expensive management to hold the password in a keyvault.
-    @IBAction func setButtonPressed(_ sender: Any) {
+    @IBAction func setButtonPressed(_ sender: UIButton) {
  
         let homeAssistantUrl = homeAssistantUrlTextField.text
         let longLivedToken = HomeAssistantTokenTextField.text
@@ -153,6 +154,7 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
                     print("Error updating data: \(error.localizedDescription)")
                 } else {
                     // data updated successfully
+                    sender.setTitle("Data updated successfully", for: .normal)
                     print("Data updated successfully")
                 }
             }

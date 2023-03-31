@@ -40,18 +40,4 @@ class FirebaseUpdater: HomeManagerDelegate {
             }
         }
     }
-    //    func updateFirebase(with devices: [HomeAssistantData], userData: String) {
-    //        for device in devices {
-    //            DispatchQueue.main.async {
-    //                self.db.collection(K.FStore.homeAssistantCollection).addDocument(data: [K.FStore.user: userData, K.FStore.entity_id: device.entity_id, K.FStore.state: device.state, K.FStore.lastUpdated: device.last_updated, K.FStore.friendlyName: device.attributes.friendlyName, K.FStore.uuid: device.context.id]) {
-    //                    error in
-    //                    if let e = error {
-    //                        print("there was an issue sending data to FireStore \(e)")
-    //                    } else {
-    //                        print("Successfully saved data")
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    }
 }

@@ -79,6 +79,7 @@ class BatteryMonitorViewController: UIViewController {
                 plugStateEntityID = device
             }
         }
+        
         if iPhoneBatteryLevelEntityID == " " {
             devicesArray = []
             let alert = UIAlertController(title: "Please set your device preferences in settings!", message:"Please set your device preferences in settings!" , preferredStyle: .alert)
