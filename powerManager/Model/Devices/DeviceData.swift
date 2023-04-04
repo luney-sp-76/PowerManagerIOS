@@ -7,7 +7,19 @@
 
 
 import Foundation
-
+/**
+ 
+ This is a Swift Decodable struct named DeviceData which represents the JSON data returned from the API when fetching device data. It contains the following properties:
+ 
+ - entity_id: a string representing the unique identifier of the device
+ - state: a string representing the current state of the device
+ - attributes: a nested Attributes struct containing additional attributes of the device
+ - last_changed: a string representing the time the device was last changed
+ - last_updated: a string representing the time the device was last updated
+ - context: a nested Context struct containing contextual information about the device.
+ The init(from decoder: Decoder) method has been implemented to map the JSON data to the corresponding struct properties.
+ 
+ */
 struct DeviceData: Decodable {
     let entity_id: String
     let state: String
