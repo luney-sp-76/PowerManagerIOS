@@ -3,24 +3,43 @@
 //  powerManager
 //
 //  Created by Paul Olphert on 01/01/2023.
-// TODO / Refactor to allow the callForData function to be used for the plug and the phone
+
 
 import Foundation
 import FirebaseAuth
 
+/**
+ A protocol for objects that manage any devices.
+
+ Objects conforming to this protocol can be notified of updates to  devices, and can handle errors that occur while managing devices.
+ */
 protocol DeviceManagerDelegate {
+    /**
+        Notifies the delegate that a device update has occurred.
+
+        - Parameters:
+           - deviceManager: The `DeviceManager` object that initiated the update.
+           - device: The `DeviceModel` object that initiated the update
+        */
     func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel)
+    
+    /**
+       Notifies the delegate that an error has occurred while managing a device.
+
+       - Parameters:
+          - error: The error that occurred.
+       */
     func didFailWithError(error: Error)
 }
 
 
 var plugControl = PlugControl()
-
 var homeAssistantFetchUrl: String?
 var token: String?
-//var currentBatteryLevel = 21
 
-
+/**
+This struct manages the fetching of device data and battery level management. It conforms to the DeviceManagerDelegate protocol and contains functions to fetch device data, fetch the state of a plug device, make a network call, parse JSON data, and manage the battery level of a device. The manageBattery function is a mutating function that takes in a device, its lowest battery charge level, current battery level, and the name of the plug device to control. It returns a string indicating whether the device should be turned on or off.
+*/
 struct DeviceManager  {
     
     var homeAssistantFetchUrl: String?
