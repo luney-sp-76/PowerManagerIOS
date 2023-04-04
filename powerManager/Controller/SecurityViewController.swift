@@ -86,17 +86,26 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
     }
     
 
-///   This function updates a Firestore document that contains encrypted sensitive information related to a user. The information is encrypted using the RNCryptor encryption library and stored in the Firestore database.
-    
-///   The function takes in three parameters: a homeAssistantUrl, a longLivedToken, and a completion closure. The homeAssistantUrl and longLivedToken are used to create a plaintext string that will be encrypted and stored in the Firestore database. The completion closure is used to handle any errors that occur during the update process.
+    /**
+    This function updates a Firestore document that contains encrypted sensitive information related to a user. The information is encrypted using the RNCryptor encryption library and stored in the Firestore database.
 
-///    The function first checks that the current user's email is not nil, and that both the homeAssistantUrl and longLivedToken parameters are not empty. If any of these conditions are not met, the function returns early and does not perform any database updates.
+    The function takes in three parameters:
 
-///    Next, the function checks that the length of the longLivedToken parameter is at least 40 characters. If it is not, the function prints an error message and returns early.
+    homeAssistantUrl: A string that represents the URL of the user's Home Assistant instance.
+    longLivedToken: A string that represents the long-lived access token that the user has generated in their Home Assistant instance. This token is used to authenticate the user's requests to the instance.
+    completion: A closure that is called when the update operation completes, whether it succeeds or fails. The closure takes in an optional Error parameter, which will be nil if the operation succeeds and will contain an error object if the operation fails.
+    The function first checks that the current user's email is not nil, and that both the homeAssistantUrl and longLivedToken parameters are not empty. If any of these conditions are not met, the function returns early and does not perform any database updates.
 
-///    The function then converts the homeAssistantUrl and longLivedToken parameters into a plaintext string and encrypts it using the RNCryptor library. The encrypted data is then uploaded to the Firestore database as a new document under the "securedData" collection, with the user's email as the document ID. The document contains the encrypted data and the user's email.
+    Next, the function checks that the length of the longLivedToken parameter is at least 40 characters. If it is not, the function prints an error message and returns early.
 
-///    If there are any errors during the upload process, the function calls the completion closure with the error. Otherwise, the function calls the completion closure with a nil error to indicate that the update was successful.
+    The function then converts the homeAssistantUrl and longLivedToken parameters into a plaintext string, concatenates them with a comma separator, and encodes the resulting string as UTF-8 data. This plaintext data is then encrypted using the RNCryptor library.
+
+    The encrypted data is then uploaded to the Firestore database as a new document under the "securedData" collection, with the user's email as the document ID. The document contains the encrypted data and the user's email.
+
+    If there are any errors during the upload process, the function calls the completion closure with the error. Otherwise, the function calls the completion closure with a nil error to indicate that the update was successful.
+
+    Note that the function assumes that the RNCryptor password is stored securely in the app and accessible through the K.decrypt constant. It also assumes that the Firestore database is configured correctly and that the current user is authenticated with Firebase Auth.
+    */
     func updateSecureData(homeAssistantUrl: String, longLivedToken: String, completion: @escaping (Error?) -> Void) {
         guard let userEmail = Auth.auth().currentUser?.email, !homeAssistantUrl.isEmpty, !longLivedToken.isEmpty else {
             return
@@ -133,7 +142,21 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
 
     
     
-    // CURRENTLY SETS PASSWORD TO Hardcoded value as it would require a seperate server or expensive management to hold the password in a keyvault.
+    /**
+    This function is called when the user presses the "set" button in the app's settings screen. It updates the user's Home Assistant URL and long-lived access token in the Firestore database by calling the updateSecureData() function.
+
+    The function first retrieves the user's input for the Home Assistant URL and long-lived access token from the corresponding text fields in the app. It then retrieves the RNCryptor password from the K.decrypt constant, which is currently hardcoded in the app.
+
+    If both the Home Assistant URL and long-lived access token fields are completed and the RNCryptor password is not empty, the function calls the updateSecureData() function with the retrieved values. If any of these conditions are not met, the function returns early and does not perform any updates.
+
+    The updateSecureData() function encrypts the Home Assistant URL and long-lived access token using RNCryptor and stores the encrypted data in Firestore under the user's email address. The RNCryptor password is used to encrypt and decrypt the data.
+
+    Note that the current implementation uses a hardcoded RNCryptor password, as storing the password securely in a key vault or server would require additional infrastructure and management. This may pose a security risk and should be addressed in future iterations of the app.
+
+    If the updateSecureData() function succeeds, the "set" button title is updated to indicate success and the text fields are cleared. If it fails, the "set" button title is updated to indicate failure and an error message is printed to the console.
+
+    Note that the function assumes that the text fields are non-nil and non-empty, and that the updateSecureData() function is correctly implemented and configured with Firestore and RNCryptor.
+    */
     @IBAction func setButtonPressed(_ sender: UIButton) {
  
         let homeAssistantUrl = homeAssistantUrlTextField.text
