@@ -21,10 +21,10 @@ class HomeManager  {
     weak var delegate: HomeManagerDelegate?
     let cache = NSCache<NSString, NSArray>()
     let email = Auth.auth().currentUser?.email
-   
-
+    
+    
     init() {
-       
+        
         securedData.fetchSecureData(for: email!, password: K.decrypt) { url, token, error in
             if let error = error {
                 self.delegate?.didFailToFetchDeviceData(with: error)
@@ -45,11 +45,11 @@ class HomeManager  {
         }
     }
     static var shared: HomeManager {
-           return AppDelegate.sharedHomeManager
-       }
+        return AppDelegate.sharedHomeManager
+    }
     func fetchDeviceData(completion: @escaping (Result<[HomeAssistantData], Error>) -> Void) {
         let urlString = "\(APIState.shared.url ?? "error: ")states"
-       // print(urlString)
+        // print(urlString)
         if let cachedData = cache.object(forKey: "devices") {
             self.deviceArray = cachedData as! [HomeAssistantData]
             delegate?.didReceiveDevices(self.deviceArray)
