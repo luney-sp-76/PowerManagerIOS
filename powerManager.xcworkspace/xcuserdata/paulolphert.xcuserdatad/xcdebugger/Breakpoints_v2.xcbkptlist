@@ -30,8 +30,8 @@
             filePath = "powerManager/Model/DateFormatter.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "20"
-            endingLineNumber = "20"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
             landmarkName = "dateFormatted(date:)"
             landmarkType = "7">
          </BreakpointContent>
