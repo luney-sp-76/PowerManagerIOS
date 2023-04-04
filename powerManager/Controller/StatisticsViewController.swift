@@ -94,16 +94,18 @@ class StatisticsViewController: UIViewController {
             if let energyData = energyData {
                 let result = energyCostManager.combineEnergyData(
                                             energyModels: energyData,
-                                            energyReadings: deviceData,
+                                            homeData: deviceData,
                                             chartView: lineChartView,
-                                            dateValueFormat: dateValueFormat)
+                                            dateValueFormat: dateValueFormat,
+                                            startDate: startDate,
+                                            endDate: endDate)
                 energyCostData = result.chartDataEntries
  
                 DispatchQueue.main.async { [self] in
                     self.batteryChartData(forStartDate: startDate, endDate: endDate)
                     self.energyChartData()
                     if !result.totalCost.isZero {
-                        self.costOfEnergyLabel.text = String(format: "Cost: £ %.2f", result.totalCost/1000)
+                        self.costOfEnergyLabel.text = String(format: "Cost: £ %.2f", result.totalCost)
                     }
                 }
             } else {

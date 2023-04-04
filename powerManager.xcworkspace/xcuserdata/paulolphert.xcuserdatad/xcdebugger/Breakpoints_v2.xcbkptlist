@@ -161,8 +161,8 @@
             filePath = "powerManager/Controller/StatisticsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "172"
-            endingLineNumber = "172"
+            startingLineNumber = "174"
+            endingLineNumber = "174"
             landmarkName = "batteryChartData(forStartDate:endDate:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -177,8 +177,8 @@
             filePath = "powerManager/Controller/StatisticsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "171"
-            endingLineNumber = "171"
+            startingLineNumber = "173"
+            endingLineNumber = "173"
             landmarkName = "batteryChartData(forStartDate:endDate:)"
             landmarkType = "7">
          </BreakpointContent>
