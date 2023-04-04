@@ -20,8 +20,17 @@ class RegisterViewController: UIViewController {
     }
     
     
-    //uses the input from the email and password fields to check if the user is new or registered and if the password and email are valid
-    //If all passes then the user segues to the BatteryMonitorViewCOntroller or else is given appropriate prompts
+    /**
+     
+      Registers a new user with Firebase authentication using the provided email and password.
+      If the registration is successful, performs a segue to the BatteryMonitorViewController.
+     If there is an error during the registration process, displays an alert controller with the error message.
+      - Parameters:
+        - sender: The UIButton that triggered the function.
+      - Returns:
+        - None.
+     
+    */
     @IBAction func registerButtonPressed(_ sender: UIButton) {
         if let email = emailTextField.text, let password = passwordTextField.text {
             Auth.auth().createUser(withEmail: email, password: password) { [weak self] authResult, error in
