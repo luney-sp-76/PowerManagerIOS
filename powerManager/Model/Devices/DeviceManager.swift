@@ -31,21 +31,34 @@ struct DeviceManager  {
     
     
     /**
-     Function calls Home Assistant API endpoint to return the iphone BatteryLevel state (should be an int)
+     Fetches device data for a given device.
+
+     - Parameters:
+        - deviceName: The name of the device to fetch data for.
      */
     func fetchDeviceData(deviceName: String) {
         let urlString = "\(APIState.shared.url ?? "Error")states/\(deviceName)"
         //print(urlString)
         callForData(urlString: urlString)
     }
+    /**
+     Fetches the state of a plug device.
 
+     - Parameters:
+        - urlEndPoint: The endpoint for the plug device to fetch the state of.
+     */
     func fetchPlugState(urlEndPoint: String){
         let urlString = "\(APIState.shared.url ?? "Error")states/\(urlEndPoint)"
         callForData(urlString: urlString)
     }
     
     
-    
+    /**
+     Calls for data from a given URL.
+
+     - Parameters:
+        - urlString: The URL to call for data.
+     */
     func callForData(urlString: String) {
         let token = APIState.shared.token
         
