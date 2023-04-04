@@ -17,7 +17,24 @@ protocol CustomTextFieldDelegate: AnyObject {
     func getLastPastedTextField() -> UITextField?
     func setLastPastedTextField(_ textField: UITextField)
 }
-//the tag property for each text field is declared in the viewDidLoad method. Then, in the CustomTextField class, the direct reference to homeAssistantUrlTextField and HomeAssistantTokenTextField is replaced with the corresponding tag values to determine which text field is being referred to.
+
+/**
+This class defines a custom UITextField that overrides the paste(_:) method to allow pasting of text into specific text fields. The tag property for each text field is declared in the viewDidLoad method of the parent view controller.
+
+The CustomTextField class has a customDelegate property that can be set to a CustomTextFieldDelegate object. This delegate object is used to retrieve the last pasted text field and to set the current text field as the last pasted field.
+
+When the paste(_:) method is called, the function first checks if there is a string on the pasteboard. If there is, it checks if the current text field is the last pasted text field. If it is, the function clears the text field. Otherwise, it sets the current text field as the last pasted text field.
+
+If the current text field has a tag value of 1 (i.e., it is the Home Assistant URL text field), the function checks if the pasted text will exceed the maximum length of the text field. If it will not, the function appends the pasted text to the current text field. Otherwise, it ignores the paste operation.
+
+If the current text field has a tag value of 2 (i.e., it is the Home Assistant access token text field), the function simply appends the pasted text to the current text field.
+
+Parameters:
+
+- customDelegate: A weak reference to a CustomTextFieldDelegate object that will handle the paste operation.
+ This object is responsible for maintaining the state of the last pasted text field.
+Note that this class assumes that the parent view controller has set the tag property for each text field, and that the CustomTextFieldDelegate protocol is implemented correctly. It also assumes that the maximum length of the Home Assistant URL text field is 90 characters. Any changes to these assumptions may require modifications to this class.
+ */
 class CustomTextField: UITextField {
     weak var customDelegate: CustomTextFieldDelegate?
     
@@ -71,12 +88,11 @@ class SecurityViewController: UIViewController , UITextFieldDelegate, CustomText
         super.viewDidLoad()
         
         //set the CustomTextFieldDelegate as self for paste from clipboard
-           // homeAssistantUrlTextField = CustomTextField()
             homeAssistantUrlTextField.customDelegate = self
             homeAssistantUrlTextField.tag = 1
-            //HomeAssistantTokenTextField = CustomTextField()
             HomeAssistantTokenTextField.customDelegate = self
             HomeAssistantTokenTextField.tag = 2
+        
         // Set the UITextFieldDelegate for paste from clipboard
              homeAssistantUrlTextField.delegate = self
              HomeAssistantTokenTextField.delegate = self
