@@ -14,7 +14,6 @@
 		BD26C8C0299E44F000EBFCFB /* EnergyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */; };
 		BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C2F93297D7B5B00F4B914 /* Device.swift */; };
 		BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */; };
-		BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
 		BD5A76EA29C9021700E1337F /* EnergyCostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76E929C9021700E1337F /* EnergyCostTests.swift */; };
 		BD5A76EF29C909A700E1337F /* EnergyCostManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */; };
@@ -84,7 +83,6 @@
 		BD26C8BF299E44F000EBFCFB /* EnergyModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyModel.swift; sourceTree = "<group>"; };
 		BD3C2F93297D7B5B00F4B914 /* Device.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Device.swift; sourceTree = "<group>"; };
 		BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerFireStoreService.swift; sourceTree = "<group>"; };
-		BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; path = "../../../../Downloads/client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist"; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		BD5A76E929C9021700E1337F /* EnergyCostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostTests.swift; sourceTree = "<group>"; };
@@ -303,7 +301,6 @@
 				DAE45FF6295E1CDF00704D59 /* Assets.xcassets */,
 				DAE45FFB295E1CDF00704D59 /* Info.plist */,
 				BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */,
-				BD51390A298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist */,
 			);
 			path = powerManager;
 			sourceTree = "<group>";
@@ -436,7 +433,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				BD6327D9297D599100514BF6 /* DevicesCell.xib in Resources */,
-				BD51390B298C4D2500CA0D2B /* client_170320565442-p4gifj3lr5bpigqnctv2fess65lmf298.apps.googleusercontent.com.plist in Resources */,
 				DAE45FFA295E1CDF00704D59 /* LaunchScreen.storyboard in Resources */,
 				BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */,
 				DAE45FF7295E1CDF00704D59 /* Assets.xcassets in Resources */,
