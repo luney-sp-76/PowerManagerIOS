@@ -12,7 +12,7 @@ import CLTypingLabel
 
 
 class BatteryMonitorViewController: UIViewController {
-   
+    
     
     
     //ensure the viewDidLoad only happens once on each occasion
@@ -39,7 +39,7 @@ class BatteryMonitorViewController: UIViewController {
     var timer: Timer?
     var checked = false
     var count = 0
-
+    
     
     @IBOutlet weak var batteryPercentageLabel: UILabel!
     @IBOutlet weak var setBatteryLevel: UILabel!
@@ -54,16 +54,12 @@ class BatteryMonitorViewController: UIViewController {
     var lastPlugStateCheckTime: Date = Date()
     
     
-    
     override func viewDidLoad() {
-            title = K.appName
-            navigationItem.hidesBackButton = true
-            deviceStateManager.delegate = self
-            checkDataHasLoaded()
-        }
-
-        
-    
+        title = K.appName
+        navigationItem.hidesBackButton = true
+        deviceStateManager.delegate = self
+        checkDataHasLoaded()
+    }
     
     
     //this function checks if there are a battery_level and switch device in the devices Array
@@ -81,8 +77,8 @@ class BatteryMonitorViewController: UIViewController {
             }
         }
         if !checked {
-           // count += 1
-           // print("Check of the device array = \(checked) and this happened \(count) times")
+            // count += 1
+            // print("Check of the device array = \(checked) and this happened \(count) times")
             if iPhoneBatteryLevelEntityID == " " {
                 devicesArray = []
                 let alert = UIAlertController(title: "Please set your device preferences in settings!", message:"Please set your device preferences in settings!" , preferredStyle: .alert)
@@ -100,10 +96,11 @@ class BatteryMonitorViewController: UIViewController {
     //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-            AppUtility.lockOrientation(.portrait)
-            // Or to rotate and lock
-            // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
+        AppUtility.lockOrientation(.portrait)
+        // Or to rotate and lock
+        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
+    
     
     //removes the contstraint on orientation lock from portrait back to all
     override func viewWillDisappear(_ animated: Bool) {
@@ -112,17 +109,21 @@ class BatteryMonitorViewController: UIViewController {
         AppUtility.lockOrientation(.all)
     }
     
+    
     //makes a call to the api for plug state
     @objc func checkPlugState(plugDevice: String) {
         deviceStateManager.fetchPlugState(urlEndPoint: plugDevice)
         
     }
+    
+    
     //makes a call to api for battery level or state
     @objc func checkBatteryLevel(batteryDevice: String) {
         deviceStateManager.fetchDeviceData(deviceName: batteryDevice)
-       // print(iPhoneBatteryStateEntityID)
+        // print(iPhoneBatteryStateEntityID)
         
     }
+    
     
     //function to check the current devices
     func updateDevicesArray(newDevicesArray: [String]) {
@@ -132,27 +133,26 @@ class BatteryMonitorViewController: UIViewController {
     }
     
     
-
-    
     func scheduleFetchData(){
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 30, repeats: true) { [weak self] timer in
             self!.fetchData()
         }
     }
-        
-        func stopFetchingData() {
-                timer?.invalidate()
-            }
-        
-        func fetchData() {
-            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
-            self.checkPlugState(plugDevice: self.plugStateEntityID)
-            self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
-            self.scheduleFetchData()
-            }
-
-
+    
+    
+    func stopFetchingData() {
+        timer?.invalidate()
+    }
+    
+    
+    func fetchData() {
+        self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryLevelEntityID)
+        self.checkPlugState(plugDevice: self.plugStateEntityID)
+        self.checkBatteryLevel(batteryDevice: self.iPhoneBatteryStateEntityID)
+        self.scheduleFetchData()
+    }
+    
     
     // change the plug icon color on the viewcontroller UI to match its state
     func updatePlugColour(state: String) {
@@ -166,7 +166,6 @@ class BatteryMonitorViewController: UIViewController {
         }
     }
     
-    
     //func checks if the slider is moved and updates the lowestBatteryCharge Level to the users desired level
     @IBAction func sliderMoved(_ sender: UISlider) {
         setBatteryLevel.textColor = UIColor(named: K.ColourAssets.numberColour)
@@ -178,6 +177,7 @@ class BatteryMonitorViewController: UIViewController {
         setBatteryLevel.text = String(format: "%d",  lowestBatteryChargeLevel)
         currentBatteryLevel = Int(batteryPercentageLabel.text ?? "0")!
     }
+    
     // updates the colour of the text for the users battery level and changes thetext on the button to done
     @IBAction func buttonPressed(_ sender: UIButton) {
         // change button text to set level
@@ -212,41 +212,66 @@ class BatteryMonitorViewController: UIViewController {
 //MARK: - DeviceManagerDelegate
 
 extension BatteryMonitorViewController: DeviceManagerDelegate {
-    
-    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
-        //update firebase
-        //dataProvider.transferData()
-        //handling data for multiple device calls from the devicemanager
+    /**
+     This method updates the UI with the latest device data and manages the battery states.
+     
+     - Parameters:
+     - deviceManager: The instance of the DeviceManager class that manages the devices.
+     - device: The DeviceModel object representing the device that was updated.
+     
+     - Returns: Void.
+     */
+    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) -> Void {
+        
+        // Handle data for multiple device calls from the DeviceManager.
         DispatchQueue.main.async { [self] in
+            
+            // Check if the updated device is the iPhone battery level.
             if device.id == iPhoneBatteryLevelEntityID {
-                //change battery percentage to current battery percentage state
+                
+                // Change battery percentage to current battery percentage state.
                 self.batteryPercentageLabel.text = device.state
                 currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
-                ///changes the battery level label to the friendly name of the device with white space to centralize the string
+                
+                // Changes the battery level label to the friendly name of the device with white space to centralize the string.
                 let phoneName = AppUtility.shortenString(string: device.name, maxLength: 19, minLength: 17)
                 self.iPhoneBatteryDeviceName?.text = phoneName
-               
+                
             }
-            //print("handling plug data is : \(device.id == plugStateEntityID) for \(plugStateEntityID) as the device is now \(device.id)")
-          if device.id == plugStateEntityID {
-              plugName.text = "\(device.name) plug connected"
+            
+            // Check if the updated device is the plug state.
+            if device.id == plugStateEntityID {
+                
+                // Set the plug name label to the connected device name.
+                plugName.text = "\(device.name) plug connected"
+                
+                // If the current battery level is less than or equal to the lowest battery charge level or the battery is full, manage the battery state.
                 if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
+                    
+                    // Check the time since the last plug state check.
                     let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
-                    print("Time since last check \(timeSinceLastCheck)")
+                    
+                    // If more than 30 seconds have passed since the last check, manage the battery state.
                     if timeSinceLastCheck > 30 {
                         lastPlugStateCheckTime = Date()
                         print(lastPlugStateCheckTime)
                         plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
                     }
-            }
+                }
+                
+                // Update the plug color based on the device state.
                 updatePlugColour(state: device.state)
-           }
+            }
+            
+            // Check if the updated device is the iPhone battery state.
             if device.id == iPhoneBatteryStateEntityID {
                 
-                //set an alert to charge if the device is showing as not charging
+                // If the device is not charging and the plug is off, set an alert to charge.
                 if device.state == "Not Charging" && plugColour == K.off {
                     print("\(device.name) is \(device.state)")
-                }else {
+                } else {
+                    
+                    // Check the device state and manage the battery state accordingly.
                     switch device.state {
                     case "Charging":
                         print("\(device.name) is charging")
@@ -265,13 +290,63 @@ extension BatteryMonitorViewController: DeviceManagerDelegate {
                 }
             }
         }
-        
-       
     }
 }
-
-
-
+//    func didUpdateDevice(_ deviceManager: DeviceManager, device: DeviceModel) {
+//        //update firebase
+//        //dataProvider.transferData()
+//        //handling data for multiple device calls from the devicemanager
+//        DispatchQueue.main.async { [self] in
+//            if device.id == iPhoneBatteryLevelEntityID {
+//                //change battery percentage to current battery percentage state
+//                self.batteryPercentageLabel.text = device.state
+//                currentBatteryLevel = Int(device.state) ?? Int(batteryPercentageLabel.text!)!
+//                ///changes the battery level label to the friendly name of the device with white space to centralize the string
+//                let phoneName = AppUtility.shortenString(string: device.name, maxLength: 19, minLength: 17)
+//                self.iPhoneBatteryDeviceName?.text = phoneName
+//
+//            }
+//            //print("handling plug data is : \(device.id == plugStateEntityID) for \(plugStateEntityID) as the device is now \(device.id)")
+//          if device.id == plugStateEntityID {
+//              plugName.text = "\(device.name) plug connected"
+//                if currentBatteryLevel <= lowestBatteryChargeLevel || currentBatteryLevel == 100  {
+//                    let timeSinceLastCheck = Date().timeIntervalSince(self.lastPlugStateCheckTime)
+//                    print("Time since last check \(timeSinceLastCheck)")
+//                    if timeSinceLastCheck > 30 {
+//                        lastPlugStateCheckTime = Date()
+//                        print(lastPlugStateCheckTime)
+//                        plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
+//                    }
+//            }
+//                updatePlugColour(state: device.state)
+//           }
+//            if device.id == iPhoneBatteryStateEntityID {
+//
+//                //set an alert to charge if the device is showing as not charging
+//                if device.state == "Not Charging" && plugColour == K.off {
+//                    print("\(device.name) is \(device.state)")
+//                }else {
+//                    switch device.state {
+//                    case "Charging":
+//                        print("\(device.name) is charging")
+//                        break
+//                    case "Not Charging":
+//                        //print("\(device.name) is not charging but the plug is on")
+//                        break
+//                    case "Full":
+//                        print("\(device.name) is full and charging should be stopped")
+//                        plugColour = self.deviceStateManager.manageBattery(device: device, lowestBatteryChargeLevel: lowestBatteryChargeLevel, currentBatteryLevel: currentBatteryLevel, plugName: plugStateEntityID)
+//                        break
+//                    default:
+//                        print("\(device.name) has an unknown issue, check state in home assistant")
+//                        break
+//                    }
+//                }
+//            }
+//        }
+//
+//
+//    }
 
 
 //MARK: - PlugControlDelegate
