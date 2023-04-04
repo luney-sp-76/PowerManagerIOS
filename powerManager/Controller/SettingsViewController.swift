@@ -48,25 +48,25 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let setupButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(self.setupButtonTapped))
-                navigationItem.rightBarButtonItem = setupButton
+        navigationItem.rightBarButtonItem = setupButton
         // initate this vew a s homeManager delegate
         homeManager.delegate = self
-      
+        
         // call the home manager method to fetchData from the API
         print(("settingsView Calls Home Manager"))
         homeManager.fetchDeviceData { result in
-                    switch result {
-                    case .success(let devices):
-                        self.deviceInfo = devices.filter { device in
-                            return device.entity_id.contains(K.batteryLevel) || device.entity_id.contains(K.switchs)
-                        }
-                        DispatchQueue.main.async {
-                            self.tableView.reloadData()
-                        }
-                    case .failure(let error):
-                        print("Failed to fetch device data: \(error.localizedDescription)")
-                    }
+            switch result {
+            case .success(let devices):
+                self.deviceInfo = devices.filter { device in
+                    return device.entity_id.contains(K.batteryLevel) || device.entity_id.contains(K.switchs)
                 }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            case .failure(let error):
+                print("Failed to fetch device data: \(error.localizedDescription)")
+            }
+        }
         // set this view as the source of the table data
         tableView.dataSource = self
         // set this view as the delegate for tableview data
@@ -93,10 +93,10 @@ class SettingsViewController: UIViewController {
     }
     
     @objc func setupButtonTapped() {
-           // Handle setup button tap here
-           // For example, perform a segue to the setup view controller
+        // Handle setup button tap here
+        // For example, perform a segue to the setup view controller
         performSegue(withIdentifier: K.settingsToSetup, sender: self)
-       }
+    }
     
     @IBAction func setButtonPressed(_ sender: UIButton) {
         //print("when the set button was pressed count = \(count)")
@@ -107,7 +107,7 @@ class SettingsViewController: UIViewController {
     //sends the choosen devices to the device array in batterymonitorViewController and updates the batterystate variable for api calls
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BatteryMonitorViewController {
-        
+            
             destination.updateDevicesArray(newDevicesArray: selectedDevices)
             //destination.devicesArray = selectedDevices
             destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId
@@ -127,13 +127,13 @@ class SettingsViewController: UIViewController {
 
 //MARK: - HomeManagerDelegate
 /**
-Manages the data received from the HomeManager and creates the deviceInfo array by filtering the array of HomeAssistantData received through the delegate method didReceiveDevices. If the entity ID of the HomeAssistantData object contains the string "battery_state", appends it to the allBatteryStateDevices array.
-
-Parameters:
-
-devices: An array of HomeAssistantData objects representing the devices received from the HomeManager.
-Returns: None
-*/
+ Manages the data received from the HomeManager and creates the deviceInfo array by filtering the array of HomeAssistantData received through the delegate method didReceiveDevices. If the entity ID of the HomeAssistantData object contains the string "battery_state", appends it to the allBatteryStateDevices array.
+ 
+ Parameters:
+ 
+ devices: An array of HomeAssistantData objects representing the devices received from the HomeManager.
+ Returns: None
+ */
 extension SettingsViewController: HomeManagerDelegate {
     func didFailToFetchDeviceData(with error: Error) {
         print("Failed to fetch device data: \(error.localizedDescription)")
@@ -142,7 +142,7 @@ extension SettingsViewController: HomeManagerDelegate {
         DispatchQueue.main.async { [self] in
             if !devices.isEmpty {
                 for device in devices {
-                   if device.entity_id.contains("battery_state") {
+                    if device.entity_id.contains("battery_state") {
                         self.allBatteryStateDevices.append(device)
                     }
                 }
@@ -166,15 +166,15 @@ extension SettingsViewController: UITableViewDataSource {
     }
     
     /**
-    Configures and returns a table view cell with the appropriate device data at the specified index path.
-    If the device entity ID contains the string "battery_level", displays a smartphone-charger image on the right side of the cell.
-    If the device entity ID contains the string "switch", displays a power-plug image on the right side of the cell.
-    If the device entity ID is contained in the selectedDevices array, displays a checkmark accessory on the right side of the cell.
-    Otherwise, displays no accessory.
-
-    Returns:
-    A UITableViewCell with the appropriate labels and images.
-    */
+     Configures and returns a table view cell with the appropriate device data at the specified index path.
+     If the device entity ID contains the string "battery_level", displays a smartphone-charger image on the right side of the cell.
+     If the device entity ID contains the string "switch", displays a power-plug image on the right side of the cell.
+     If the device entity ID is contained in the selectedDevices array, displays a checkmark accessory on the right side of the cell.
+     Otherwise, displays no accessory.
+     
+     Returns:
+     A UITableViewCell with the appropriate labels and images.
+     */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! DevicesCell
         let device_id = deviceInfo[indexPath.row].entity_id
@@ -196,11 +196,11 @@ extension SettingsViewController: UITableViewDataSource {
     
     /**
      Returns a string representing the device that reports battery state based on the entity ID string provided.
-
+     
      The function expects a non-empty string that starts with "sensor.", and searches for a substring that represents the named device that reports battery state, identified by the characters "_battery_level" following the device name. The function returns the substring between the start of the device name and the end of the battery level substring, which is at most 11 characters after the device name.
-
+     
      - Parameter entity: A string representing the entity ID of the device.
-
+     
      Returns:
      - A substring of the entity string starting from character 7 and ending at character 17, or the end of the string, whichever comes first.
      - An empty string if the input string is empty.
@@ -216,22 +216,31 @@ extension SettingsViewController: UITableViewDataSource {
             
         }
         return " "
-       
+        
     }
-    
-    
-    
     
 }
 
 
 //MARK: - TableViewDelegate
-//This code first checks if the selected device contains "battery_level" or "switch" and then checks if the selectedDevices array already contains that type of device. If it does, it removes the existing device and adds the new one. If it doesn't, it simply adds the new device to the array.
+/**
+ Configures the selected cell based on the user's selection and manages the selected devices array.
+ If the selected device contains "battery_level", adds it to the selected devices array and updates the batteryDeviceSelected and selectedDeviceBatteryStateId properties.
+ If the selected device contains "switch", adds it to the selected devices array and updates the plugDeviceSelected property.
+ If the selected device has already been added to the selected devices array, removes it from the array.
+ After modifying the selected devices array, reloads the table view to update the checkmark accessories on the cells.
+ 
+ - Parameters:
+ - tableView: The table view containing the selected cell.
+ - indexPath: The index path of the selected cell.
+ - Returns: None.
+ 
+ */
 extension SettingsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath) as! DevicesCell
         let device_id = deviceInfo[indexPath.row].entity_id
-        //print("\(selectedDevices) first check of the array")
+        
         if device_id.contains(K.batteryLevel) {
             if !batteryDeviceSelected {
                 // add the new battery device to the array of selected devices
@@ -243,7 +252,6 @@ extension SettingsViewController: UITableViewDelegate {
                     if device.entity_id.contains(subString) {
                         //make the baterystate id this device
                         selectedDeviceBatteryStateId = device.entity_id
-                       // print(selectedDeviceBatteryStateId)
                     }
                 }
                 batteryDevice = device_id
@@ -253,11 +261,8 @@ extension SettingsViewController: UITableViewDelegate {
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
                     cell.isSelected = false
-                    //count -= 1
-                    // print(count)
                 }
                 batteryDeviceSelected = false
-                //print("You deselected the battery device")
                 DispatchQueue.main.async {
                     tableView.reloadData()
                 }
@@ -269,21 +274,14 @@ extension SettingsViewController: UITableViewDelegate {
                 plugDevice = device_id
                 
                 switchDeviceSelected = true
-                //print("You set \(device_id) as the smart plug device")
-                //print("\(selectedDevices) potential second check of the array")
-                //count += 1
-                //print(count)
+                
             } else {
                 // remove the existing switch device from the array
                 if let index = selectedDevices.firstIndex(of: device_id) {
                     selectedDevices.remove(at: index)
-                    //count -= 1
-                    //print(count)
                     cell.isSelected = false
                 }
                 switchDeviceSelected = false
-                // print("You deselected the smart plug device")
-                //print("\(selectedDevices) if you changed your mind then maybe second or greater check of the array")
                 DispatchQueue.main.async {
                     tableView.reloadData()
                 }
