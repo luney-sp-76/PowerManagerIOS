@@ -126,7 +126,14 @@ class SettingsViewController: UIViewController {
 }
 
 //MARK: - HomeManagerDelegate
-// manage the data from the HomeManager and create the data for deviceInfo from the array of Devices
+/**
+Manages the data received from the HomeManager and creates the deviceInfo array by filtering the array of HomeAssistantData received through the delegate method didReceiveDevices. If the entity ID of the HomeAssistantData object contains the string "battery_state", appends it to the allBatteryStateDevices array.
+
+Parameters:
+
+devices: An array of HomeAssistantData objects representing the devices received from the HomeManager.
+Returns: None
+*/
 extension SettingsViewController: HomeManagerDelegate {
     func didFailToFetchDeviceData(with error: Error) {
         print("Failed to fetch device data: \(error.localizedDescription)")
@@ -158,7 +165,16 @@ extension SettingsViewController: UITableViewDataSource {
         return self.deviceInfo.count
     }
     
-    
+    /**
+    Configures and returns a table view cell with the appropriate device data at the specified index path.
+    If the device entity ID contains the string "battery_level", displays a smartphone-charger image on the right side of the cell.
+    If the device entity ID contains the string "switch", displays a power-plug image on the right side of the cell.
+    If the device entity ID is contained in the selectedDevices array, displays a checkmark accessory on the right side of the cell.
+    Otherwise, displays no accessory.
+
+    Returns:
+    A UITableViewCell with the appropriate labels and images.
+    */
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! DevicesCell
         let device_id = deviceInfo[indexPath.row].entity_id
@@ -178,12 +194,17 @@ extension SettingsViewController: UITableViewDataSource {
         return cell
     }
     
-    // this func uses known knowledge that the string cannot be empty as it should not be called
-    // but will return an empty string if its called with an empty string
-    // the function expects a string that starts with sensor. so offsets at character 7
-    //it expects a named device followed by battery_level so a minimum of 1 letter and _ beforehand
-    // I have set it to end at character 17 which would encompass the word battery but no futher
-    //this will return the substring between these two points
+    /**
+     Returns a string representing the device that reports battery state based on the entity ID string provided.
+
+     The function expects a non-empty string that starts with "sensor.", and searches for a substring that represents the named device that reports battery state, identified by the characters "_battery_level" following the device name. The function returns the substring between the start of the device name and the end of the battery level substring, which is at most 11 characters after the device name.
+
+     - Parameter entity: A string representing the entity ID of the device.
+
+     Returns:
+     - A substring of the entity string starting from character 7 and ending at character 17, or the end of the string, whichever comes first.
+     - An empty string if the input string is empty.
+     */
     func setBatteryStateDevice(entity: String) -> String {
         if !entity.isEmpty{
             let str = entity
