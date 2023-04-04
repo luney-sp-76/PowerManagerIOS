@@ -9,15 +9,29 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-// the FirebaseUpdater class implements the HomeManagerDelegate protocol and implements the didReceiveDevices(_:) method.
+/**
+ A class that implements the HomeManagerDelegate protocol to update Firebase Firestore with information about home automation devices.
+ */
 class FirebaseUpdater: HomeManagerDelegate {
+    
+    /**
+        Called when there is an error fetching device data.
+        
+        - Parameters:
+           - error: The error that occurred.
+        */
     func didFailToFetchDeviceData(with error: Error) {
         print("Failed to fetch device data: \(error.localizedDescription)")
     }
     
     let db = Firestore.firestore()
    
-    
+    /**
+       Called when new devices are received from HomeManager.
+       
+       - Parameters:
+          - devices: An array of HomeAssistantData objects representing the new devices.
+       */
     func didReceiveDevices(_ devices: [HomeAssistantData]) {
         if let userData = Auth.auth().currentUser?.email {
             updateFirebase(with: devices, userData: userData)
@@ -25,6 +39,13 @@ class FirebaseUpdater: HomeManagerDelegate {
        
     }
     
+    /**
+     Updates Firebase Firestore with information about the given devices.
+     
+     - Parameters:
+        - devices: An array of HomeAssistantData objects representing the devices to update.
+        - userData: The email address of the user associated with the devices.
+     */
     func updateFirebase(with devices: [HomeAssistantData], userData: String) {
         let id = Auth.auth().currentUser?.email
         for device in devices {
