@@ -41,13 +41,11 @@ class SettingsViewController: UIViewController {
     // is a  selected device a smartplug device
     var switchDeviceSelected = false
     
-    //testing count
-    //var count = 0
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         let setupButton = UIBarButtonItem(title: "Setup", style: .plain, target: self, action: #selector(self.setupButtonTapped))
+        
         navigationItem.rightBarButtonItem = setupButton
         // initate this vew a s homeManager delegate
         homeManager.delegate = self
@@ -67,6 +65,7 @@ class SettingsViewController: UIViewController {
                 print("Failed to fetch device data: \(error.localizedDescription)")
             }
         }
+        
         // set this view as the source of the table data
         tableView.dataSource = self
         // set this view as the delegate for tableview data
@@ -75,45 +74,40 @@ class SettingsViewController: UIViewController {
         tableView.register(UINib(nibName: K.celNibName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
         // add the app name to the Navigation Bar Title
         title = K.appName
-        //navigationItem.hidesBackButton = true
+        
     }
     
     //lock the screen orientation
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppUtility.lockOrientation(.portrait)
-        // Or to rotate and lock
-        // AppUtility.lockOrientation(.portrait, andRotateTo: .portrait)
     }
+    
     //removes the contstraint on orientation lock from portrait back to all
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Don't forget to reset when view is being removed
         AppUtility.lockOrientation(.all)
     }
     
     @objc func setupButtonTapped() {
         // Handle setup button tap here
-        // For example, perform a segue to the setup view controller
+        // perform a segue to the setup view controller
         performSegue(withIdentifier: K.settingsToSetup, sender: self)
     }
     
     @IBAction func setButtonPressed(_ sender: UIButton) {
-        //print("when the set button was pressed count = \(count)")
-        //print("and the array looks like this \(selectedDevices)")
         sender.isSelected = true
         performSegue(withIdentifier: K.settingsToBatteryMonitor, sender: self)
     }
+    
+    
     //sends the choosen devices to the device array in batterymonitorViewController and updates the batterystate variable for api calls
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? BatteryMonitorViewController {
-            
             destination.updateDevicesArray(newDevicesArray: selectedDevices)
-            //destination.devicesArray = selectedDevices
             destination.iPhoneBatteryStateEntityID = selectedDeviceBatteryStateId
             destination.checked = true
         }
-        
     }
     
     
