@@ -1,0 +1,23 @@
+{
+  "images" : [
+    {
+      "filename" : "icon-and-image-large-icon-settings_2x.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "icon-and-image-large-icon-settings_2x@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "icon-and-image-large-icon-settings_2x@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}
