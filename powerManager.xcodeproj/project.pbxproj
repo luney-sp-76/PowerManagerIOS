@@ -15,10 +15,6 @@
 		BD3C2F94297D7B5B00F4B914 /* Device.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD3C2F93297D7B5B00F4B914 /* Device.swift */; };
 		BD49240D2994F9F700A83D01 /* PowerFireStoreService.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */; };
 		BD579FBA296BFE98005C9780 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD579FB9296BFE98005C9780 /* LoginViewController.swift */; };
-		BD5A76EA29C9021700E1337F /* EnergyCostTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76E929C9021700E1337F /* EnergyCostTests.swift */; };
-		BD5A76EF29C909A700E1337F /* EnergyCostManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */; };
-		BD5A76F129C9951A00E1337F /* EnergyManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76F029C9951A00E1337F /* EnergyManagerTests.swift */; };
-		BD5A76F329C9977C00E1337F /* FireStoreMocks.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76F229C9977C00E1337F /* FireStoreMocks.swift */; };
 		BD5A76F529C99D0C00E1337F /* FireStoreProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5A76F429C99D0C00E1337F /* FireStoreProtocols.swift */; };
 		BD5FB24A29A8B781008F27CF /* SecurityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD5FB24929A8B781008F27CF /* SecurityViewController.swift */; };
 		BD6327D8297D599100514BF6 /* DevicesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6327D6297D599100514BF6 /* DevicesCell.swift */; };
@@ -28,11 +24,12 @@
 		BD6C4A5D299F7FD700D401DD /* EnergyCostDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6C4A5C299F7FD700D401DD /* EnergyCostDataManager.swift */; };
 		BD6D3ED929754082009C063A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD6D3ED829754082009C063A /* Constants.swift */; };
 		BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = BD77EF9C296D45D1000C9940 /* GoogleService-Info.plist */; };
-		BD80AA0829C9004000A80501 /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BD80AA0729C9004000A80501 /* Charts.framework */; };
 		BD91BFD029A27D9D0016FF41 /* Crypto.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD91BFCF29A27D9D0016FF41 /* Crypto.swift */; };
 		BD9EDD0B29A763E200110F3A /* SecuredDataFetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */; };
 		BDA6B01A296318AB000EE544 /* DeviceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B019296318AB000EE544 /* DeviceManager.swift */; };
 		BDA6B0692965D5DF000EE544 /* PlugControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDA6B0682965D5DF000EE544 /* PlugControl.swift */; };
+		BDACB16729DED4E20058909C /* powerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACB16629DED4E20058909C /* powerManagerTests.swift */; };
+		BDACB16F29DED5600058909C /* EnergyCostManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDACB16D29DED5600058909C /* EnergyCostManagerTests.swift */; };
 		BDB332BF29885E1D0067B721 /* HomeData.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDB332BE29885E1D0067B721 /* HomeData.swift */; };
 		BDC4197F29ACCB8900C80391 /* HomeManagerSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC4197E29ACCB8900C80391 /* HomeManagerSingleton.swift */; };
 		BDC629C4299010780063CA6F /* FirebaseUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDC629C3299010770063CA6F /* FirebaseUpdater.swift */; };
@@ -49,21 +46,11 @@
 		DAE45FF5295E1CDD00704D59 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE45FF3295E1CDD00704D59 /* Main.storyboard */; };
 		DAE45FF7295E1CDF00704D59 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAE45FF6295E1CDF00704D59 /* Assets.xcassets */; };
 		DAE45FFA295E1CDF00704D59 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DAE45FF8295E1CDF00704D59 /* LaunchScreen.storyboard */; };
-		DAE46005295E1CDF00704D59 /* powerManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE46004295E1CDF00704D59 /* powerManagerTests.swift */; };
-		DAE4600F295E1CDF00704D59 /* powerManagerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE4600E295E1CDF00704D59 /* powerManagerUITests.swift */; };
-		DAE46011295E1CDF00704D59 /* powerManagerUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DAE46010295E1CDF00704D59 /* powerManagerUITestsLaunchTests.swift */; };
 		DDCD2971B7FD1519C56FE1E6 /* Pods_powerManager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B647118994F43D6D95784CE2 /* Pods_powerManager.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		DAE46001295E1CDF00704D59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = DAE45FE2295E1CDD00704D59 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = DAE45FE9295E1CDD00704D59;
-			remoteInfo = powerManager;
-		};
-		DAE4600B295E1CDF00704D59 /* PBXContainerItemProxy */ = {
+		BDACB16829DED4E20058909C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = DAE45FE2295E1CDD00704D59 /* Project object */;
 			proxyType = 1;
@@ -85,10 +72,6 @@
 		BD49240C2994F9F700A83D01 /* PowerFireStoreService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PowerFireStoreService.swift; sourceTree = "<group>"; };
 		BD579FB8296BF505005C9780 /* powerManager.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = powerManager.entitlements; sourceTree = "<group>"; };
 		BD579FB9296BFE98005C9780 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		BD5A76E929C9021700E1337F /* EnergyCostTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostTests.swift; sourceTree = "<group>"; };
-		BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostManagerTests.swift; sourceTree = "<group>"; };
-		BD5A76F029C9951A00E1337F /* EnergyManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyManagerTests.swift; sourceTree = "<group>"; };
-		BD5A76F229C9977C00E1337F /* FireStoreMocks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreMocks.swift; sourceTree = "<group>"; };
 		BD5A76F429C99D0C00E1337F /* FireStoreProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireStoreProtocols.swift; sourceTree = "<group>"; };
 		BD5FB24929A8B781008F27CF /* SecurityViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityViewController.swift; sourceTree = "<group>"; };
 		BD6327D6297D599100514BF6 /* DevicesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevicesCell.swift; sourceTree = "<group>"; };
@@ -103,6 +86,12 @@
 		BD9EDD0A29A763E200110F3A /* SecuredDataFetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecuredDataFetch.swift; sourceTree = "<group>"; };
 		BDA6B019296318AB000EE544 /* DeviceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceManager.swift; sourceTree = "<group>"; };
 		BDA6B0682965D5DF000EE544 /* PlugControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlugControl.swift; sourceTree = "<group>"; };
+		BDACB14D29DCBD8C0058909C /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDACB14F29DCBDE20058909C /* Pods_powerManager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_powerManager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDACB15129DCBDEF0058909C /* Charts.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Charts.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDACB16429DED4E20058909C /* powerManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = powerManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDACB16629DED4E20058909C /* powerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = powerManagerTests.swift; sourceTree = "<group>"; };
+		BDACB16D29DED5600058909C /* EnergyCostManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnergyCostManagerTests.swift; sourceTree = "<group>"; };
 		BDB332BE29885E1D0067B721 /* HomeData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeData.swift; sourceTree = "<group>"; };
 		BDC4197E29ACCB8900C80391 /* HomeManagerSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeManagerSingleton.swift; sourceTree = "<group>"; };
 		BDC629C3299010770063CA6F /* FirebaseUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUpdater.swift; sourceTree = "<group>"; };
@@ -121,34 +110,21 @@
 		DAE45FF6295E1CDF00704D59 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		DAE45FF9295E1CDF00704D59 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DAE45FFB295E1CDF00704D59 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		DAE46000295E1CDF00704D59 /* powerManagerTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = powerManagerTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAE46004295E1CDF00704D59 /* powerManagerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = powerManagerTests.swift; sourceTree = "<group>"; };
-		DAE4600A295E1CDF00704D59 /* powerManagerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = powerManagerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		DAE4600E295E1CDF00704D59 /* powerManagerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = powerManagerUITests.swift; sourceTree = "<group>"; };
-		DAE46010295E1CDF00704D59 /* powerManagerUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = powerManagerUITestsLaunchTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		BDACB16129DED4E20058909C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAE45FE7295E1CDD00704D59 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DDCD2971B7FD1519C56FE1E6 /* Pods_powerManager.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAE45FFD295E1CDF00704D59 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BD80AA0829C9004000A80501 /* Charts.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAE46007295E1CDF00704D59 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -158,6 +134,9 @@
 		0C9062B8D8C97858F2EB0C0C /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				BDACB15129DCBDEF0058909C /* Charts.framework */,
+				BDACB14F29DCBDE20058909C /* Pods_powerManager.framework */,
+				BDACB14D29DCBD8C0058909C /* Charts.framework */,
 				BD80AA0729C9004000A80501 /* Charts.framework */,
 				B647118994F43D6D95784CE2 /* Pods_powerManager.framework */,
 			);
@@ -217,6 +196,15 @@
 			path = EnergyCost;
 			sourceTree = "<group>";
 		};
+		BDACB16529DED4E20058909C /* powerManagerTests */ = {
+			isa = PBXGroup;
+			children = (
+				BDACB16629DED4E20058909C /* powerManagerTests.swift */,
+				BDACB16D29DED5600058909C /* EnergyCostManagerTests.swift */,
+			);
+			path = powerManagerTests;
+			sourceTree = "<group>";
+		};
 		BDAE1F2D29B0AED4005E9ED3 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -270,8 +258,7 @@
 			isa = PBXGroup;
 			children = (
 				DAE45FEC295E1CDD00704D59 /* powerManager */,
-				DAE46003295E1CDF00704D59 /* powerManagerTests */,
-				DAE4600D295E1CDF00704D59 /* powerManagerUITests */,
+				BDACB16529DED4E20058909C /* powerManagerTests */,
 				DAE45FEB295E1CDD00704D59 /* Products */,
 				0E1E3599FB236270EB4C5255 /* Pods */,
 				0C9062B8D8C97858F2EB0C0C /* Frameworks */,
@@ -282,8 +269,7 @@
 			isa = PBXGroup;
 			children = (
 				DAE45FEA295E1CDD00704D59 /* powerManager.app */,
-				DAE46000295E1CDF00704D59 /* powerManagerTests.xctest */,
-				DAE4600A295E1CDF00704D59 /* powerManagerUITests.xctest */,
+				BDACB16429DED4E20058909C /* powerManagerTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -305,30 +291,27 @@
 			path = powerManager;
 			sourceTree = "<group>";
 		};
-		DAE46003295E1CDF00704D59 /* powerManagerTests */ = {
-			isa = PBXGroup;
-			children = (
-				DAE46004295E1CDF00704D59 /* powerManagerTests.swift */,
-				BD5A76E929C9021700E1337F /* EnergyCostTests.swift */,
-				BD5A76ED29C9081400E1337F /* EnergyCostManagerTests.swift */,
-				BD5A76F029C9951A00E1337F /* EnergyManagerTests.swift */,
-				BD5A76F229C9977C00E1337F /* FireStoreMocks.swift */,
-			);
-			path = powerManagerTests;
-			sourceTree = "<group>";
-		};
-		DAE4600D295E1CDF00704D59 /* powerManagerUITests */ = {
-			isa = PBXGroup;
-			children = (
-				DAE4600E295E1CDF00704D59 /* powerManagerUITests.swift */,
-				DAE46010295E1CDF00704D59 /* powerManagerUITestsLaunchTests.swift */,
-			);
-			path = powerManagerUITests;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		BDACB16329DED4E20058909C /* powerManagerTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BDACB16A29DED4E20058909C /* Build configuration list for PBXNativeTarget "powerManagerTests" */;
+			buildPhases = (
+				BDACB16029DED4E20058909C /* Sources */,
+				BDACB16129DED4E20058909C /* Frameworks */,
+				BDACB16229DED4E20058909C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				BDACB16929DED4E20058909C /* PBXTargetDependency */,
+			);
+			name = powerManagerTests;
+			productName = powerManagerTests;
+			productReference = BDACB16429DED4E20058909C /* powerManagerTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		DAE45FE9295E1CDD00704D59 /* powerManager */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = DAE46014295E1CDF00704D59 /* Build configuration list for PBXNativeTarget "powerManager" */;
@@ -348,42 +331,6 @@
 			productReference = DAE45FEA295E1CDD00704D59 /* powerManager.app */;
 			productType = "com.apple.product-type.application";
 		};
-		DAE45FFF295E1CDF00704D59 /* powerManagerTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DAE46017295E1CDF00704D59 /* Build configuration list for PBXNativeTarget "powerManagerTests" */;
-			buildPhases = (
-				DAE45FFC295E1CDF00704D59 /* Sources */,
-				DAE45FFD295E1CDF00704D59 /* Frameworks */,
-				DAE45FFE295E1CDF00704D59 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DAE46002295E1CDF00704D59 /* PBXTargetDependency */,
-			);
-			name = powerManagerTests;
-			productName = powerManagerTests;
-			productReference = DAE46000295E1CDF00704D59 /* powerManagerTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		DAE46009295E1CDF00704D59 /* powerManagerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = DAE4601A295E1CDF00704D59 /* Build configuration list for PBXNativeTarget "powerManagerUITests" */;
-			buildPhases = (
-				DAE46006295E1CDF00704D59 /* Sources */,
-				DAE46007295E1CDF00704D59 /* Frameworks */,
-				DAE46008295E1CDF00704D59 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				DAE4600C295E1CDF00704D59 /* PBXTargetDependency */,
-			);
-			name = powerManagerUITests;
-			productName = powerManagerUITests;
-			productReference = DAE4600A295E1CDF00704D59 /* powerManagerUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -391,19 +338,15 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
-				LastSwiftUpdateCheck = 1400;
+				LastSwiftUpdateCheck = 1420;
 				LastUpgradeCheck = 1400;
 				TargetAttributes = {
+					BDACB16329DED4E20058909C = {
+						CreatedOnToolsVersion = 14.2;
+						TestTargetID = DAE45FE9295E1CDD00704D59;
+					};
 					DAE45FE9295E1CDD00704D59 = {
 						CreatedOnToolsVersion = 14.0.1;
-					};
-					DAE45FFF295E1CDF00704D59 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = DAE45FE9295E1CDD00704D59;
-					};
-					DAE46009295E1CDF00704D59 = {
-						CreatedOnToolsVersion = 14.0.1;
-						TestTargetID = DAE45FE9295E1CDD00704D59;
 					};
 				};
 			};
@@ -421,13 +364,19 @@
 			projectRoot = "";
 			targets = (
 				DAE45FE9295E1CDD00704D59 /* powerManager */,
-				DAE45FFF295E1CDF00704D59 /* powerManagerTests */,
-				DAE46009295E1CDF00704D59 /* powerManagerUITests */,
+				BDACB16329DED4E20058909C /* powerManagerTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		BDACB16229DED4E20058909C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAE45FE8295E1CDD00704D59 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -437,20 +386,6 @@
 				BD77EF9D296D45D1000C9940 /* GoogleService-Info.plist in Resources */,
 				DAE45FF7295E1CDF00704D59 /* Assets.xcassets in Resources */,
 				DAE45FF5295E1CDD00704D59 /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAE45FFE295E1CDF00704D59 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAE46008295E1CDF00704D59 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -499,6 +434,15 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		BDACB16029DED4E20058909C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BDACB16F29DED5600058909C /* EnergyCostManagerTests.swift in Sources */,
+				BDACB16729DED4E20058909C /* powerManagerTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		DAE45FE6295E1CDD00704D59 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -538,39 +482,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		DAE45FFC295E1CDF00704D59 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				BD5A76EF29C909A700E1337F /* EnergyCostManagerTests.swift in Sources */,
-				BD5A76EA29C9021700E1337F /* EnergyCostTests.swift in Sources */,
-				BD5A76F329C9977C00E1337F /* FireStoreMocks.swift in Sources */,
-				DAE46005295E1CDF00704D59 /* powerManagerTests.swift in Sources */,
-				BD5A76F129C9951A00E1337F /* EnergyManagerTests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DAE46006295E1CDF00704D59 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				DAE46011295E1CDF00704D59 /* powerManagerUITestsLaunchTests.swift in Sources */,
-				DAE4600F295E1CDF00704D59 /* powerManagerUITests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		DAE46002295E1CDF00704D59 /* PBXTargetDependency */ = {
+		BDACB16929DED4E20058909C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = DAE45FE9295E1CDD00704D59 /* powerManager */;
-			targetProxy = DAE46001295E1CDF00704D59 /* PBXContainerItemProxy */;
-		};
-		DAE4600C295E1CDF00704D59 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = DAE45FE9295E1CDD00704D59 /* powerManager */;
-			targetProxy = DAE4600B295E1CDF00704D59 /* PBXContainerItemProxy */;
+			targetProxy = BDACB16829DED4E20058909C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -594,6 +512,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		BDACB16B29DED4E20058909C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 426X48V4L7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.powerManager.powerManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/powerManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/powerManager";
+			};
+			name = Debug;
+		};
+		BDACB16C29DED4E20058909C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 426X48V4L7;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.powerManager.powerManagerTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/powerManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/powerManager";
+			};
+			name = Release;
+		};
 		DAE46012295E1CDF00704D59 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -786,85 +744,18 @@
 			};
 			name = Release;
 		};
-		DAE46018295E1CDF00704D59 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 426X48V4L7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.powermanager.powerManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/powerManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/powerManager";
-			};
-			name = Debug;
-		};
-		DAE46019295E1CDF00704D59 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 426X48V4L7;
-				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.powermanager.powerManagerTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/powerManager.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/powerManager";
-			};
-			name = Release;
-		};
-		DAE4601B295E1CDF00704D59 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 426X48V4L7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.powermanager.powerManagerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = powerManager;
-			};
-			name = Debug;
-		};
-		DAE4601C295E1CDF00704D59 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 426X48V4L7;
-				GENERATE_INFOPLIST_FILE = YES;
-				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.powermanager.powerManagerUITests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_EMIT_LOC_STRINGS = NO;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = powerManager;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		BDACB16A29DED4E20058909C /* Build configuration list for PBXNativeTarget "powerManagerTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				BDACB16B29DED4E20058909C /* Debug */,
+				BDACB16C29DED4E20058909C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		DAE45FE5295E1CDD00704D59 /* Build configuration list for PBXProject "powerManager" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -879,24 +770,6 @@
 			buildConfigurations = (
 				DAE46015295E1CDF00704D59 /* Debug */,
 				DAE46016295E1CDF00704D59 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DAE46017295E1CDF00704D59 /* Build configuration list for PBXNativeTarget "powerManagerTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DAE46018295E1CDF00704D59 /* Debug */,
-				DAE46019295E1CDF00704D59 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		DAE4601A295E1CDF00704D59 /* Build configuration list for PBXNativeTarget "powerManagerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				DAE4601B295E1CDF00704D59 /* Debug */,
-				DAE4601C295E1CDF00704D59 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

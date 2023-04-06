@@ -10,7 +10,7 @@ import Charts
 //combine the homedata and energy cost data to create a chart of cost over time
 
 
-struct EnergyCostDataManager {
+public struct EnergyCostDataManager {
     
     /**
      Combines energy data from different sources and calculates the total energy cost within a specified date range.
@@ -31,7 +31,7 @@ struct EnergyCostDataManager {
      
      The function filters the energy readings from the homeData array and computes the energy consumption between each "on" and "off" switch state within the specified date range. For each energy consumption, the function calculates the cost using the closest energy pricing model from the energyModels array. The function then creates a ChartDataEntry object for each cost and appends it to the chartDataEntries array. Finally, the function configures the X-axis of the chartView with the provided dateValueFormat, and returns the chartDataEntries array and the totalCost value.
      */
-    func combineEnergyData(energyModels: [EnergyModel], homeData: [HomeData], chartView: LineChartView, dateValueFormat: DateValueFormatter, startDate: Date, endDate: Date) -> (chartDataEntries: [ChartDataEntry], totalCost: Double) {
+func combineEnergyData(energyModels: [EnergyModel], homeData: [HomeData], chartView: LineChartView, dateValueFormat: DateValueFormatter, startDate: Date, endDate: Date) -> (chartDataEntries: [ChartDataEntry], totalCost: Double) {
         let energyReadings = homeData.filter { $0.entity_id.hasSuffix("_energy") }
         let switchStates = filteredSwitchStates(homeData: homeData, startDate: startDate, endDate: endDate)
         
@@ -89,7 +89,7 @@ struct EnergyCostDataManager {
 
     The function initializes a DateFormatter object with the format "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ". It then filters the homeData array to include only those entries with an entity_id containing the string "switch" and a lastUpdated timestamp within the specified date range. The filtered data is stored in the filteredData array, which is then returned.
     */
-    func filteredSwitchStates(homeData: [HomeData], startDate: Date, endDate: Date) -> [HomeData] {
+  func filteredSwitchStates(homeData: [HomeData], startDate: Date, endDate: Date) -> [HomeData] {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
         
@@ -112,7 +112,7 @@ struct EnergyCostDataManager {
 
     The function initializes a DateFormatter object with the format "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ". It then iterates through the energyReadings array and calculates the absolute time difference between each energy reading's lastUpdated timestamp and the given timestamp. The function keeps track of the smallest time difference found (smallestTimeDiff) and the corresponding energy reading (closestEnergyReading). Finally, the function returns the closestEnergyReading object if found, or nil if no energy reading is found.
     */
-    func closestEnergyReading(timestamp: TimeInterval, energyReadings: [HomeData]) -> HomeData? {
+  func closestEnergyReading(timestamp: TimeInterval, energyReadings: [HomeData]) -> HomeData? {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSSSSZ"
         
@@ -144,7 +144,7 @@ struct EnergyCostDataManager {
 
     The function initializes a DateFormatter object with the format "HH:mm dd-MM-yyyy". It then iterates through the energyModels array and calculates the absolute time difference between each energy model's timestamp and the given timestamp. The function keeps track of the smallest time difference found (smallestTimeDiff) and the corresponding energy model (closestEnergyModel). Finally, the function returns the closestEnergyModel object if found, or nil if no energy model is found.
     */
-    func closestEnergyModel(timestamp: TimeInterval, energyModels: [EnergyModel]) -> EnergyModel? {
+    public func closestEnergyModel(timestamp: TimeInterval, energyModels: [EnergyModel]) -> EnergyModel? {
         var closestEnergyModel: EnergyModel?
         var smallestTimeDiff = Double.greatestFiniteMagnitude
         for energyModel in energyModels {
@@ -175,7 +175,7 @@ struct EnergyCostDataManager {
 
     The function calculates the cost by multiplying the energyUsage by the overall property of the energyModel. It then prints the calculated cost and returns the value.
     */
-    func energyCost(energyUsage: Double, energyModel: EnergyModel) -> Double {
+    public func energyCost(energyUsage: Double, energyModel: EnergyModel) -> Double {
         let cost = energyModel.overall * energyUsage
         print("Energy cost for usage \(energyUsage) and model \(energyModel.overall): \(cost)")
         return cost

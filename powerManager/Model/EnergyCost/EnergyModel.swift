@@ -6,7 +6,7 @@
 //
 
 /// Model for energy usage data
-class EnergyModel {
+public class EnergyModel {
     /// Overall energy usage value
     var overall: Double
     
@@ -43,7 +43,7 @@ extension EnergyModel: Equatable {
         - Returns: True if the two EnergyModel objects have equal overall, unixTimestamp and timestamp values, false otherwise
      
      */
-    static func == (lhs: EnergyModel, rhs: EnergyModel) -> Bool {
+    public static func == (lhs: EnergyModel, rhs: EnergyModel) -> Bool {
         return lhs.overall == rhs.overall &&
         lhs.unixTimestamp == rhs.unixTimestamp &&
         lhs.timestamp == rhs.timestamp

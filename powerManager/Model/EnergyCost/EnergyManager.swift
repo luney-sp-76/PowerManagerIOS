@@ -9,7 +9,7 @@ import Foundation
 import FirebaseAuth
 import FirebaseFirestore
 
-struct EnergyManager {
+public struct EnergyManager {
     /**
      Calls the energy cost API with the start date, end date, DNO, and voltage as set by the user in the Setup and StatisticsViewController.
      
